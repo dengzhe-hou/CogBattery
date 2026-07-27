@@ -25,7 +25,7 @@ task templates.
 
 ```bash
 git clone <repository-url> CogArena
-cd cogarena
+cd CogArena
 pip install -e .            # core (gymnasium)
 pip install -e ".[openai]"  # + OpenAI / any OpenAI-compatible endpoint
 # extras: ".[anthropic]", ".[google]", ".[image]", ".[all]", ".[analysis]"
