@@ -1,8 +1,12 @@
-# CogArena
+# CogBattery
 
-**A benchmark of 13 cognitive-science paradigms for evaluating LLMs and agents.**
+**A battery of 13 cognitive-science paradigms for evaluating LLMs and agents.**
 
-CogArena adapts validated experimental paradigms from cognitive science into a
+> **Renamed.** This project was released as *CogArena*; it is now *CogBattery*, to avoid confusion with an
+> unrelated benchmark of the same name. The arXiv v1 paper, the Python package, the `cogarena` command,
+> and the recorded result paths keep the original name, so existing commands and citations still work.
+
+CogBattery adapts validated experimental paradigms from cognitive science into a
 procedurally generated benchmark for language models. It covers working memory,
 cognitive control, episodic memory, theory of mind, and metacognition. Items are
 generated from seeded templates, reducing reliance on a fixed public item bank.
@@ -24,8 +28,8 @@ task templates.
 ## Install
 
 ```bash
-git clone <repository-url> CogArena
-cd CogArena
+git clone <repository-url> CogBattery
+cd CogBattery
 pip install -e .            # core (gymnasium)
 pip install -e ".[openai]"  # + OpenAI / any OpenAI-compatible endpoint
 # extras: ".[anthropic]", ".[google]", ".[huggingface]", ".[image]", ".[all]"
@@ -35,7 +39,7 @@ Requires Python ≥ 3.10.
 
 ## Quickstart
 
-The default text evaluation runs all 13 paradigms. CogArena handles the three
+The default text evaluation runs all 13 paradigms. CogBattery handles the three
 multi-turn paradigms within the same command.
 
 ```bash

@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use CogArena, please cite the paper below."
+message: "If you use CogBattery (formerly CogArena), please cite the paper below."
 title: "CogArena: A Multimethod Evaluation of Cognitive Ability Structure in Large Language Models"
 authors:
   - name: "Anonymous"
