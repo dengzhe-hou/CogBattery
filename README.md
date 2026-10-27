@@ -6,6 +6,8 @@
 > unrelated benchmark of the same name. The arXiv v1 paper, the Python package, the `cogarena` command,
 > and the recorded result paths keep the original name, so existing commands and citations still work.
 
+Project site with task guide and per-model results: https://dengzhe-hou.github.io/CogBattery/
+
 CogBattery adapts validated experimental paradigms from cognitive science into a
 procedurally generated benchmark for language models. It covers working memory,
 cognitive control, episodic memory, theory of mind, and metacognition. Items are
