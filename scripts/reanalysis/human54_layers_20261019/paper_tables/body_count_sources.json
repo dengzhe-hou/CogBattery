@@ -1,0 +1,62 @@
+{
+  "body_numeric_source": "body_source_rows.csv, keyed by task/endpoint; all54/valid_only/primary/merged",
+  "FB_all_correct": [
+    {
+      "rule": "valid_only",
+      "endpoint": "isolated_no_system|all_correct",
+      "panel": "all54",
+      "all_correct_models": "20",
+      "included_models": "54"
+    },
+    {
+      "rule": "valid_only",
+      "endpoint": "isolated|all_correct",
+      "panel": "all54",
+      "all_correct_models": "16",
+      "included_models": "54"
+    },
+    {
+      "rule": "valid_only",
+      "endpoint": "session_no_system|all_correct",
+      "panel": "all54",
+      "all_correct_models": "34",
+      "included_models": "54"
+    },
+    {
+      "rule": "valid_only",
+      "endpoint": "session|all_correct",
+      "panel": "all54",
+      "all_correct_models": "28",
+      "included_models": "54"
+    }
+  ],
+  "FB_profile_status": {
+    "isolated_items": {
+      "defined": 37,
+      "constant_profile": 16,
+      "incomplete_profile": 1
+    },
+    "isolated_no_system_items": {
+      "defined": 34,
+      "constant_profile": 20
+    },
+    "session_items": {
+      "defined": 26,
+      "constant_profile": 28
+    },
+    "session_no_system_items": {
+      "defined": 20,
+      "constant_profile": 34
+    }
+  },
+  "WAG_high_wager_rate": {
+    "always_low": 29,
+    "always_high": 8,
+    "both": 17,
+    "n_valid_values": [
+      240
+    ]
+  },
+  "formal_records_read": 0,
+  "statistics_recomputed": false
+}

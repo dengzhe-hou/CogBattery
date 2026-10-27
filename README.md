@@ -8,6 +8,8 @@
 
 Project site with task guide and per-model results: https://dengzhe-hou.github.io/CogBattery/
 
+Code for the current paper version (54 models, source-specific human references): see [PAPER_VERSION.md](PAPER_VERSION.md).
+
 CogBattery adapts validated experimental paradigms from cognitive science into a
 procedurally generated benchmark for language models. It covers working memory,
 cognitive control, episodic memory, theory of mind, and metacognition. Items are

@@ -1,0 +1,484 @@
+{
+  "study_id": "human13_20261017",
+  "revision": "formal_r7_unified_20261018",
+  "revision_history": [
+    {
+      "revision": "preparation_r6_54_drm_sentence",
+      "superseded_on": "2026-10-18",
+      "backup_file": "refine-logs/human54_unified_entry_20261018/backups_r6_20261018_161458/SPEC_20261018_161458.json",
+      "old_values": {
+        "authorization": {
+          "preparation_authorized": true,
+          "inference_authorized": false,
+          "user_instruction": "执行，先按 Ball 句版准备 DRM 结构比较，更新运行和计分脚本，离线核对54款的上下文；词版保留待核。保留全部13范式，暂不启动实验、不申请资源，论文和Overleaf先不改。"
+        },
+        "inference": {
+          "endpoint": "native Ollama /api/chat; existing P9 client",
+          "temperature": 0,
+          "reasoning_effort": "none",
+          "native_think": false,
+          "native_top_p": 1.0,
+          "max_tokens": 1024,
+          "context_tokens": 4096,
+          "contexts": {},
+          "template_margin_tokens": 128,
+          "per_message_margin_tokens": 8,
+          "server_threads": 1,
+          "max_transport_attempts": 3
+        },
+        "inference_status": "Prepared settings; source readiness and context preflight must pass before any future separately authorized pilot.",
+        "backends": {
+          "default": "scripts/experiments/cvlt_context_controls_20261007/backend/bin/ollama",
+          "phi3:14b": "scripts/experiments/phi3_cache_fix_20261013/build_support/backend_cachefix_p9/bin/ollama",
+          "phi3:3.8b": "scripts/experiments/phi3_cache_fix_20261013/build_support/backend_cachefix_p9/bin/ollama"
+        },
+        "reuse.false_belief": {
+          "qwen2.5:0.5b": "results/same_stimulus_20261011/formal/job_r2/qwen2.5__0.5b",
+          "qwen2.5:1.5b": "results/same_stimulus_20261011/formal/job_r2/qwen2.5__1.5b",
+          "qwen2.5:3b": "results/same_stimulus_20261011/formal/job_r2/qwen2.5__3b",
+          "qwen2.5:7b": "results/same_stimulus_20261011/formal/job_r2/qwen2.5__7b",
+          "qwen2.5:14b": "results/same_stimulus_20261011/formal/job_r2/qwen2.5__14b",
+          "qwen2.5:32b": "results/same_stimulus_20261011/formal/job_r2/qwen2.5__32b",
+          "gemma2:2b": "results/same_stimulus_20261011/formal/job_r2/gemma2__2b",
+          "gemma2:9b": "results/same_stimulus_20261011/formal/job_r2/gemma2__9b",
+          "gemma2:27b": "results/same_stimulus_20261011/formal/job_r2/gemma2__27b",
+          "llama3.2:1b": "results/same_stimulus_20261011/formal/job_r2/llama3.2__1b",
+          "llama3.2:3b": "results/same_stimulus_20261011/formal/job_r2/llama3.2__3b",
+          "llama3.1:8b": "results/same_stimulus_20261011/formal/job_r2/llama3.1__8b",
+          "deepseek-r1:7b": "results/same_stimulus_20261011/formal/job_r2/deepseek-r1__7b",
+          "deepseek-r1:14b": "results/same_stimulus_20261011/formal/job_r2/deepseek-r1__14b",
+          "mistral:7b": "results/same_stimulus_20261011/formal/job_r2/mistral__7b",
+          "mixtral:8x7b": "results/same_stimulus_20261011/formal/job_r2/mixtral__8x7b",
+          "phi3:14b": "results/phi3_cache_fix_20261013/formal/p9/phi3__14b",
+          "yi:34b": "results/same_stimulus_20261011/formal/job_r2/yi__34b",
+          "command-r:35b": "results/same_stimulus_20261011/formal/job_r2/command-r__35b"
+        },
+        "scope": "No submission scripts, scheduling, resources, paper/Overleaf edits, or model calls in preparation."
+      }
+    }
+  ],
+  "authorization": {
+    "preparation_authorized": true,
+    "inference_authorized": true,
+    "formal_authorized": true,
+    "pilot_authorized": true,
+    "pilot_after_independent_check": "User: 试跑通过就直接提交第一批 (USER_DECISIONS.md:4). The pilot runs only after the independent check; the parent sets pilot_authorized then. Later batches: report before each.",
+    "user_instructions": [
+      "2026-10-18: 执行，把修复合并到统一正式入口，先核对兼容缓存，再按实测更新54款、13范式完整评测的资源预算和分批方案。保留既定思考模式和token预算，不重复有效调用、不申请多余资源。完整评测先不启动，论文和Overleaf先不改。",
+      "2026-10-18: 试跑通过就直接提交第一批",
+      "2026-10-18: 按你倾向 (two rounds; recorded in refine-logs/human54_unified_entry_20261018/USER_DECISIONS.md:5-13)"
+    ],
+    "pilot_plan": {
+      "written": "2026-10-18, before pilot_authorized; run.py enforces it (pilot_limits)",
+      "output_root": "results/human54_unified_20261018/pilot",
+      "max_new_calls": {
+        "qwen2.5:7b": {
+          "digit_span": 20,
+          "n_back": 20,
+          "operation_span": 20,
+          "stroop": 20,
+          "flanker": 20,
+          "go_nogo": 20,
+          "cvlt_word_list": 131,
+          "drm_false_memory": 68,
+          "source_monitoring": 20,
+          "false_belief": 20,
+          "epitome_tom": 20,
+          "confidence_calibration": 20,
+          "post_decision_wagering": 49
+        },
+        "phi3:3.8b": {
+          "digit_span": 10,
+          "n_back": 10,
+          "operation_span": 10,
+          "stroop": 10,
+          "flanker": 10,
+          "go_nogo": 10,
+          "cvlt_word_list": 10,
+          "drm_false_memory": 10,
+          "source_monitoring": 10,
+          "false_belief": 10,
+          "epitome_tom": 10,
+          "confidence_calibration": 10,
+          "post_decision_wagering": 10
+        },
+        "qwen3:4b": {
+          "operation_span": 16,
+          "post_decision_wagering": 4,
+          "false_belief": 3
+        },
+        "deepseek-r1:7b": {
+          "operation_span": 16,
+          "post_decision_wagering": 4,
+          "false_belief": 3
+        },
+        "deepseek-r1:14b": {
+          "operation_span": 16,
+          "post_decision_wagering": 4,
+          "false_belief": 3
+        }
+      },
+      "max_new_calls_total": 647,
+      "counting": "new transports per (model, paradigm), counted across resumes from committed new records; cache reuse does not count",
+      "enforced": "models and paradigms outside max_new_calls are refused; --task defaults to the planned paradigms; the output root must equal output_root",
+      "why": "qwen2.5:7b covers the cvlt backend and every step kind once (cap = max(20, first index of the last step kind + 2)); phi3:3.8b covers the cachefix backend; the three native models cover json1 with the 96 and 8160 caps and free-form FB. The ten capped native paradigms wait for proposal 1.",
+      "pass_criteria": "refine-logs/human54_unified_entry_20261018/MERGE_PLAN.md section 10 (revised 2026-10-18 round 2)",
+      "parent_may": "narrow this plan, not widen it"
+    },
+    "pilot_authorized_record": {
+      "at": "2026-10-18",
+      "user_request_verbatim": "试跑通过就直接提交第一批",
+      "basis": "refine-logs/human54_unified_entry_20261018/USER_DECISIONS.md; independent merge and budget checks passed (workflow wf_55201502-9c7)"
+    },
+    "formal_authorized_record": {
+      "at": "2026-10-18",
+      "user_request_verbatim": [
+        "试跑通过就直接提交第一批",
+        "按你倾向"
+      ],
+      "pilot": "job 26102; PILOT_CHECK_r2.json: all criteria pass except P9 speed (6 cells slower than the conservative estimate); user approved recalibrating B1 time limits from the pilot and submitting B1",
+      "scope_note": "B1 only is submitted now; B2 (native capped paradigms) is reported to the user before submission."
+    }
+  },
+  "models": [
+    "qwen2.5:0.5b",
+    "qwen2.5:1.5b",
+    "qwen2.5:3b",
+    "qwen2.5:7b",
+    "qwen2.5:14b",
+    "qwen2.5:32b",
+    "gemma2:2b",
+    "gemma2:9b",
+    "gemma2:27b",
+    "llama3.2:1b",
+    "llama3.2:3b",
+    "llama3.1:8b",
+    "deepseek-r1:7b",
+    "deepseek-r1:14b",
+    "mistral:7b",
+    "mixtral:8x7b",
+    "phi3:14b",
+    "yi:34b",
+    "command-r:35b",
+    "aya:8b",
+    "deepseek-llm:7b",
+    "exaone3.5:7.8b",
+    "falcon3:10b",
+    "falcon3:7b",
+    "gemma3:12b",
+    "gemma3:1b",
+    "gemma3:27b",
+    "glm4:9b",
+    "internlm2:7b",
+    "llama2:13b",
+    "llama2:7b",
+    "llama3.1:70b",
+    "mistral-nemo:12b",
+    "mixtral:8x22b",
+    "nemotron-mini:4b",
+    "olmo2:13b",
+    "olmo2:7b",
+    "openchat:7b",
+    "phi3:3.8b",
+    "phi4:14b",
+    "qwen2.5:72b",
+    "qwen3:0.6b",
+    "qwen3:1.7b",
+    "qwen3:14b",
+    "qwen3:4b",
+    "qwen3:8b",
+    "smollm2:1.7b",
+    "smollm2:360m",
+    "solar:10.7b",
+    "stablelm2:1.6b",
+    "starling-lm:7b",
+    "yi:6b",
+    "yi:9b",
+    "zephyr:7b"
+  ],
+  "tasks": [
+    "digit_span",
+    "n_back",
+    "operation_span",
+    "stroop",
+    "flanker",
+    "go_nogo",
+    "cvlt_word_list",
+    "drm_false_memory",
+    "source_monitoring",
+    "false_belief",
+    "epitome_tom",
+    "confidence_calibration",
+    "post_decision_wagering"
+  ],
+  "preparation_seed": 20261017,
+  "inference": {
+    "endpoint": "native Ollama /api/chat; unified r7 client (client.py)",
+    "temperature": 0,
+    "reasoning_effort": "none",
+    "native_think": false,
+    "native_top_p": 1.0,
+    "max_tokens": 1024,
+    "context_tokens": 4096,
+    "contexts": {
+      "qwen3:4b": 12288,
+      "deepseek-r1:7b": 12288,
+      "deepseek-r1:14b": 12288
+    },
+    "template_margin_tokens": 128,
+    "per_message_margin_tokens": 8,
+    "server_threads": 1,
+    "max_transport_attempts": 1,
+    "request_timeout_seconds": 300,
+    "native_think_models": [
+      "qwen3:4b",
+      "deepseek-r1:7b",
+      "deepseek-r1:14b"
+    ],
+    "native_total_output_tokens": 8192,
+    "direct_step_budget_map": {
+      "8": 16,
+      "16": 32,
+      "24": 64,
+      "32": 64,
+      "64": 128,
+      "256": 512,
+      "1024": 1024
+    },
+    "task_total_override": {
+      "operation_span": 128
+    },
+    "native_thinking_budget": {
+      "operation_span": 96,
+      "post_decision_wagering": 8160,
+      "false_belief": null
+    },
+    "native_reserve_tasks": [
+      "digit_span",
+      "n_back",
+      "stroop",
+      "flanker",
+      "go_nogo",
+      "cvlt_word_list",
+      "drm_false_memory",
+      "source_monitoring",
+      "epitome_tom",
+      "confidence_calibration"
+    ],
+    "answer_reserve": {
+      "derivation_file": "results/human54_unified_20261018/prepared_r7/RESERVE_DERIVATION.json",
+      "derivation_script": "scripts/experiments/human13_20261017/derive_reserves.py",
+      "formula": "R = close(</think>) + J(longest legal final, canonical JSON) + W + EOS; thinking cap = 8192 - R",
+      "values": {
+        "canonical_w0": {
+          "qwen3:4b": {
+            "digit_span": 21,
+            "n_back": 6,
+            "stroop": 5,
+            "flanker": 5,
+            "go_nogo": 7,
+            "cvlt_word_list": 65,
+            "drm_false_memory": 9,
+            "source_monitoring": 6,
+            "epitome_tom": 4,
+            "confidence_calibration": 7
+          },
+          "deepseek-r1:7b": {
+            "digit_span": 21,
+            "n_back": 6,
+            "stroop": 5,
+            "flanker": 5,
+            "go_nogo": 7,
+            "cvlt_word_list": 65,
+            "drm_false_memory": 9,
+            "source_monitoring": 6,
+            "epitome_tom": 4,
+            "confidence_calibration": 7
+          },
+          "deepseek-r1:14b": {
+            "digit_span": 21,
+            "n_back": 6,
+            "stroop": 5,
+            "flanker": 5,
+            "go_nogo": 7,
+            "cvlt_word_list": 65,
+            "drm_false_memory": 9,
+            "source_monitoring": 6,
+            "epitome_tom": 4,
+            "confidence_calibration": 7
+          }
+        },
+        "grammar_ws_w22": {
+          "qwen3:4b": {
+            "digit_span": 43,
+            "n_back": 28,
+            "stroop": 27,
+            "flanker": 27,
+            "go_nogo": 29,
+            "cvlt_word_list": 87,
+            "drm_false_memory": 31,
+            "source_monitoring": 28,
+            "epitome_tom": 26,
+            "confidence_calibration": 29
+          },
+          "deepseek-r1:7b": {
+            "digit_span": 43,
+            "n_back": 28,
+            "stroop": 27,
+            "flanker": 27,
+            "go_nogo": 29,
+            "cvlt_word_list": 87,
+            "drm_false_memory": 31,
+            "source_monitoring": 28,
+            "epitome_tom": 26,
+            "confidence_calibration": 29
+          },
+          "deepseek-r1:14b": {
+            "digit_span": 43,
+            "n_back": 28,
+            "stroop": 27,
+            "flanker": 27,
+            "go_nogo": 29,
+            "cvlt_word_list": 87,
+            "drm_false_memory": 31,
+            "source_monitoring": 28,
+            "epitome_tom": 26,
+            "confidence_calibration": 29
+          }
+        }
+      },
+      "selected_variant": "grammar_ws_w22",
+      "status": "已决定（用户 2026-10-18「按你倾向」）：grammar_ws_w22。见 refine-logs/human54_unified_entry_20261018/USER_DECISIONS.md。",
+      "limitations": [
+        "W=22 counts one whitespace run, after the root value. The backend grammar allows the same run (\"\" | \" \" | \"\\n\"{1,2} [ \\t]{0,20}; json-schema-to-grammar.cpp:228) after \"[\", after every array item and after every comma (:932 array rule; every item ends with space: string with minLength :945, pattern :534, enum :844). A 16-word CVLT array has 33 such positions; the canonical single space after each comma is inside J, the rest is not counted. Enumerations and the digit-recall string have one position, after the root value.",
+        "J is the token count of the canonical JSON text under the model tokenizer. Constrained sampling may split the same text into more tokens, so J is a lower bound on the generated final tokens.",
+        "Observed: the 4 prior native CVLT array finals (human13_format_repair runs, deepseek-r1:7b recall and follow-up, deepseek-r1:14b recall and follow-up) equal the canonical json.dumps text after stripping. A final longer than the reserve ends as length, stays invalid and is not resent."
+      ]
+    },
+    "direct_root_string_stop": [
+      "\n"
+    ],
+    "output_interface": "final_typed_json_v2 + ospan_char_array (current turn ARRAY_PROMPT; history keeps OLD_PROMPT)",
+    "failure_policy": {
+      "reply_but_invalid": "commit as invalid, not scored, chain continues (USER_DECISIONS.md:9). The record keeps raw_response and its response field unchanged; for an invalid reply that field is the retained final text (client.parse_reply with format_repair decode_final: arrays verbatim, strings and free text without surrounding whitespace, empty when there is no final). Later turns show that text only where the paradigm's established presentation shows past replies; see invalid_reply_presentation.",
+      "no_reply_or_hard_error_or_context_overflow": "stop this (model, paradigm), mark the rest not run, report; no resend (current practice; proposal 2 pending)",
+      "transport_attempts_per_request": 1,
+      "uncommitted_prior_dispatch": "stop, keep evidence, never resend",
+      "invalid_reply_presentation": {
+        "source": "r6/human13_repair presentation, unchanged in r7; pinned by tests/test_r7_invalid_history.py on the real r7 materials",
+        "response_text_verbatim": {
+          "cvlt_word_list": "compact_history_v1 shows record response (compact_cvlt.py:51)",
+          "drm_false_memory": "compact_history_v1 shows record response (compact_drm.py:29)",
+          "post_decision_wagering": "compact_history_v1 shows record response (compact_wag.py:74)",
+          "source_monitoring": "full chat history",
+          "false_belief": "full chat history in session orders (unchanged legacy_strachan pair dropping); isolated orders carry no history",
+          "confidence_calibration": "full chat history within an item: the answer is shown at its confidence step",
+          "digit_span": "unit_context (wm_cc.py:424-429): only later steps of the same unit; every recall is the last step of its unit, so no recall reply, valid or invalid, is shown later",
+          "operation_span": "unit_context, same rule as digit_span"
+        },
+        "label_INVALID_not_text": {
+          "n_back": "compact_all_actions lists trial:letter:history_response; an invalid step is listed as INVALID and its raw final text is not shown (wm_cc.py:430-438; INVALID from _strict_score_step, wm_cc.py:325-369)",
+          "go_nogo": "compact_last15, same rule; after a feedback-bearing step the next turn also starts with \"Previous response: Incorrect.\"",
+          "status": "提议3（待我决定）in refine-logs/human54_unified_entry_20261018/RUN_LOG.md; the r6 presentation stays until the user decides"
+        },
+        "past_replies_never_shown": {
+          "stroop": "current trial only, plus practice feedback",
+          "flanker": "current trial only, plus practice feedback",
+          "epitome_tom": "independent single-turn items"
+        },
+        "feedback_steps": "On feedback-bearing steps (digit_span 84, operation_span 129, stroop 72, flanker 72, go_nogo 30) an invalid reply gets the same feedback as a wrong one: \"Previous response: Incorrect.\" or \"Previous recall: 0 of n positions correct.\" (wm_cc.py:406-416)"
+      }
+    },
+    "cache_policy": {
+      "rule": "exact request body bytes + same backend path and version + same model digest (local manifest sha256); raw reply terminal",
+      "only_relaxation": "r7 request adds options.stop and the source reply content does not contain it",
+      "not_reusable": [
+        "unconstrained legacy records (bytes differ)",
+        "native records made under the old 8192 setting without the new thinking cap (bytes differ)",
+        "records from another backend or model file"
+      ],
+      "reused_records": "become formal records with provenance; an invalid source stays invalid and is not resent",
+      "index": "origin records only (execution_origin new or absent). Among acceptable sources the order is blind to the reply: a record made for the same (episode, step) slot first, then SOURCE_ROOTS order (chronological), then file path (cache.py candidates)",
+      "decision": "USER_DECISIONS.md:10"
+    }
+  },
+  "inference_status": "r7 merged; formal B1 submitted 2026-10-18 (USER_DECISIONS.md). Same-slot cache rule since 2026-10-18 20:04 JST (user decision 「不允许」): only a record made for the same (episode, step) is reused (cache.py candidates/row_slot); committed copies of other slots are moved to superseded/ and re-made (run.py). inference.cache_policy.index still describes the earlier preference wording and is left unchanged so the protocol comparison with the manifest and existing outputs stays equal. Native replies that skip the thinking phase (json1 boundary none with unconstrained text) are kept as technically invalid and the chain continues; later turns show the text before the model's own <think>/</think> marker (user decisions 2026-10-18 「继续」, 「截断」); a reply saved in received/ without a record is committed on resume, never resent. inference.failure_policy text predates this and is left unchanged so the protocol comparison stays equal.",
+  "backends": {
+    "default": "scripts/experiments/cvlt_context_controls_20261007/backend/bin/ollama",
+    "phi3:14b": "scripts/experiments/phi3_cache_fix_20261013/build_support/backend_cachefix_p9/bin/ollama",
+    "phi3:3.8b": "scripts/experiments/phi3_cache_fix_20261013/build_support/backend_cachefix_p9/bin/ollama",
+    "qwen3:4b": "scripts/experiments/json_array_stop_20261018/backend_support/backend/bin/ollama",
+    "deepseek-r1:7b": "scripts/experiments/json_array_stop_20261018/backend_support/backend/bin/ollama",
+    "deepseek-r1:14b": "scripts/experiments/json_array_stop_20261018/backend_support/backend/bin/ollama"
+  },
+  "backend_versions": {
+    "scripts/experiments/cvlt_context_controls_20261007/backend/bin/ollama": "0.18.0",
+    "scripts/experiments/phi3_cache_fix_20261013/build_support/backend_cachefix_p9/bin/ollama": "0.18.0",
+    "scripts/experiments/json_array_stop_20261018/backend_support/backend/bin/ollama": "0.18.0-cogarena-budget-json1"
+  },
+  "reuse": {
+    "false_belief": {
+      "qwen2.5:0.5b": "results/same_stimulus_20261011/formal/job_r2/qwen2.5__0.5b",
+      "qwen2.5:1.5b": "results/same_stimulus_20261011/formal/job_r2/qwen2.5__1.5b",
+      "qwen2.5:3b": "results/same_stimulus_20261011/formal/job_r2/qwen2.5__3b",
+      "qwen2.5:7b": "results/same_stimulus_20261011/formal/job_r2/qwen2.5__7b",
+      "qwen2.5:14b": "results/same_stimulus_20261011/formal/job_r2/qwen2.5__14b",
+      "qwen2.5:32b": "results/same_stimulus_20261011/formal/job_r2/qwen2.5__32b",
+      "gemma2:2b": "results/same_stimulus_20261011/formal/job_r2/gemma2__2b",
+      "gemma2:9b": "results/same_stimulus_20261011/formal/job_r2/gemma2__9b",
+      "gemma2:27b": "results/same_stimulus_20261011/formal/job_r2/gemma2__27b",
+      "llama3.2:1b": "results/same_stimulus_20261011/formal/job_r2/llama3.2__1b",
+      "llama3.2:3b": "results/same_stimulus_20261011/formal/job_r2/llama3.2__3b",
+      "llama3.1:8b": "results/same_stimulus_20261011/formal/job_r2/llama3.1__8b",
+      "mistral:7b": "results/same_stimulus_20261011/formal/job_r2/mistral__7b",
+      "mixtral:8x7b": "results/same_stimulus_20261011/formal/job_r2/mixtral__8x7b",
+      "phi3:14b": "results/phi3_cache_fix_20261013/formal/p9/phi3__14b",
+      "yi:34b": "results/same_stimulus_20261011/formal/job_r2/yi__34b",
+      "command-r:35b": "results/same_stimulus_20261011/formal/job_r2/command-r__35b"
+    },
+    "removed_in_r7": {
+      "deepseek-r1:7b": "old think=false, num_predict 1024, num_ctx 4096 request; r7 sends think=true, 8192/12288 (bytes differ)",
+      "deepseek-r1:14b": "old think=false, num_predict 1024, num_ctx 4096 request; r7 sends think=true, 8192/12288 (bytes differ)"
+    },
+    "mechanism": "declared sources only; records enter the formal output through the exact-input cache (cache.py)",
+    "n_back_note": "Old 19 remain a separate presentation condition; the new compact condition targets the authorized 54-model panel."
+  },
+  "prompt_revisions": {
+    "post_decision_wagering": "native_budget_20261018/prepare.py revise_wager_prompt for all 54 models at every wag_training and wag_answer step; training step 1 (no history) gets the same reordering of the whole message (USER_DECISIONS.md:7)",
+    "operation_span_recall": "current turn ARRAY_PROMPT with ARRAY_SCHEMA, no stop; history keeps OLD_PROMPT and the decoded space-separated answer"
+  },
+  "source_plan": "refine-logs/human13_full_plan_20261017/EXPERIMENT_PLAN.md",
+  "scope": "Formal r7 entry. No model calls, Slurm jobs, paper or Overleaf edits without the authorization above.",
+  "excluded_from_new_panel": [
+    {
+      "model": "tinyllama:1.1b",
+      "reason": "User explicitly excluded TinyLlama from new measurements after the 2048-token protocol incompatibility check. Historical results stay unchanged."
+    }
+  ],
+  "public_version_choices": {
+    "epitome_tom": "cached public processed 2AFC dataset; preserve and disclose version/filter differences",
+    "post_decision_wagering": "Dienes and Scott 2005 published Table 6; preserve and disclose literal table/method differences",
+    "drm_false_memory": "Ball 2022 sentence version, both warning conditions; word version retained pending CITY source verification."
+  },
+  "presentation": {
+    "cvlt_word_list": "compact_history_v1",
+    "drm_false_memory": "compact_history_v1",
+    "post_decision_wagering": "compact_history_v1"
+  },
+  "presentation_adoption": {
+    "adopted_on": "2026-10-17",
+    "authorization": "Explicit user approval of compact presentation for CVLT, in addition to the previously approved DRM and wagering; no inference authorization.",
+    "user_instruction": "执行，给CVLT做紧凑呈现，保留全部材料、步骤、回答和54款模型，离线核对上下文；CITY继续查，不猜词。暂不启动实验、不申请资源，论文和Overleaf先不改。",
+    "comparison_note": "All original material and responses stay visible in a chronological log. Easier retrieval and unrestricted material visibility remain differences from the human protocols."
+  },
+  "drm_variant": "sentence",
+  "drm_word_pending": {
+    "status": "source_verification_pending",
+    "reason": "Exact Ball CITY eight-word set unverified; no guessed words or replacement.",
+    "planned_calls_per_model": 448,
+    "models": 54,
+    "planned_calls_total": 24192,
+    "included_in_active_sentence_run": false,
+    "retained_builder": "memory.build_drm with drm_variant=words_and_sentences; remains blocked without verified CITY"
+  }
+}

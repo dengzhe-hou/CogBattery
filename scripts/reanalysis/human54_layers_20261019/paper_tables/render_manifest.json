@@ -1,0 +1,11 @@
+{
+  "inputs": [
+    "layer1/panel_differences.csv",
+    "layer2/summary.csv"
+  ],
+  "behavior_rows": 62,
+  "structure_rows": 66,
+  "formal_records_read": 0,
+  "statistics_recomputed": false,
+  "output": "paper-overleaf/h54_supplement.tex"
+}
