@@ -28,6 +28,7 @@ image = ["pillow>=9.0", "matplotlib"]
 huggingface = ["transformers>=4.45", "torch>=2.1", "accelerate>=0.33"]
 all = ["openai>=1.0", "anthropic>=0.20", "google-generativeai>=0.5", "pillow>=9.0", "matplotlib", "transformers>=4.45", "torch>=2.1", "accelerate>=0.33"]
 analysis = ["numpy", "scipy", "pandas", "scikit-learn", "matplotlib", "statsmodels", "cairosvg>=2.9", "pymupdf>=1.24"]
+paper = ["numpy", "scipy", "pandas", "openpyxl", "python-docx", "pymupdf>=1.24", "pyreadstat"]
 dev = ["pytest", "ruff"]
 
 [tool.setuptools.packages.find]
