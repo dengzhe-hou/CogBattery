@@ -1,10 +1,11 @@
 """Small shared episode interface. Importing this module never loads a model."""
 import json
+import os
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
-RAW = ROOT.parent / 'data' / 'raw'
+RAW = Path(os.environ.get('COGBATTERY_RAW', ROOT / 'data' / 'raw'))
 TASKS = (
     'digit_span', 'n_back', 'operation_span', 'stroop', 'flanker', 'go_nogo',
     'cvlt_word_list', 'drm_false_memory', 'source_monitoring', 'false_belief',

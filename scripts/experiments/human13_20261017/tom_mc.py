@@ -36,9 +36,9 @@ def _bundle(episodes, provenance, blockers=()):
 
 def _fb(config):
     root = Path(config["root"])
-    spec_path = root / "scripts/experiments/same_stimulus_20261011/SPEC.json"
+    spec_path = Path(config.get("fb_spec_file", root / "scripts/experiments/same_stimulus_20261011/SPEC.json"))
     spec = json.loads(spec_path.read_text())
-    material = root / "results/same_stimulus_20261011/materials/strachan_items.jsonl"
+    material = Path(config.get("same_stimulus_dir", root / "results/same_stimulus_20261011/materials")) / "strachan_items.jsonl"
     items = [json.loads(line) for line in material.read_text().splitlines() if line.strip()]
     if len(items) != 18:
         raise ValueError("Strachan material must contain all 18 A/B items, including catches")

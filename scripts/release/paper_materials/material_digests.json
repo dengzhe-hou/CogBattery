@@ -1,0 +1,20 @@
+{
+ "protocol": "formal_r7_unified_20261018",
+ "digest": "SHA-256 of the episodes list (json.dumps, sort_keys, ensure_ascii=False) with repository and raw-data path prefixes replaced by <ROOT> and <RAW>",
+ "source": "paper materials results/human54_unified_20261018/prepared_r7/materials",
+ "tasks": {
+  "digit_span": "477fa5e5ab109d80570730d51462fe37365c7db89c04c9558bd047285f2f366f",
+  "n_back": "47d356a82e8a957734cf8cfe502bcefa0bb6e8c72d9d8cfcb481a4acc1a013c0",
+  "operation_span": "e2edada02d2e6e6818ace1c5c7fdfaa9c843e95f53e392a54cdd3f88f7730adb",
+  "stroop": "e220ab0edef3066cba895dfd66a13aefb547baa0ddb2c85e7c8988e4edf0524d",
+  "flanker": "6c4cad5969087c71fa99f50fdf8215c82faf257dad5018fa09d4b41662a8a9ce",
+  "go_nogo": "640581e24bddc81145d63acc4ee62b8d8aa6403a6ca3b53a37dea41dbdfabc69",
+  "cvlt_word_list": "4a41a1b045b182879a8d2c0d68a337b3d455d5273f7d7f8f3d8b7f077970e92b",
+  "drm_false_memory": "71137eca4470048379095c09cdafb192aeaf70b92f04afa08defc14d42bd96ae",
+  "source_monitoring": "45aee5bcebc72e59a5ea485ffb2b838612a5eecd57d032df486b056cfb45cf11",
+  "false_belief": "545a59b76e22ba9ecb4440313b76a5ba5bcfd5f459da1886b36a3626fee3898f",
+  "epitome_tom": "a1f780fa7890f2b19e35474a11c725db963b06a0f3a396ba3d066a3143688652",
+  "confidence_calibration": "dab75f1d57f0d0d317ba2f8a8d36f6a688aba82c77cc42cd180e00bc01b48357",
+  "post_decision_wagering": "36eb217d00da1de52459955acce3f07bd1c8f6127f66ace57f712e5d449791f8"
+ }
+}

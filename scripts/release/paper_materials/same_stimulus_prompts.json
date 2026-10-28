@@ -1,0 +1,68 @@
+{
+ "note": "Fields of scripts/experiments/same_stimulus_20261011/SPEC.json that the false-belief builder reads: the system prompt and the names in the earlier model panel (recorded in provenance only).",
+ "prompts": {
+  "system_prompt": "You are taking a cognitive evaluation. Follow the instructions precisely. Give only the requested answer, nothing else."
+ },
+ "model_panel": [
+  {
+   "model": "tinyllama:1.1b"
+  },
+  {
+   "model": "qwen2.5:0.5b"
+  },
+  {
+   "model": "qwen2.5:1.5b"
+  },
+  {
+   "model": "qwen2.5:3b"
+  },
+  {
+   "model": "qwen2.5:7b"
+  },
+  {
+   "model": "qwen2.5:14b"
+  },
+  {
+   "model": "qwen2.5:32b"
+  },
+  {
+   "model": "gemma2:2b"
+  },
+  {
+   "model": "gemma2:9b"
+  },
+  {
+   "model": "gemma2:27b"
+  },
+  {
+   "model": "llama3.2:1b"
+  },
+  {
+   "model": "llama3.2:3b"
+  },
+  {
+   "model": "llama3.1:8b"
+  },
+  {
+   "model": "deepseek-r1:7b"
+  },
+  {
+   "model": "deepseek-r1:14b"
+  },
+  {
+   "model": "mistral:7b"
+  },
+  {
+   "model": "mixtral:8x7b"
+  },
+  {
+   "model": "phi3:14b"
+  },
+  {
+   "model": "yi:34b"
+  },
+  {
+   "model": "command-r:35b"
+  }
+ ]
+}

@@ -69,8 +69,9 @@ def _color(row):
 
 def _sro_sources(config):
     root, raw = Path(config["root"]), Path(config["raw_root"])
-    id_file = root / "results/reanalysis/sro_structure_20261015/analysis/summary.json"
-    ids = sorted(json.loads(id_file.read_text())["fixed_accuracy_55"]["human"]["ids"])
+    id_file = Path(config.get("sro_ids_file", root / "results/reanalysis/sro_structure_20261015/analysis/summary.json"))
+    id_data = json.loads(id_file.read_text())
+    ids = sorted(id_data["fixed_accuracy_55"]["human"]["ids"] if "fixed_accuracy_55" in id_data else id_data["ids"])
     base = raw / "self_regulation_ontology/Complete_02-16-2019/Individual_Measures"
     data = {task: _rows(base / f"{filename}.csv.gz") for task, filename in SRO_FILES.items()}
     go_color = defaultdict(set)
@@ -180,7 +181,7 @@ def _build_cc(task, rows_by_id, provenance):
 
 
 def _build_nb(config):
-    base = Path(config["root"]) / "results/same_stimulus_20261011/materials"
+    base = Path(config.get("same_stimulus_dir", Path(config["root"]) / "results/same_stimulus_20261011/materials"))
     source = base / "nback_episodes.jsonl"
     originals = [json.loads(x) for x in source.read_text().splitlines() if x.strip()]
     human_path = base / "human_nback_trials.jsonl"

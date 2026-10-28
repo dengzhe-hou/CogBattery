@@ -1,0 +1,147 @@
+{
+ "note": "Files the paper-version build reads. fetch_sources downloads each one into data/raw/ (or COGBATTERY_RAW) and checks its SHA-256, so a changed upstream file is reported before a build.",
+ "files": [
+  {
+   "path": "self_regulation_ontology/Complete_02-16-2019/Individual_Measures/digit_span.csv.gz",
+   "url": "https://raw.githubusercontent.com/IanEisenberg/Self_Regulation_Ontology/master/Data/Complete_02-16-2019/Individual_Measures/digit_span.csv.gz",
+   "source": "SRO (Eisenberg et al. 2019)",
+   "license": "CC-BY 4.0",
+   "bytes": 335141,
+   "sha256": "4414c1e497ffb74d2a38ac8987bad6d4583625981c92859d95446b7b4cc14958"
+  },
+  {
+   "path": "self_regulation_ontology/Complete_02-16-2019/Individual_Measures/adaptive_n_back.csv.gz",
+   "url": "https://raw.githubusercontent.com/IanEisenberg/Self_Regulation_Ontology/master/Data/Complete_02-16-2019/Individual_Measures/adaptive_n_back.csv.gz",
+   "source": "SRO (Eisenberg et al. 2019)",
+   "license": "CC-BY 4.0",
+   "bytes": 4566117,
+   "sha256": "6d5c55b4981e9ec365f60acb1eb8a350fb687cd5942176dd11a3e8fc622b3c97"
+  },
+  {
+   "path": "self_regulation_ontology/Complete_02-16-2019/Individual_Measures/stroop.csv.gz",
+   "url": "https://raw.githubusercontent.com/IanEisenberg/Self_Regulation_Ontology/master/Data/Complete_02-16-2019/Individual_Measures/stroop.csv.gz",
+   "source": "SRO (Eisenberg et al. 2019)",
+   "license": "CC-BY 4.0",
+   "bytes": 815267,
+   "sha256": "15f65a9a3cc9421ecd303fcf0babcad37acaff0e276698a0aa0d5443d4c907aa"
+  },
+  {
+   "path": "self_regulation_ontology/Complete_02-16-2019/Individual_Measures/attention_network_task.csv.gz",
+   "url": "https://raw.githubusercontent.com/IanEisenberg/Self_Regulation_Ontology/master/Data/Complete_02-16-2019/Individual_Measures/attention_network_task.csv.gz",
+   "source": "SRO (Eisenberg et al. 2019)",
+   "license": "CC-BY 4.0",
+   "bytes": 1945674,
+   "sha256": "b0dfdc56c02a49d58fcf5ea254820003ca3b9638e4dff371fffec5d58bbbd2e0"
+  },
+  {
+   "path": "self_regulation_ontology/Complete_02-16-2019/Individual_Measures/go_nogo.csv.gz",
+   "url": "https://raw.githubusercontent.com/IanEisenberg/Self_Regulation_Ontology/master/Data/Complete_02-16-2019/Individual_Measures/go_nogo.csv.gz",
+   "source": "SRO (Eisenberg et al. 2019)",
+   "license": "CC-BY 4.0",
+   "bytes": 2488539,
+   "sha256": "7f545c0e409c24ad14b9290100c2e3c228179d20c7b0e8a60c4647658ec7582d"
+  },
+  {
+   "path": "py_span_task_english_20261017/operations.txt",
+   "url": "https://raw.githubusercontent.com/tmalsburg/py-span-task/master/EnglishOperationSpan/operations.txt",
+   "source": "py-span-task (von der Malsburg)",
+   "license": "GPL-2.0-or-later",
+   "bytes": 4333,
+   "sha256": "24b95191200b5d944154d2a6f59da0dcb4d5d63e01b1a47a4ed9e3c46387d6e9"
+  },
+  {
+   "path": "ball2022_memory/False Memory Stimuli.zip",
+   "url": "https://osf.io/download/euzgd/",
+   "source": "Ball et al. 2022, OSF r94uy",
+   "license": "no license stated on OSF",
+   "bytes": 4175135,
+   "sha256": "1fa6066c388d55125ecda18c9878eb63013bc779e821440276a5aff3ee94d1e1"
+  },
+  {
+   "path": "eerland2018_source_memory/Stories and word count.docx",
+   "url": "https://osf.io/download/kt3zk/",
+   "source": "Eerland et al. 2018, OSF rk548",
+   "license": "no license stated on OSF",
+   "bytes": 70471,
+   "sha256": "d1182dfc6ca12e88badaf8c18c1bc46414cf662d3ffad8d23e02cdb7d6490fe1"
+  },
+  {
+   "path": "eerland2018_source_memory/Stimuli_design.xlsx",
+   "url": "https://osf.io/download/dvgm6/",
+   "source": "Eerland et al. 2018, OSF rk548",
+   "license": "no license stated on OSF",
+   "bytes": 18216,
+   "sha256": "c8e04c60ac517473916b3572e10b5846c07be07038f5c89fb88007fb5986ae73"
+  },
+  {
+   "path": "strachan2024_tom/osf_fwj6v_20261011/Data/Dataset - Theory of Mind in LLMs and Humans (Strachan et al 2023).xlsx",
+   "url": "https://osf.io/download/dbn92/",
+   "source": "Strachan et al. 2024, OSF fwj6v",
+   "license": "CC BY-NC 4.0",
+   "bytes": 1559531,
+   "sha256": "50490801c79b8eefcd8a1b15bafccf1e56aaf1b2fa99b587132df6970bcc0f4f"
+  },
+  {
+   "path": "strachan2024_tom/osf_fwj6v_20261009/scored_data/scores_human.csv",
+   "url": "https://osf.io/download/wzdt2/",
+   "source": "Strachan et al. 2024, OSF fwj6v",
+   "license": "CC BY-NC 4.0",
+   "bytes": 12668,
+   "sha256": "0535109aca074b2f7aa82901dfb049ebf294bb182974ae1c0e6af84b4c286992"
+  },
+  {
+   "path": "epitome2024_sn7gj/recursive_mindreading/stories.csv",
+   "url": "https://osf.io/download/rnzv2/",
+   "source": "EPITOME (Jones et al. 2024), OSF sn7gj",
+   "license": "no license stated on OSF",
+   "bytes": 18692,
+   "sha256": "806233fa5009965056f023d9666c9670a0deb762663bff8d062f65e590d67ebc"
+  },
+  {
+   "path": "epitome2024_sn7gj/recursive_mindreading/questions.csv",
+   "url": "https://osf.io/download/ufvcq/",
+   "source": "EPITOME (Jones et al. 2024), OSF sn7gj",
+   "license": "no license stated on OSF",
+   "bytes": 31764,
+   "sha256": "58fe3d0ed0ba9f5576a2b9954a0dd773d15717c9a21237c67ab967faa0040f95"
+  },
+  {
+   "path": "epitome2024_sn7gj/recursive_mindreading/tom_rm_trial.csv",
+   "url": "https://osf.io/download/56ae7/",
+   "source": "EPITOME (Jones et al. 2024), OSF sn7gj",
+   "license": "no license stated on OSF",
+   "bytes": 1116895,
+   "sha256": "1f4cd3d3793e3c09dbb0658e47199c39da455aefee5d71a43872886cd2b2fee2"
+  },
+  {
+   "path": "mazancieux2020_metacognition/Material_EM_SM_EF_tasks.xlsx",
+   "url": "https://osf.io/download/nqbhc/",
+   "source": "Mazancieux et al. 2020, OSF b5ype",
+   "license": "no license stated on OSF",
+   "bytes": 17131,
+   "sha256": "7bad04c6d0429b4259a572c1db33d63adc5950ccd044f6addf357c964aa1665f"
+  },
+  {
+   "path": "postdecision_wagering_text_candidates/dienes_scott2005.pdf",
+   "url": "https://users.sussex.ac.uk/~rbs20/Dienes%26Scott%282005%29.pdf",
+   "source": "Dienes and Scott 2005, author-hosted PDF",
+   "license": "journal article",
+   "bytes": 366956,
+   "sha256": "9272a296ef893705a0eec574be9f57505335ac4be5ab99d06541647960d58869"
+  }
+ ],
+ "extract": [
+  {
+   "archive": "ball2022_memory/False Memory Stimuli.zip",
+   "member_prefix": "False Memory Files/",
+   "target": "ball2022_memory/stimuli"
+  }
+ ],
+ "user_supplied": [
+  {
+   "path": "scripts/experiments/human13_20261017/cvlt_standard_source.json",
+   "task": "cvlt_word_list",
+   "reason": "CVLT-II Standard word lists are copyrighted by Pearson and need a qualified purchase or research license."
+  }
+ ]
+}
