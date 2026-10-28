@@ -129,7 +129,7 @@ Each of the 80 human blocks comes from a different participant, 40 per load. Loa
 
 ### Distance from humans per model (Figure 3)
 
-`scripts/reanalysis/human54_model_closeness_20261029/run13.py` standardizes each model's key-endpoint difference from the human mean by the across-person human SD (SM pooled within-condition SD, EP SD of per-person slopes, WAG published SE times √40 for high-minus-low accuracy), and `gen_closeness_heatmap13.py --paper` draws Figure 3. `run.py` is the 10-task version without SM, EP, and WAG. This view was added after the formal results. The homepage table uses the same human SDs for its shading.
+`scripts/reanalysis/human54_model_closeness_20261029/run13.py` standardizes each model's key-endpoint difference from the human mean by the across-person human SD (SM pooled within-condition SD, EP SD of per-person slopes, WAG published SE times √40 for high-minus-low accuracy), and `gen_closeness_heatmap13_v2.py --paper` draws Figure 3. `run.py` is the 10-task version without SM, EP, and WAG. This view was added after the formal results. The homepage table uses the same human SDs for its shading.
 
 ## Robustness of behavioral results
 
