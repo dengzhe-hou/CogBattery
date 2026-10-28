@@ -127,6 +127,10 @@ Each of the 80 human blocks comes from a different participant, 40 per load. Loa
 - Protocol `formal_r7_unified_20261018`, material seed 20261017.
 - Analysis seeds 20261018 and 20261019 (factors).
 
+### Structure on the key endpoints (Section 6)
+
+`scripts/reanalysis/human54_keyendpoint_structure_20261029/run.py` repeats the structure analyses on the 12 key endpoints of Table 4 (WAG dropped, each oriented to its structural score). Parallel analysis keeps one dimension, PC1 explains 23.1% and correlates .68 with log size, and the five groups give -2.02% [-5.10, 0.48]% in leave-one-family-out prediction. Added after the formal results.
+
 ### Alternative task groupings (Section 6)
 
 `scripts/reanalysis/human54_alt_groupings_20261029/run.py` repeats the leave-one-family-out prediction test with two groupings of the same block sizes: a response-format grouping (DS OS CVLT, NB GN DRM, ST FL SM, FB EP, CAL WAG) and a grouping chosen inside each fold from training-family correlations. Gains are 4.63% [-6.58, 8.52]% and 0.80% [-4.10, 11.68]%, against 3.02% [-5.85, 6.01]% for the predefined groups. Added after the formal results. Like the other analysis scripts here, it reads the derived score matrix from the paper run, which is not part of this repository.
