@@ -8,10 +8,18 @@
  "key_measure": "Recall slope (words per trial)",
  "human_reference": "CNP",
  "human_n": 130,
- "source_files": [],
- "user_supplied": {
-  "path": "scripts/experiments/human13_20261017/cvlt_standard_source.json",
-  "task": "cvlt_word_list",
-  "reason": "CVLT-II Standard word lists are copyrighted by Pearson and need a qualified purchase or research license."
- }
+ "source_files": [
+  {
+   "path": "ucla_cnp_ds000030/nnn_codebook.pdf",
+   "url": "https://www.nnn.ucla.edu/downloads/codebook.pdf",
+   "source": "UCLA NNN codebook, pp. 384-386",
+   "license": "public document; CVLT-II words are Pearson copyright"
+  },
+  {
+   "path": "scripts/release/paper_materials/cvlt_structure.json",
+   "source": "word-free list structure, categories, item types, and administration text",
+   "license": "shipped with this repository"
+  }
+ ],
+ "note": "List A and List B words are read from the 48 recognition items of the public UCLA codebook and placed by the recognition positions in cvlt_structure.json. The words are never stored in this repository."
 }

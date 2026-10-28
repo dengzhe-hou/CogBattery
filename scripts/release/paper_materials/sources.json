@@ -120,6 +120,14 @@
    "license": "no license stated on OSF",
    "bytes": 17131,
    "sha256": "7bad04c6d0429b4259a572c1db33d63adc5950ccd044f6addf357c964aa1665f"
+  },
+  {
+   "path": "ucla_cnp_ds000030/nnn_codebook.pdf",
+   "url": "https://www.nnn.ucla.edu/downloads/codebook.pdf",
+   "source": "UCLA NNN codebook (CNP), CVLT-II items on pp. 384-386",
+   "license": "public document; the CVLT-II words it prints are Pearson copyright and are used only on your machine",
+   "bytes": 2012182,
+   "sha256": "e260b33222763681ee73e876eda34def8213cd448e0cc6bc246a55b184fb26dd"
   }
  ],
  "extract": [
@@ -129,13 +137,7 @@
    "target": "ball2022_memory/stimuli"
   }
  ],
- "user_supplied": [
-  {
-   "path": "scripts/experiments/human13_20261017/cvlt_standard_source.json",
-   "task": "cvlt_word_list",
-   "reason": "CVLT-II Standard word lists are copyrighted by Pearson and need a qualified purchase or research license."
-  }
- ],
+ "user_supplied": [],
  "shipped": [
   {
    "path": "scripts/release/paper_materials/wag_dienes_scott2005_table6.json",

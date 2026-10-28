@@ -1,0 +1,668 @@
+{
+ "version": "CVLT-II",
+ "form": "Standard",
+ "source_revision": "adult_standard_public_record_form_20261017",
+ "source": {
+  "reference": "LIMBIC-CENC public Documentation and Scoring training PDF, CVLT-II Adult Standard record form, PDF pp.65,70–71; UCLA NNN codebook CVLT-II pp.384–386.",
+  "use_authorization": "Read on the user’s machine from the public UCLA NNN codebook by scripts/release/cvlt_from_codebook.py. No redistribution or test-use license is asserted.",
+  "use_conditions": "The public record form retains Pearson 2000 copyright. No additional redistribution or test-use license is asserted; public retrieval alone does not establish one.",
+  "source_urls": [
+   "https://www.limbic-cenc.org/wp-content/uploads/Documentation-Scoring-Procedure-1.pdf",
+   "https://www.nnn.ucla.edu/downloads/codebook.pdf"
+  ]
+ },
+ "protocol_reference": "refine-logs/human54_sources_closure_20261017/CVLT_PROTOCOL.md (project record, not in this repository)",
+ "lists": {
+  "A": [
+   {
+    "recognition_position": 30,
+    "category": "ways of traveling"
+   },
+   {
+    "recognition_position": 28,
+    "category": "vegetables"
+   },
+   {
+    "recognition_position": 5,
+    "category": "animals"
+   },
+   {
+    "recognition_position": 26,
+    "category": "furniture"
+   },
+   {
+    "recognition_position": 39,
+    "category": "vegetables"
+   },
+   {
+    "recognition_position": 22,
+    "category": "ways of traveling"
+   },
+   {
+    "recognition_position": 38,
+    "category": "furniture"
+   },
+   {
+    "recognition_position": 46,
+    "category": "animals"
+   },
+   {
+    "recognition_position": 43,
+    "category": "ways of traveling"
+   },
+   {
+    "recognition_position": 18,
+    "category": "furniture"
+   },
+   {
+    "recognition_position": 17,
+    "category": "vegetables"
+   },
+   {
+    "recognition_position": 14,
+    "category": "animals"
+   },
+   {
+    "recognition_position": 9,
+    "category": "furniture"
+   },
+   {
+    "recognition_position": 2,
+    "category": "ways of traveling"
+   },
+   {
+    "recognition_position": 36,
+    "category": "animals"
+   },
+   {
+    "recognition_position": 8,
+    "category": "vegetables"
+   }
+  ],
+  "B": [
+   {
+    "recognition_position": 13,
+    "category": "musical instruments"
+   },
+   {
+    "recognition_position": 4,
+    "category": "vegetables"
+   },
+   {
+    "recognition_position": 12,
+    "category": "animals"
+   },
+   {
+    "recognition_position": 48,
+    "category": "parts of a house"
+   },
+   {
+    "recognition_position": 37,
+    "category": "vegetables"
+   },
+   {
+    "recognition_position": 42,
+    "category": "musical instruments"
+   },
+   {
+    "recognition_position": 24,
+    "category": "parts of a house"
+   },
+   {
+    "recognition_position": 23,
+    "category": "animals"
+   },
+   {
+    "recognition_position": 29,
+    "category": "musical instruments"
+   },
+   {
+    "recognition_position": 35,
+    "category": "parts of a house"
+   },
+   {
+    "recognition_position": 33,
+    "category": "vegetables"
+   },
+   {
+    "recognition_position": 31,
+    "category": "animals"
+   },
+   {
+    "recognition_position": 7,
+    "category": "parts of a house"
+   },
+   {
+    "recognition_position": 3,
+    "category": "musical instruments"
+   },
+   {
+    "recognition_position": 44,
+    "category": "animals"
+   },
+   {
+    "recognition_position": 19,
+    "category": "vegetables"
+   }
+  ]
+ },
+ "cue_order": [
+  "furniture",
+  "vegetables",
+  "ways of traveling",
+  "animals"
+ ],
+ "category_label_basis": "List A categories and cue order are printed in the original record form. List B category names are descriptive metadata for the four semantic sets, never presented as B recall cues.",
+ "recognition": [
+  {
+   "position": 1,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "UN",
+   "record_form_column": 1,
+   "record_form_row": 1,
+   "ucla_codebook_page": 384
+  },
+  {
+   "position": 2,
+   "is_old": true,
+   "expected_answer": "yes",
+   "record_form_item_type": "T",
+   "record_form_column": 1,
+   "record_form_row": 2,
+   "ucla_codebook_page": 384
+  },
+  {
+   "position": 3,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "BN",
+   "record_form_column": 1,
+   "record_form_row": 3,
+   "ucla_codebook_page": 384
+  },
+  {
+   "position": 4,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "BS",
+   "record_form_column": 1,
+   "record_form_row": 4,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 5,
+   "is_old": true,
+   "expected_answer": "yes",
+   "record_form_item_type": "T",
+   "record_form_column": 1,
+   "record_form_row": 5,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 6,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "PR",
+   "record_form_column": 1,
+   "record_form_row": 6,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 7,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "BN",
+   "record_form_column": 1,
+   "record_form_row": 7,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 8,
+   "is_old": true,
+   "expected_answer": "yes",
+   "record_form_item_type": "T",
+   "record_form_column": 1,
+   "record_form_row": 8,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 9,
+   "is_old": true,
+   "expected_answer": "yes",
+   "record_form_item_type": "T",
+   "record_form_column": 1,
+   "record_form_row": 9,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 10,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "UN",
+   "record_form_column": 1,
+   "record_form_row": 10,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 11,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "PR",
+   "record_form_column": 1,
+   "record_form_row": 11,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 12,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "BS",
+   "record_form_column": 1,
+   "record_form_row": 12,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 13,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "BN",
+   "record_form_column": 2,
+   "record_form_row": 1,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 14,
+   "is_old": true,
+   "expected_answer": "yes",
+   "record_form_item_type": "T",
+   "record_form_column": 2,
+   "record_form_row": 2,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 15,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "UN",
+   "record_form_column": 2,
+   "record_form_row": 3,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 16,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "PR",
+   "record_form_column": 2,
+   "record_form_row": 4,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 17,
+   "is_old": true,
+   "expected_answer": "yes",
+   "record_form_item_type": "T",
+   "record_form_column": 2,
+   "record_form_row": 5,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 18,
+   "is_old": true,
+   "expected_answer": "yes",
+   "record_form_item_type": "T",
+   "record_form_column": 2,
+   "record_form_row": 6,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 19,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "BS",
+   "record_form_column": 2,
+   "record_form_row": 7,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 20,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "PR",
+   "record_form_column": 2,
+   "record_form_row": 8,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 21,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "UN",
+   "record_form_column": 2,
+   "record_form_row": 9,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 22,
+   "is_old": true,
+   "expected_answer": "yes",
+   "record_form_item_type": "T",
+   "record_form_column": 2,
+   "record_form_row": 10,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 23,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "BS",
+   "record_form_column": 2,
+   "record_form_row": 11,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 24,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "BN",
+   "record_form_column": 2,
+   "record_form_row": 12,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 25,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "PR",
+   "record_form_column": 3,
+   "record_form_row": 1,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 26,
+   "is_old": true,
+   "expected_answer": "yes",
+   "record_form_item_type": "T",
+   "record_form_column": 3,
+   "record_form_row": 2,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 27,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "UN",
+   "record_form_column": 3,
+   "record_form_row": 3,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 28,
+   "is_old": true,
+   "expected_answer": "yes",
+   "record_form_item_type": "T",
+   "record_form_column": 3,
+   "record_form_row": 4,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 29,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "BN",
+   "record_form_column": 3,
+   "record_form_row": 5,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 30,
+   "is_old": true,
+   "expected_answer": "yes",
+   "record_form_item_type": "T",
+   "record_form_column": 3,
+   "record_form_row": 6,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 31,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "BS",
+   "record_form_column": 3,
+   "record_form_row": 7,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 32,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "PR",
+   "record_form_column": 3,
+   "record_form_row": 8,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 33,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "BS",
+   "record_form_column": 3,
+   "record_form_row": 9,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 34,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "UN",
+   "record_form_column": 3,
+   "record_form_row": 10,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 35,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "BN",
+   "record_form_column": 3,
+   "record_form_row": 11,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 36,
+   "is_old": true,
+   "expected_answer": "yes",
+   "record_form_item_type": "T",
+   "record_form_column": 3,
+   "record_form_row": 12,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 37,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "BS",
+   "record_form_column": 4,
+   "record_form_row": 1,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 38,
+   "is_old": true,
+   "expected_answer": "yes",
+   "record_form_item_type": "T",
+   "record_form_column": 4,
+   "record_form_row": 2,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 39,
+   "is_old": true,
+   "expected_answer": "yes",
+   "record_form_item_type": "T",
+   "record_form_column": 4,
+   "record_form_row": 3,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 40,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "PR",
+   "record_form_column": 4,
+   "record_form_row": 4,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 41,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "UN",
+   "record_form_column": 4,
+   "record_form_row": 5,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 42,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "BN",
+   "record_form_column": 4,
+   "record_form_row": 6,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 43,
+   "is_old": true,
+   "expected_answer": "yes",
+   "record_form_item_type": "T",
+   "record_form_column": 4,
+   "record_form_row": 7,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 44,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "BS",
+   "record_form_column": 4,
+   "record_form_row": 8,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 45,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "UN",
+   "record_form_column": 4,
+   "record_form_row": 9,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 46,
+   "is_old": true,
+   "expected_answer": "yes",
+   "record_form_item_type": "T",
+   "record_form_column": 4,
+   "record_form_row": 10,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 47,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "PR",
+   "record_form_column": 4,
+   "record_form_row": 11,
+   "ucla_codebook_page": 385
+  },
+  {
+   "position": 48,
+   "is_old": false,
+   "expected_answer": "no",
+   "record_form_item_type": "BN",
+   "record_form_column": 4,
+   "record_form_row": 12,
+   "ucla_codebook_page": 386
+  }
+ ],
+ "source_instruction_transcription": {
+  "A1": "I'm going to read a list of words to you. Listen carefully, because when I'm through, I want you to tell me as many of the words as you can. You can say them in any order, just say as many of them as you can. Are you ready?",
+  "A2": "I'm going to read the same list again. Like before, tell me as many of the words as you can, in any order. Be sure to also say words from the list that you told me the first time.",
+  "A3": "I'm going to read the same list again. Like before, tell me as many of the words as you can, in any order, including words from the list that you've said before.",
+  "A4": "I'm going to read the same list again. Like before, tell me as many of the words as you can, in any order, including words from the list that you've said before.",
+  "A5": "I'm going to read the same list one more time. Like before, tell me as many of the words as you can, in any order, including words from the list that you've said before.",
+  "B": "Now I'm going to read a second list of words to you. When I'm through, I want you to tell me as many words from this second list as you can, in any order. Don't tell me words from the first list, just this second list.",
+  "short_free": "Now I want you to tell me all the words you can from the first list, the one I read to you several times. Don't tell me words from the second list, just the first list. Go ahead.",
+  "long_free": "I read two different lists of words to you earlier: a first list that I read to you several times, and a second list that I read to you once. Tell me all the words you can that were from the first list. Don't tell me words from the second list, just the first list. Go ahead.",
+  "cued": "Tell me all the words from the first list that are {category}.",
+  "recognition": "Now I'm going to read more words to you. After I read each one, say \"Yes\" if that word was from the first list, or say \"No\" if it was not from the first list.",
+  "recall_followup": "Anything else?",
+  "recognition_if_unknown": "Tell me whether you think {word} was on the first list."
+ },
+ "study_instructions": {
+  "A1": "I'm going to show a list of words to you. Read carefully, because when I'm through, I want you to tell me as many of the words as you can. You can say them in any order, just say as many of them as you can. Are you ready?",
+  "A2": "I'm going to show the same list again. Like before, tell me as many of the words as you can, in any order. Be sure to also say words from the list that you told me the first time.",
+  "A3": "I'm going to show the same list again. Like before, tell me as many of the words as you can, in any order, including words from the list that you've said before.",
+  "A4": "I'm going to show the same list again. Like before, tell me as many of the words as you can, in any order, including words from the list that you've said before.",
+  "A5": "I'm going to show the same list one more time. Like before, tell me as many of the words as you can, in any order, including words from the list that you've said before.",
+  "B": "Now I'm going to show a second list of words to you. When I'm through, I want you to tell me as many words from this second list as you can, in any order. Don't tell me words from the first list, just this second list."
+ },
+ "prompts": {
+  "study": "Word: {word}",
+  "recall_a": "Go ahead.",
+  "recall_b": "Go ahead.",
+  "short_free": "Now I want you to tell me all the words you can from the first list, the one I showed you several times. Don't tell me words from the second list, just the first list. Go ahead.",
+  "long_free": "I showed two different lists of words to you earlier: a first list that I showed you several times, and a second list that I showed you once. Tell me all the words you can that were from the first list. Don't tell me words from the second list, just the first list. Go ahead.",
+  "cued": "Tell me all the words from the first list that are {category}.",
+  "recognition": "Word: {word}"
+ },
+ "recognition_instructions": "Now I'm going to show more words to you. After I show each one, say \"Yes\" if that word was from the first list, or say \"No\" if it was not from the first list.",
+ "recall_followup_prompt": "Anything else?",
+ "gap_steps": {
+  "before_long": [],
+  "before_forced_choice": []
+ },
+ "extra_steps": [],
+ "forced_choice": [],
+ "adaptation": {
+  "presentation": "standard_full_history",
+  "instruction_adaptation": "Read/listen wording changes to show/read for text; list identities, trial-specific reminders and first-list recognition target are preserved. Ready replies acknowledge each word; recall is a JSON array in recall order.",
+  "preserved": "All A/B words in printed order, five A learning trials, one B trial, short/long first-list free and four-category cued recall, one additional-recall prompt per recall trial, all 48 recognition probes and List A-only answer keys.",
+  "not_equivalent": [
+   "Auditory word pacing (18–20 seconds per list) is not simulated; text material and preceding responses stay visible.",
+   "The long-stage label preserves phase order but no 20-minute human delay or intervening task is simulated.",
+   "End of an initial JSON recall reply substitutes for the human end-of-recall/15-second pause trigger; exactly one Anything else? prompt follows each of the 16 recall trials.",
+   "The source recognition uncertainty follow-up and the manual refusal-to-NO handling are recorded, but not inserted as dynamic extra calls; invalid model recognition responses remain explicitly invalid.",
+   "Optional 16-pair forced-choice recognition and its 10-minute delay are not part of the previously selected CNP endpoint plan and are not added."
+  ],
+  "recall_followup_count": 16,
+  "new_wait_or_interference_calls": 0,
+  "source_delay_minutes": 20,
+  "recognition_unknown_rule_source": "Tell me whether you think {word} was on the first list."
+ },
+ "objective_correction": "List B word 2 follows the original Standard record form and the independent UCLA recognition list; an earlier misspelled candidate from an author event file was not copied. The original source CSV remains unchanged.",
+ "key_order": [
+  "version",
+  "form",
+  "source_revision",
+  "source",
+  "protocol_reference",
+  "lists",
+  "cue_order",
+  "category_label_basis",
+  "recognition",
+  "source_instruction_transcription",
+  "study_instructions",
+  "prompts",
+  "recognition_instructions",
+  "recall_followup_prompt",
+  "gap_steps",
+  "extra_steps",
+  "forced_choice",
+  "adaptation",
+  "objective_correction"
+ ],
+ "note": "CVLT-II Standard structure for the paper build, without any list word. scripts/release/cvlt_from_codebook.py fills the words from the public UCLA NNN codebook on the user’s machine. The word lists are Pearson copyright and are not redistributed here."
+}

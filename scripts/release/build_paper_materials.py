@@ -8,9 +8,10 @@ paper, applies the r7 output-token budget map, and compares each task with the d
 material file. A mismatch stops the build, because model scores would then not be comparable with
 the paper. No model is called.
 
-CVLT needs the licensed CVLT-II Standard lists in
-scripts/experiments/human13_20261017/cvlt_standard_source.json. Without that file the other 12 tasks
-are built and CVLT is reported as missing.
+CVLT uses the CVLT-II Standard lists. They are Pearson copyright and are not in this repository.
+The build reads them from the public UCLA NNN codebook that fetch_sources downloads, joined with the
+word-free structure in paper_materials/cvlt_structure.json. A licensed copy in
+scripts/experiments/human13_20261017/cvlt_standard_source.json is used instead when present.
 """
 import argparse
 import hashlib
@@ -59,10 +60,13 @@ def build(output, check=True):
     build_same_stimulus(same_stimulus)
 
     materials = output / 'materials'
-    have_cvlt = CVLT_SOURCE.is_file()
-    if have_cvlt:
+    from scripts.release.cvlt_from_codebook import CODEBOOK, build_source
+    have_cvlt = CVLT_SOURCE.is_file() or (RAW / CODEBOOK).is_file()
+    if CVLT_SOURCE.is_file():  # a licensed copy, used as in the paper
         from scripts.experiments.human13_20261017.cvlt_materials import write_materials
         write_materials(materials / 'cvlt_standard.json')
+    elif have_cvlt:  # lists rebuilt from the public UCLA codebook
+        write_json(materials / 'cvlt_standard.json', build_source(RAW))
     config = {'root': str(ROOT), 'raw_root': str(RAW), 'seed': SEED, 'materials_dir': str(materials),
               'drm_variant': spec['drm_variant'], 'sro_ids_file': str(SRO_IDS),
               'same_stimulus_dir': str(same_stimulus), 'fb_spec_file': str(PAPER_DIR / 'same_stimulus_prompts.json'),
@@ -107,7 +111,7 @@ def build(output, check=True):
                 'missing_tasks': missing, 'model_calls_executed': 0}
     write_json(output / 'manifest.json', manifest)
     for task in missing:
-        print(f'{task}: not built. Place the licensed CVLT-II Standard lists in {CVLT_SOURCE}.')
+        print(f'{task}: not built. Run fetch_sources to download the UCLA NNN codebook ({CODEBOOK}).')
     if check and mismatched:
         raise SystemExit(f'Materials differ from the paper for: {", ".join(mismatched)}. '
                          'Check that data/raw/ holds the files listed in scripts/release/paper_materials/sources.json.')

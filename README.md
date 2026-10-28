@@ -63,7 +63,7 @@ python -m scripts.release.pack_submission pack --run results/submissions/qwen2.5
 [REPRODUCING.md](REPRODUCING.md) walks through each step, the OpenAI-compatible backend, a no-cost smoke test, and how submissions are scored. Each task's sources, terms, and adaptations are in [`scripts/release/paper_materials/tasks/`](scripts/release/paper_materials/tasks/).
 
 > [!NOTE]
-> CVLT needs the CVLT-II Standard word lists, which are copyrighted by Pearson. Without a license the other 12 tasks run as usual.
+> The CVLT-II word lists are Pearson copyright and are not stored in this repository. The build reads them from a public UCLA codebook on your machine.
 
 # Reproducing the paper
 

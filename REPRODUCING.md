@@ -18,11 +18,11 @@ Python 3.10 or later.
 python -m scripts.release.fetch_sources
 ```
 
-This downloads 15 files (about 17 MB) from OSF and GitHub into `data/raw/`. It checks each file against the SHA-256 recorded in [`scripts/release/paper_materials/sources.json`](scripts/release/paper_materials/sources.json). That file also lists each source and its terms. The materials are built on your machine and are not redistributed here. The one exception is the wagering task, whose 150 letter strings from Table 6 of Dienes and Scott (2005) ship with the repository.
+This downloads 16 files (about 19 MB) from OSF, GitHub, and UCLA into `data/raw/`. It checks each file against the SHA-256 recorded in [`scripts/release/paper_materials/sources.json`](scripts/release/paper_materials/sources.json). That file also lists each source and its terms. The materials are built on your machine and are not redistributed here. The one exception is the wagering task, whose 150 letter strings from Table 6 of Dienes and Scott (2005) ship with the repository.
 
 If a download fails, the command prints the URL and the path to save the file under, so you can fetch it by hand.
 
-CVLT needs the CVLT-II Standard word lists. They are copyrighted by Pearson and need a qualified purchase or a research license. If you hold one, write the lists to `scripts/experiments/human13_20261017/cvlt_standard_source.json` in the format that [`cvlt_materials.py`](scripts/experiments/human13_20261017/cvlt_materials.py) reads. Without it the other 12 tasks run as usual.
+CVLT uses the CVLT-II Standard word lists, which are Pearson copyright and are not in this repository. The build reads them from a public UCLA codebook that `fetch_sources` downloads, and places them with the word-free structure in [`cvlt_structure.json`](scripts/release/paper_materials/cvlt_structure.json). A licensed copy in `scripts/experiments/human13_20261017/cvlt_standard_source.json` is used instead when present.
 
 ## 3. Build the materials
 
@@ -40,7 +40,7 @@ python -m scripts.release.run_model --materials results/paper_materials/manifest
     --model stub:1b --backend ollama --base-url http://127.0.0.1:11555
 ```
 
-The stub answers every step with a reply that fits its answer format. All 12 tasks finish in seconds. The scores are meaningless.
+The stub answers every step with a reply that fits its answer format. All 13 tasks finish in seconds. The scores are meaningless.
 
 ## 5. Run your model
 
@@ -65,7 +65,7 @@ python -m scripts.release.run_model --materials results/paper_materials/manifest
 
 - Requests use temperature 0, one reply per step, the paper's output limits and answer schemas, and the same history rules. Your model is treated as a direct-answer model.
 - `--tokenizer` gives exact token counts for the context check. Without it, about four characters per token is assumed.
-- A full run is 6,613 requests for 12 tasks (6,789 with CVLT). If it stops, run the same command again. Finished steps are kept and the run resumes.
+- A full run is 6,789 requests for 13 tasks. If it stops, run the same command again. Finished steps are kept and the run resumes.
 - Results go to `results/submissions/<model>/`.
 
 ## 6. Pack and submit
@@ -88,8 +88,8 @@ This replays the paper's run loop over your replies. Each request is rebuilt fro
 
 ## What was checked
 
-- From an empty directory and a clean environment, `fetch_sources` and `build_paper_materials` reproduce all 12 non-CVLT task materials of the paper exactly, and CVLT as well when the licensed lists are present.
-- Packing the paper's archived records for one model (aya:8b, 6,613 steps) and scoring them rebuilds every request with the same SHA-256 as the paper's and reproduces every step score.
+- From an empty directory and a clean environment, `fetch_sources` and `build_paper_materials` reproduce all 13 task materials of the paper exactly, CVLT included, without any licensed file.
+- Packing the paper's archived records for one model (aya:8b, 6,789 steps) and scoring them rebuilds every request with the same SHA-256 as the paper's and reproduces every step score.
 - Changing one reply in a packed file is rejected at the next request that shows it.
 
 ## Reproducing the paper's analyses
