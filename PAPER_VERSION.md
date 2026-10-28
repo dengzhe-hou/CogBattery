@@ -67,3 +67,53 @@ These details complement Appendix A of the paper.
 ### N-back block sampling
 
 Each of the 80 human blocks comes from a different participant, 40 per load. Load 3 blocks were drawn first, from the 397 of 504 QC-passed participants who reached load 3. Load 2 blocks were then drawn from the remaining 464 participants.
+
+## Supplementary structure results
+
+These tables and settings complement Section 6 and Appendix A.6 of the paper.
+
+### Factor-analysis settings
+
+- The common-factor parallel analysis uses one-factor MINRES communalities.
+- MINRES bounds uniqueness parameters in [.005, 1]. Reported uniquenesses are 1 minus communality and can be negative (Heywood cases).
+- Oblimin rotation uses gamma = 0.
+- Bootstrap alignment uses Hungarian matching of Tucker congruence with sign flips.
+
+### Thirteen-task PCA and cross-family prediction
+
+| Configuration | Models/families | PC1 share (%) [95% CI] | Mean RMSE | G0 RMSE | G1 RMSE | Gain (%) [95% CI] |
+|---|---:|---|---:|---:|---:|---|
+| Primary, invalid as wrong | 54/23 | 39.23 [31.78, 46.62] | 1.5898 | 1.5627 | 1.5154 | +3.02 [−5.85, 6.01] |
+| Without WAG (12 tasks) | 54/23 | 42.49 [33.20, 50.23] | – | – | – | – |
+| Original WAG contrast | 17/9 | 38.85 [35.26, 53.95] | 1.9861 | 1.9722 | 2.0983 | −6.39 [−16.55, −0.94] |
+
+Primary PC2 and PC3 shares are 17.09% and 9.37%. Without WAG, parallel analysis still retains two dimensions (eigenvalues 5.10 and 1.95 against 95% references 2.10 and 1.76, post hoc, prediction not refit). PCA intervals use 5,000 family resamples (WAG contrast 4,956 defined, 44 constant-column failures). Mean predicts the equally weighted mean of training-family target centroids. RMSEs use fold-specific target standardization and equally weighted family and target cells. Gain is relative to G0, and its intervals use 20,000 paired family-error resamples conditional on saved predictions.
+
+### Dimension and fit sensitivity
+
+| Analysis unit | n | Parallel analysis PC/FA | RMSR (k = 1/2/3) | k = 2 point fit | k = 2 improper/boundary |
+|---|---:|---|---|---|---|
+| Primary models | 54 | 2/2 | 0.143/0.074/0.056 | proper | 37/48 |
+| Primary family means | 23 | 2/2 | 0.246/0.099/0.074 | Heywood (NB) | 1005/1135 |
+
+PC and common-factor parallel analyses retain two dimensions throughout (5,000 columnwise permutations, rankwise 95% reference). All point fits converge. Each k = 2 bootstrap has 2,000 converged, finite draws, and the improper and boundary counts overlap. Primary family means give NB uniqueness −.0202, and their k = 3 fit is also improper.
+
+### Split and form reliability [95% CI]
+
+| Task | Battery model reliability (n = 54) | SRO human reliability | SRO model reliability (n = 54) |
+|---|---|---|---|
+| DS | 0.987 [0.976, 0.992] | 0.338 [0.150, 0.492] | 0.972 [0.954, 0.979] |
+| NB | 0.994 [0.962, 0.998] | 0.798 [0.743, 0.845] | 0.998 [0.993, 0.999] |
+| OS | 0.993 [0.989, 0.997] | – | – |
+| ST | 0.999 [0.999, 1.000] | 0.796 [0.734, 0.842] | 0.999 [0.999, 1.000] |
+| FL | 0.999 [0.998, 1.000] | 0.882 [0.798, 0.927] | 0.999 [0.998, 1.000] |
+| GN | 0.990 [0.982, 0.995] | 0.797 [0.741, 0.843] | 0.988 [0.895, 0.998] |
+| CVLT | 0.962 [0.938, 0.984] | – | – |
+| DRM | 0.949 [0.890, 0.976] | – | – |
+| SM | 0.978 [0.961, 0.984] | – | – |
+| FB | 0.918 [0.822, 0.959] | – | – |
+| EP | 0.869 [0.793, 0.935] | – | – |
+| CAL | 0.902 [0.608, 0.946] | – | – |
+| WAG | 0.515 [−25.321, 0.959] | – | – |
+
+Two forms use Spearman–Brown, and three or more use Cronbach's alpha. SRO human DS and NB use 327 and 287 defined pairs, and other tasks use 345. Battery and SRO endpoints differ. CVLT forms are trials within one session, and DRM forms are warning conditions. WAG estimates are unstable because 39 of 54 models score .5 in both halves, and the half correlation is 0.347 (−0.780 without R1 14B). CVLT gives 45 of 54 identical five-trial scores.
