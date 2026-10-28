@@ -15,6 +15,9 @@ const TASK_GUIDE = {
   WAG: ['Classify grammar strings, then choose a low or high wager.', 'Visible strings; both grammars and orders; no real stakes.'],
 };
 
+// How a row was served: the paper's own runs, or a submission through either runner backend.
+const SERVING = { paper: 'Paper (Ollama 0.18.0)', ollama: 'Submitted, Ollama', openai: 'Submitted, OpenAI-compatible' };
+
 const el = (tag, attrs = {}, text) => {
   const e = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
@@ -76,7 +79,7 @@ function modelTable(data) {
     sd[k.code] = Math.sqrt(v.reduce((a, b) => a + (b - mu) ** 2, 0) / v.length) || 1;
   }
   const cols = [{ key: 'model', label: 'Model' }, { key: 'family', label: 'Family' },
-    { key: 'params_b', label: 'Params (B)', num: true }, ...tasks.map(k => ({ key: k.code, label: k.code, num: true, task: k }))];
+    { key: 'params_b', label: 'Params (B)', num: true }, { key: 'serving', label: 'Serving' }, ...tasks.map(k => ({ key: k.code, label: k.code, num: true, task: k }))];
   let sortKey = 'params_b', asc = true;
 
   function value(m, c) {
@@ -106,7 +109,7 @@ function modelTable(data) {
     for (const m of rows) {
       const r = el('tr');
       r.append(el('td', { class: 'm' }, m.model + (m.native_thinking ? ' (thinking)' : '')), el('td', {}, m.family),
-        el('td', { class: 'num' }, fmt(m.params_b, 1)));
+        el('td', { class: 'num' }, fmt(m.params_b, 1)), el('td', {}, SERVING[m.serving] || m.serving));
       for (const k of tasks) {
         const v = m.values[k.code];
         if (k.kind === 'constant') { r.append(el('td', { class: 'num' }, v ? 'constant' : 'varied')); continue; }
