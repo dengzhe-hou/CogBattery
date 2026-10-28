@@ -25,7 +25,7 @@ import numpy as np
 import pandas as pd
 
 from scripts.reanalysis.human54_scoring_revision_20261026 import data as D
-from scripts.reanalysis.human54_scoring_revision_20261026.run import SEEDS
+SEEDS = {'prediction': 3939289603}  # paper prediction seed (human54_scoring_revision_20261026.run.SEEDS)
 from scripts.reanalysis.human54_posthoc_20261020 import lofo as L
 
 FORMAT = {'span_recall': ['DS', 'OS', 'CVLT'], 'detection': ['NB', 'GN', 'DRM'], 'labelled_choice': ['ST', 'FL', 'SM'],

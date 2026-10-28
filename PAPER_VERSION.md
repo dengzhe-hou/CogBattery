@@ -127,6 +127,10 @@ Each of the 80 human blocks comes from a different participant, 40 per load. Loa
 - Protocol `formal_r7_unified_20261018`, material seed 20261017.
 - Analysis seeds 20261018 and 20261019 (factors).
 
+### Alternative task groupings (Section 6)
+
+`scripts/reanalysis/human54_alt_groupings_20261029/run.py` repeats the leave-one-family-out prediction test with two groupings of the same block sizes: a response-format grouping (DS OS CVLT, NB GN DRM, ST FL SM, FB EP, CAL WAG) and a grouping chosen inside each fold from training-family correlations. Gains are 4.63% [-6.58, 8.52]% and 0.80% [-4.10, 11.68]%, against 3.02% [-5.85, 6.01]% for the predefined groups. Added after the formal results. Like the other analysis scripts here, it reads the derived score matrix from the paper run, which is not part of this repository.
+
 ### Distance from humans per model (Figure 3)
 
 `scripts/reanalysis/human54_model_closeness_20261029/run13.py` standardizes each model's key-endpoint difference from the human mean by the across-person human SD (SM pooled within-condition SD, EP SD of per-person slopes, WAG published SE times √40 for high-minus-low accuracy), and `gen_closeness_heatmap13_v2.py --paper` draws Figure 3. `run.py` is the 10-task version without SM, EP, and WAG. This view was added after the formal results. The homepage table uses the same human SDs for its shading.
