@@ -50,7 +50,7 @@ python -m pytest scripts/experiments/human13_20261017/tests
 
 ## Serving and administration details
 
-The paper has no appendix. Its former appendix (model and task tables, prompt examples, validity rules, analysis order, and supplementary result tables S1 to S7) is in [cogbattery_supplement.pdf](docs/cogbattery_supplement.pdf). The details below add serving, source, and analysis settings.
+The paper has no appendix. Its former appendix (model and task tables, prompt examples, validity rules, analysis order, and supplementary result tables S1 to S8) is in [cogbattery_supplement.pdf](docs/cogbattery_supplement.pdf). The details below add serving, source, and analysis settings.
 
 ### Serving
 
