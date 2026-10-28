@@ -147,7 +147,7 @@ These checks support Section 5 of the paper. Family counts use the 23 merged fam
 
 **Working memory.** The n-back control false-alarm excess appears in 19 of 23 family means and under every single-family deletion (.226–.269). Lure sensitivity and excess control false alarms coexist in 32 models. Without the 16 models that give one answer on at least 95% of 2-back letters, the excess is .238 (33 of 38 models). The target-minus-lure difference against humans is −.319 [−.382, −.232], and direct-answer models average −.004. At 3-back, 13 of 23 families show the control excess. The operation-span gate trials are part of the endpoint.
 
-**Cognitive control.** The Stroop word-response excess holds in all 23 merged-family means, under every single-family deletion (.303–.360), in 27 of 28 raw families, and in the 51- and 19-model panels (22 of 22 and 8 of 9 families). The Flanker congruent gate shares trials with the contrast.
+**Cognitive control.** The Stroop word-response excess holds in all 23 merged-family means, under every single-family deletion (.318–.367), in 27 of 28 raw families, and in the 51- and 19-model panels (22 of 22 and 8 of 9 families). The Flanker congruent gate shares trials with the contrast.
 
 **Episodic memory.** The model-minus-human difference in the DRM warning effect is −.006 [−.055, .027]. Human warning groups are different people, so this comparison is unpaired. The new-word trials of DRM gate passers are part of the contrast.
 
