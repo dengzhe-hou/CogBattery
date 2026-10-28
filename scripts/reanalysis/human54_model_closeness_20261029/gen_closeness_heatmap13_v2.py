@@ -69,10 +69,18 @@ for s in ('top', 'right', 'left'):
 axb = fig.add_subplot(gs[1, 0], sharex=ax)
 med = a.median(axis=0)
 axb.plot(range(len(order)), med.to_numpy(), color='#0b3c6b', lw=.9, marker='o', ms=1.8)
-axb.set_ylabel('Median\ndistance', fontsize=6)
+axb.set_ylabel('Median\ndistance (SD)', fontsize=6)
 axb.set_ylim(0, max(3.0, float(med.max()) * 1.05))
 axb.set_xticks(range(len(order)), order, rotation=90, fontsize=5)
 axb.set_xlim(-.5, len(order) - .5)
+# Size landmarks: first model at or above 1B, 10B, and 100B served parameters.
+size = d.groupby('model').params_b.first().loc[order].to_numpy()
+for cut, lab in ((1, '1B'), (10, '10B'), (100, '100B')):
+    i = int(np.argmax(size >= cut))
+    axb.axvline(i - .5, color='#888888', lw=.6, ls=(0, (2, 2)))
+    right = i > len(order) - 4  # keep the last label inside the panel
+    axb.text(i - .7 if right else i - .3, axb.get_ylim()[1], f'$\\geq${lab}', fontsize=5.5, va='top',
+             ha='right' if right else 'left', color='#555555')
 for s in ('top', 'right'):
     axb.spines[s].set_visible(False)
 
