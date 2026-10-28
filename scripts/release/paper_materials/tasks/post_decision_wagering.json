@@ -10,10 +10,9 @@
  "human_n": null,
  "source_files": [
   {
-   "path": "postdecision_wagering_text_candidates/dienes_scott2005.pdf",
-   "url": "https://users.sussex.ac.uk/~rbs20/Dienes%26Scott%282005%29.pdf",
-   "source": "Dienes and Scott 2005, author-hosted PDF",
-   "license": "journal article"
+   "path": "scripts/release/paper_materials/wag_dienes_scott2005_table6.json",
+   "source": "Dienes and Scott 2005, Table 6 (doi:10.1007/s00426-004-0208-3)",
+   "license": "stimulus strings from a journal article, shipped with citation"
   }
  ]
 }

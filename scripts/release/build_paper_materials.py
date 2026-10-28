@@ -65,7 +65,8 @@ def build(output, check=True):
         write_materials(materials / 'cvlt_standard.json')
     config = {'root': str(ROOT), 'raw_root': str(RAW), 'seed': SEED, 'materials_dir': str(materials),
               'drm_variant': spec['drm_variant'], 'sro_ids_file': str(SRO_IDS),
-              'same_stimulus_dir': str(same_stimulus), 'fb_spec_file': str(PAPER_DIR / 'same_stimulus_prompts.json')}
+              'same_stimulus_dir': str(same_stimulus), 'fb_spec_file': str(PAPER_DIR / 'same_stimulus_prompts.json'),
+              'wag_table_file': str(PAPER_DIR / 'wag_dienes_scott2005_table6.json')}
     from scripts.experiments.human13_20261017.registry import MODULES
     bundles = {}
     for module in MODULES:

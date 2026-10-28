@@ -120,14 +120,6 @@
    "license": "no license stated on OSF",
    "bytes": 17131,
    "sha256": "7bad04c6d0429b4259a572c1db33d63adc5950ccd044f6addf357c964aa1665f"
-  },
-  {
-   "path": "postdecision_wagering_text_candidates/dienes_scott2005.pdf",
-   "url": "https://users.sussex.ac.uk/~rbs20/Dienes%26Scott%282005%29.pdf",
-   "source": "Dienes and Scott 2005, author-hosted PDF",
-   "license": "journal article",
-   "bytes": 366956,
-   "sha256": "9272a296ef893705a0eec574be9f57505335ac4be5ab99d06541647960d58869"
   }
  ],
  "extract": [
@@ -142,6 +134,14 @@
    "path": "scripts/experiments/human13_20261017/cvlt_standard_source.json",
    "task": "cvlt_word_list",
    "reason": "CVLT-II Standard word lists are copyrighted by Pearson and need a qualified purchase or research license."
+  }
+ ],
+ "shipped": [
+  {
+   "path": "scripts/release/paper_materials/wag_dienes_scott2005_table6.json",
+   "task": "post_decision_wagering",
+   "source": "Dienes and Scott 2005, Table 6 (doi:10.1007/s00426-004-0208-3)",
+   "reason": "The author-hosted PDF is unreachable, so the 150 letter strings and grammar labels are shipped instead of the PDF."
   }
  ]
 }

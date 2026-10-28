@@ -18,7 +18,7 @@ Python 3.10 or later.
 python -m scripts.release.fetch_sources
 ```
 
-This downloads 16 files (about 17 MB) from OSF, GitHub, and an author page into `data/raw/`. It checks each file against the SHA-256 recorded in [`scripts/release/paper_materials/sources.json`](scripts/release/paper_materials/sources.json). That file also lists each source and its terms. The materials are built on your machine and are not redistributed here.
+This downloads 15 files (about 17 MB) from OSF and GitHub into `data/raw/`. It checks each file against the SHA-256 recorded in [`scripts/release/paper_materials/sources.json`](scripts/release/paper_materials/sources.json). That file also lists each source and its terms. The materials are built on your machine and are not redistributed here. The one exception is the wagering task, whose 150 letter strings from Table 6 of Dienes and Scott (2005) ship with the repository.
 
 If a download fails, the command prints the URL and the path to save the file under, so you can fetch it by hand.
 

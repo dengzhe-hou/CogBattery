@@ -207,7 +207,11 @@ def read_wag_materials(pdf_path):
 
 def _wag(config):
     raw = Path(config["raw_root"]) / "postdecision_wagering_text_candidates"
-    training, tests = read_wag_materials(raw / "dienes_scott2005.pdf")
+    if config.get("wag_table_file"):  # Table 6 strings shipped with the release
+        table = json.loads(Path(config["wag_table_file"]).read_text())
+        training, tests = table["training"], [tuple(row) for row in table["tests"]]
+    else:
+        training, tests = read_wag_materials(raw / "dienes_scott2005.pdf")
     episodes = []
     for grammar in ("A", "B"):
         parent_id = f"wag_train_{grammar}"
