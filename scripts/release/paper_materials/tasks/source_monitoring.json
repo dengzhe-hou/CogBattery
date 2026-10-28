@@ -1,0 +1,25 @@
+{
+ "task": "source_monitoring",
+ "code": "SM",
+ "name": "Source memory",
+ "group": "Episodic memory",
+ "what_the_model_does": "Identify who provided information in quoted stories.",
+ "changes_for_models": "Three stories per model; stories visible.",
+ "key_measure": "Direct minus indirect source accuracy",
+ "human_reference": "Eerland et al.",
+ "human_n": 299,
+ "source_files": [
+  {
+   "path": "eerland2018_source_memory/Stories and word count.docx",
+   "url": "https://osf.io/download/kt3zk/",
+   "source": "Eerland et al. 2018, OSF rk548",
+   "license": "no license stated on OSF"
+  },
+  {
+   "path": "eerland2018_source_memory/Stimuli_design.xlsx",
+   "url": "https://osf.io/download/dvgm6/",
+   "source": "Eerland et al. 2018, OSF rk548",
+   "license": "no license stated on OSF"
+  }
+ ]
+}

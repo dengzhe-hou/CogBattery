@@ -1,0 +1,31 @@
+{
+ "task": "epitome_tom",
+ "code": "EP",
+ "name": "Recursive mindreading",
+ "group": "Social reasoning",
+ "what_the_model_does": "Answer mental-state and control questions at levels 1 to 7.",
+ "changes_for_models": "A/B answers; all format combinations per model; no confidence ratings.",
+ "key_measure": "Mental-state accuracy slope",
+ "human_reference": "EPITOME",
+ "human_n": 63,
+ "source_files": [
+  {
+   "path": "epitome2024_sn7gj/recursive_mindreading/stories.csv",
+   "url": "https://osf.io/download/rnzv2/",
+   "source": "EPITOME (Jones et al. 2024), OSF sn7gj",
+   "license": "no license stated on OSF"
+  },
+  {
+   "path": "epitome2024_sn7gj/recursive_mindreading/questions.csv",
+   "url": "https://osf.io/download/ufvcq/",
+   "source": "EPITOME (Jones et al. 2024), OSF sn7gj",
+   "license": "no license stated on OSF"
+  },
+  {
+   "path": "epitome2024_sn7gj/recursive_mindreading/tom_rm_trial.csv",
+   "url": "https://osf.io/download/56ae7/",
+   "source": "EPITOME (Jones et al. 2024), OSF sn7gj",
+   "license": "no license stated on OSF"
+  }
+ ]
+}

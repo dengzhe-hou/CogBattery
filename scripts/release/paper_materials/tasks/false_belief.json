@@ -1,0 +1,25 @@
+{
+ "task": "false_belief",
+ "code": "FB",
+ "name": "False belief",
+ "group": "Social reasoning",
+ "what_the_model_does": "Answer location questions in false- and true-belief stories.",
+ "changes_for_models": "Fixed scoring rules; both lists per model.",
+ "key_measure": "False-belief accuracy",
+ "human_reference": "Strachan et al.",
+ "human_n": 49,
+ "source_files": [
+  {
+   "path": "strachan2024_tom/osf_fwj6v_20261011/Data/Dataset - Theory of Mind in LLMs and Humans (Strachan et al 2023).xlsx",
+   "url": "https://osf.io/download/dbn92/",
+   "source": "Strachan et al. 2024, OSF fwj6v",
+   "license": "CC BY-NC 4.0"
+  },
+  {
+   "path": "strachan2024_tom/osf_fwj6v_20261009/scored_data/scores_human.csv",
+   "url": "https://osf.io/download/wzdt2/",
+   "source": "Strachan et al. 2024, OSF fwj6v",
+   "license": "CC BY-NC 4.0"
+  }
+ ]
+}

@@ -107,15 +107,22 @@ Ink-color label: green</pre>
 <section id="submit" class="section">
   <p class="kicker">Contribute</p>
   <h2>Submit a model</h2>
+  <p>You run the battery on your own machine and server. The materials are built from the original sources and checked against the ones the paper used.</p>
   <ol class="steps">
-    <li>Set up the paper-version runner as described in <a href="https://github.com/dengzhe-hou/CogBattery/blob/main/PAPER_VERSION.md">PAPER_VERSION.md</a>, with the source materials placed under <code>data/raw/</code>.</li>
-    <li>Run all 13 paradigms on your model with the default protocol (temperature 0, one response per step).</li>
-    <li>Open a pull request that adds your raw response records and the run manifest under <code>submissions/&lt;model&gt;/</code>.</li>
-    <li>We rerun the scoring script on your records and add the scored row to this table. Scores computed elsewhere are not accepted as is.</li>
+    <li>Install the repository and download the sources.</li>
+    <li>Build the paper materials. Each task is checked against the paper's material digest.</li>
+    <li>Run your model with Ollama, as in the paper, or any OpenAI-compatible server. Runs resume after an interruption.</li>
+    <li>Pack the run into one file of a few MB and open a pull request or an issue with it.</li>
+    <li>We replay your replies through the paper's run loop, check every request, score them with the paper's scorers, and add the row to this table. Scores computed elsewhere are not accepted as is.</li>
   </ol>
-  <pre><code>python -m scripts.experiments.human13_20261017.run \
-  --manifest &lt;manifest&gt; --model &lt;your-model&gt; --output &lt;output-dir&gt;</code></pre>
-  <p class="table-note">The <code>cogarena eval</code> command runs the earlier arXiv v1 battery, and its scores are not comparable with this table. Human source data and the CVLT-II word lists are not redistributed.</p>
+  <pre><code>pip install -e ".[paper]"
+python -m scripts.release.fetch_sources
+python -m scripts.release.build_paper_materials
+python -m scripts.release.run_model --materials results/paper_materials/manifest.json \
+  --model &lt;your-model&gt; --backend ollama --base-url http://localhost:11434
+python -m scripts.release.pack_submission pack --run results/submissions/&lt;your-model&gt; \
+  --out &lt;your-model&gt;.cogbattery.jsonl.gz</code></pre>
+  <p class="table-note">Step-by-step guide, the OpenAI-compatible option, and a no-cost smoke test are in <a href="https://github.com/dengzhe-hou/CogBattery/blob/main/REPRODUCING.md">REPRODUCING.md</a>. CVLT needs the licensed CVLT-II Standard lists, and the other 12 tasks run without them. Results from an OpenAI-compatible server are marked, because its serving differs from the paper's.</p>
 </section>
 
 <section id="cite" class="section">

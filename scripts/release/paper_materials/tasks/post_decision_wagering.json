@@ -1,0 +1,19 @@
+{
+ "task": "post_decision_wagering",
+ "code": "WAG",
+ "name": "Post-decision wagering",
+ "group": "Metacognition",
+ "what_the_model_does": "Classify grammar strings, then choose a low or high wager.",
+ "changes_for_models": "Visible strings; both grammars and orders; no real stakes.",
+ "key_measure": "Always places the same wager",
+ "human_reference": "Dienes and Seth",
+ "human_n": null,
+ "source_files": [
+  {
+   "path": "postdecision_wagering_text_candidates/dienes_scott2005.pdf",
+   "url": "https://users.sussex.ac.uk/~rbs20/Dienes%26Scott%282005%29.pdf",
+   "source": "Dienes and Scott 2005, author-hosted PDF",
+   "license": "journal article"
+  }
+ ]
+}

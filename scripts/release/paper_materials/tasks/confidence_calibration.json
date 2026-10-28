@@ -1,0 +1,19 @@
+{
+ "task": "confidence_calibration",
+ "code": "CAL",
+ "name": "Confidence calibration",
+ "group": "Metacognition",
+ "what_the_model_does": "Answer French two-choice questions and rate confidence.",
+ "changes_for_models": "Each item in both answer orders.",
+ "key_measure": "Type-2 AUROC",
+ "human_reference": "Mazancieux et al.",
+ "human_n": 181,
+ "source_files": [
+  {
+   "path": "mazancieux2020_metacognition/Material_EM_SM_EF_tasks.xlsx",
+   "url": "https://osf.io/download/nqbhc/",
+   "source": "Mazancieux et al. 2020, OSF b5ype",
+   "license": "no license stated on OSF"
+  }
+ ]
+}

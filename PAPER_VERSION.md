@@ -25,7 +25,7 @@ python -m scripts.release.build_site_data --output docs/data/leaderboard.json
 
 ## What is not included
 
-- **Human source data and task materials.** Download them from the original sources and place them under `data/raw/`, using the folder names below. Each source keeps its own terms.
+- **Human source data and task materials.** `python -m scripts.release.fetch_sources` downloads them from the original sources into `data/raw/`, using the folder names below, and `python -m scripts.release.build_paper_materials` builds the materials. Each source keeps its own terms. See [REPRODUCING.md](REPRODUCING.md).
 - **CVLT-II Standard word lists.** They are copyrighted by Pearson and require a qualified purchase or a research license. The CVLT builder expects `scripts/experiments/human13_20261017/cvlt_standard_source.json`, which you must create from your own licensed materials.
 - **Raw model response records.** They are about 12 GB. They are not in this repository.
 

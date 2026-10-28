@@ -1,0 +1,20 @@
+{
+ "task": "operation_span",
+ "code": "OS",
+ "name": "Operation span",
+ "group": "Working memory",
+ "what_the_model_does": "Judge equations, then recall letters.",
+ "changes_for_models": "Equations from public pools; no processing deadline.",
+ "key_measure": "Letter-position accuracy",
+ "human_reference": "Ball et al.",
+ "human_n": 438,
+ "source_files": [
+  {
+   "path": "py_span_task_english_20261017/operations.txt",
+   "url": "https://raw.githubusercontent.com/tmalsburg/py-span-task/master/EnglishOperationSpan/operations.txt",
+   "source": "py-span-task (von der Malsburg)",
+   "license": "GPL-2.0-or-later"
+  }
+ ],
+ "note": "Equations come from the public py-span-task pool; Ball et al. (2022) operation-span rules are reconstructed, not their participant item orders."
+}

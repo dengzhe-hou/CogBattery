@@ -1,0 +1,19 @@
+{
+ "task": "drm_false_memory",
+ "code": "DRM",
+ "name": "DRM false memory",
+ "group": "Episodic memory",
+ "what_the_model_does": "Recognize studied words, related lures, and unrelated words, with or without warning.",
+ "changes_for_models": "Both warning conditions per model; study words visible; no delay.",
+ "key_measure": "New minus lure false alarms",
+ "human_reference": "Ball et al.",
+ "human_n": 240,
+ "source_files": [
+  {
+   "path": "ball2022_memory/False Memory Stimuli.zip",
+   "url": "https://osf.io/download/euzgd/",
+   "source": "Ball et al. 2022, OSF r94uy",
+   "license": "no license stated on OSF"
+  }
+ ]
+}

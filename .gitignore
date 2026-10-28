@@ -47,3 +47,6 @@ EXPERIMENT_AUDIT*
 *.swp
 papers/
 ops_private/
+
+# Paper-version sources, built materials, and runs (rebuilt locally)
+data/raw/

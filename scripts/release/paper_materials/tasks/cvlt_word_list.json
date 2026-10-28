@@ -1,0 +1,17 @@
+{
+ "task": "cvlt_word_list",
+ "code": "CVLT",
+ "name": "CVLT-II list learning",
+ "group": "Episodic memory",
+ "what_the_model_does": "Recall list words repeatedly, then recognize them.",
+ "changes_for_models": "Written list stays visible; no delays.",
+ "key_measure": "Recall slope (words per trial)",
+ "human_reference": "CNP",
+ "human_n": 130,
+ "source_files": [],
+ "user_supplied": {
+  "path": "scripts/experiments/human13_20261017/cvlt_standard_source.json",
+  "task": "cvlt_word_list",
+  "reason": "CVLT-II Standard word lists are copyrighted by Pearson and need a qualified purchase or research license."
+ }
+}

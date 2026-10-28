@@ -1,0 +1,20 @@
+{
+ "task": "stroop",
+ "code": "ST",
+ "name": "Stroop",
+ "group": "Cognitive control",
+ "what_the_model_does": "Name the color label; ignore the word.",
+ "changes_for_models": "Color labels replace ink; no reaction time.",
+ "key_measure": "Error increase with conflict",
+ "human_reference": "SRO",
+ "human_n": 521,
+ "source_files": [
+  {
+   "path": "self_regulation_ontology/Complete_02-16-2019/Individual_Measures/stroop.csv.gz",
+   "url": "https://raw.githubusercontent.com/IanEisenberg/Self_Regulation_Ontology/master/Data/Complete_02-16-2019/Individual_Measures/stroop.csv.gz",
+   "source": "SRO (Eisenberg et al. 2019)",
+   "license": "CC-BY 4.0"
+  }
+ ],
+ "note": "Trajectories replay three SRO participants drawn with seed 20261017 from paper_materials/sro_eligible_ids.json (one per GO-color mapping, then one more), shared by DS, ST, FL, and GN."
+}
