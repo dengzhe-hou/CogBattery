@@ -1,35 +1,55 @@
-# CogBattery
+<div align="center">
 
-**A battery of 13 cognitive-science paradigms for evaluating LLMs and agents.**
+<div id="user-content-toc">
+  <ul align="center" type="none">
+    <summary>
+      <h1>CogBattery: Human-Referenced Evaluation of Cognitive Task Behavior and Structure in Language Models</h1>
+    </summary>
+  </ul>
+</div>
 
-> **Renamed.** This project was released as *CogArena*; it is now *CogBattery*, to avoid confusion with an
-> unrelated benchmark of the same name. The arXiv v1 paper, the Python package, the `cogarena` command,
-> and the recorded result paths keep the original name, so existing commands and citations still work.
+<a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.10%2B-2F5FB3?style=for-the-badge&logo=python&logoColor=2F5FB3&labelColor=F0F0F0"/></a> &emsp;
+<a href="#the-battery"><img src="https://img.shields.io/badge/Paradigms-13-2F5FB3?style=for-the-badge&labelColor=F0F0F0"/></a> &emsp;
+<a href="https://dengzhe-hou.github.io/CogBattery/#results"><img src="https://img.shields.io/badge/Models-54-2F5FB3?style=for-the-badge&labelColor=F0F0F0"/></a> &emsp;
+<a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-2F5FB3?style=for-the-badge&labelColor=F0F0F0"/></a>
 
-Project site with task guide and per-model results: https://dengzhe-hou.github.io/CogBattery/
+![CogBattery overview](docs/img/overview.webp)
 
-Code for the current paper version (54 models, source-specific human references): see [PAPER_VERSION.md](PAPER_VERSION.md).
+<div id="toc">
+  <ul align="center" type="none">
+    <summary>
+      <h2><a href="https://arxiv.org/abs/2607.24999">Paper</a> &emsp; <a href="https://dengzhe-hou.github.io/CogBattery/">Project page</a></h2>
+    </summary>
+  </ul>
+</div>
 
-CogBattery adapts validated experimental paradigms from cognitive science into a
-procedurally generated benchmark for language models. It covers working memory,
-cognitive control, episodic memory, theory of mind, and metacognition. Items are
-generated from seeded templates, reducing reliance on a fixed public item bank.
-Procedural generation mitigates rather than eliminates contamination from familiar
-task templates.
+</div>
 
-> The accompanying paper, *CogArena: A Multimethod Evaluation of Cognitive Ability
-> Structure in Large Language Models* (Anonymous, 2026), reports
-> that a broad competence axis dominates across 55 open-weight models. The five
-> theory-motivated groupings show a small advantage whose inference depends on the
-> analysis specification. A separate fully crossed intervention study finds a small
-> matched-scaffold tendency, but the frozen confirmation rule fails and selective
-> terms do not improve prediction for held-out model families. The groupings are
-> useful organizing labels, but the present evidence does not establish them as
-> transportable dimensions.
+# Overview
 
----
+CogBattery adapts 13 cognitive-science paradigms to text and compares language models with the human data published for each paradigm. The current paper version evaluates 54 open-weight models from 23 families. The [project page](https://dengzhe-hou.github.io/CogBattery/) has the task guide and per-model results.
 
-## Install
+Matching the direction of a human effect does not mean matching the errors behind it. Like humans, models respond more to n-back lures than to controls, yet they make far more false alarms on ordinary non-targets. Most models' verbal confidence separates correct from incorrect answers less well than humans' does, while their token probabilities discriminate about as well as human reports. Most models always choose the same wager. Model scores share two dimensions, the first tied to scale, and named cognitive groups predict held-out model families no more reliably than random groups of equal size.
+
+> [!NOTE]
+> CogBattery was first released as *CogArena* (arXiv 2607.24999) and was renamed to avoid confusion with an unrelated benchmark of the same name. The Python package, the `cogarena` command, and recorded result paths keep the original name, so existing commands and citations still work.
+
+### Features
+
+- **13 paradigms** in five groups by origin:
+  - **Working memory**: digit span, n-back, operation span.
+  - **Cognitive control**: Stroop, Flanker, Go/no-go.
+  - **Episodic memory**: CVLT, DRM, source memory.
+  - **Social reasoning**: false belief, EPITOME recursive mindreading.
+  - **Metacognition**: confidence calibration, post-decision wagering.
+- **Source-specific human references**, mostly participant-level records, compared by condition and response type.
+- **One command** runs the whole battery on any OpenAI-compatible endpoint, a hosted API, or a Hugging Face model.
+- **Text, VLM, and agent modes**, with the paradigms also registered as Gymnasium environments.
+- **Paper-version code** for the 54-model comparison in [PAPER_VERSION.md](PAPER_VERSION.md).
+
+# Quick Start
+
+### Installation
 
 ```bash
 git clone <repository-url> CogBattery
@@ -41,7 +61,7 @@ pip install -e ".[openai]"  # + OpenAI / any OpenAI-compatible endpoint
 
 Requires Python ≥ 3.10.
 
-## Quickstart
+### Run the battery
 
 The default text evaluation runs all 13 paradigms. CogBattery handles the three
 multi-turn paradigms within the same command.
@@ -127,7 +147,7 @@ Four integration routes are available.
    Then drive the battery from Python (see `cogarena/cli.py` for a ~30-line example, or use
    `cogarena.scoring.score_static` + the generators in `cogarena.generators`).
 
-## Output
+# Output
 
 Results are written to `cogarena_results/<model>/<mode>/`.
 
@@ -136,14 +156,14 @@ Results are written to `cogarena_results/<model>/<mode>/`.
 
 The console prints a summary table (per-paradigm + grouping + overall).
 
-## The battery
+# The battery
 
 | Grouping | Text paradigms |
 |---|---|
 | Working Memory | digit span, n-back, operation span |
 | Cognitive Control | Stroop, Flanker, Go/No-Go |
 | Episodic Memory | DRM false memory, source monitoring, CVLT |
-| Theory of Mind | false belief, EPITOME |
+| Social reasoning | false belief, EPITOME |
 | Metacognition | confidence calibration, post-decision wagering |
 
 The CLI runs the complete text battery. The same paradigms are also registered
@@ -158,7 +178,9 @@ obs, reward, terminated, truncated, info = env.step("NO MATCH")
 print(env.unwrapped.score())
 ```
 
-## Reproduce the paper
+# Reproduce arXiv v1
+
+This section covers the arXiv v1 battery (procedurally generated items, 55 models). For the current paper version, see [PAPER_VERSION.md](PAPER_VERSION.md).
 
 **What is in this repo.** The analysis code and the derived, de-identified result artifacts are
 committed. These include the observational reanalyses under `results/reanalysis/`, corrected
@@ -190,16 +212,16 @@ The paper figures are generated by the scripts in `paper/figures/`, including
 committed derived artifacts (and, where noted, the local raw-output bundle) and write the
 tracked PDF figures next to the generators.
 
-## Citation
+# Citation
 
 ```bibtex
 @article{cogarena2026,
   title   = {CogArena: A Multimethod Evaluation of Cognitive Ability Structure in Large Language Models},
-  author  = {Anonymous},
+  journal = {arXiv preprint arXiv:2607.24999},
   year    = {2026}
 }
 ```
 
-## License
+# License
 
 MIT. See [LICENSE](LICENSE).

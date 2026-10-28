@@ -8,59 +8,78 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="top">
-  <div class="wrap bar">
-    <a class="brand" href="#">CogBattery</a>
-    <nav>
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a class="wordmark" href="#">Cog<span>Battery</span></a>
+    <div class="topbar-links">
       <a href="#overview">Overview</a>
       <a href="#tasks">Tasks</a>
       <a href="#results">Results</a>
       <a href="#submit">Submit</a>
-      <a href="https://github.com/dengzhe-hou/CogBattery">Code</a>
-    </nav>
+      <a href="#cite">Citation</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>CogBattery</h1>
+  <p class="subtitle">Human cognitive tasks, adapted to text, with source-specific human references for every paradigm.</p>
+  <p class="venue">13 paradigms · 54 open-weight models · 23 families</p>
+  <div class="btns">
+    <a class="btn" href="https://arxiv.org/abs/2607.24999">Paper</a>
+    <a class="btn" href="https://github.com/dengzhe-hou/CogBattery">Code</a>
+    <a class="btn ghost" href="https://github.com/dengzhe-hou/CogBattery/blob/main/PAPER_VERSION.md">Paper-version code</a>
+    <a class="btn ghost" href="data/leaderboard.json">Results data</a>
   </div>
 </header>
 
-<main class="wrap">
-<section id="overview" class="hero">
-  <h1>CogBattery</h1>
-  <p class="lead">Human cognitive tasks, adapted to text, with source-specific human references for every paradigm.</p>
-  <div class="stats">
-    <div><b>13</b><span>paradigms</span></div>
-    <div><b>54</b><span>open-weight models</span></div>
-    <div><b>23</b><span>model families</span></div>
-    <div><b>702</b><span>complete model and task cells</span></div>
-  </div>
+<main>
+<section id="overview" class="section first">
+  <p class="kicker">Overview</p>
+  <h2>Shared effects, different errors</h2>
   <p>Matching the direction of a human effect does not mean matching the errors behind it.
   CogBattery evaluates language models on text adaptations of classic paradigms in working memory,
   cognitive control, episodic memory, social reasoning, and metacognition, and compares each result with the
   human data published for that paradigm.</p>
-  <ul class="findings">
-    <li><b>Shared effects, different errors.</b> Like humans, models respond more to n-back lures than to controls,
-      yet they make far more false alarms on ordinary non-targets.</li>
-    <li><b>Reporting, not signal.</b> Most models' verbal confidence separates correct from incorrect answers less well
-      than humans' does, and most always choose the same wager, while their token probabilities discriminate about as
-      well as human reports.</li>
-    <li><b>Cognitive groupings do not organize model differences.</b> Model scores share two dimensions, the first tied to
-      scale, and named cognitive groups predict held-out model families no more reliably than random groups of equal size.</li>
+  <ul class="features">
+    <li><b>13</b>paradigms in five groups by origin</li>
+    <li><b>54</b>open-weight models</li>
+    <li><b>23</b>model families</li>
+    <li><b>702</b>complete model and task cells</li>
   </ul>
-  <figure>
+  <div class="two-col">
+    <div class="finding">
+      <h3>Errors behind familiar effects</h3>
+      <p>Like humans, models respond more to n-back lures than to controls, yet they make far more false alarms on ordinary non-targets.</p>
+      <h3>Reporting, not signal</h3>
+      <p>Most models' verbal confidence separates correct from incorrect answers less well than humans' does, and most always choose the same wager,
+      while their token probabilities discriminate about as well as human reports.</p>
+    </div>
+    <div class="finding">
+      <h3>Groupings and scale</h3>
+      <p>Model scores share two dimensions, the first tied to scale. Named cognitive groups predict held-out model families no more reliably than random groups of equal size.</p>
+      <h3>Many families</h3>
+      <p>These patterns span many model families, and several remain among models that pass minimal-performance checks.</p>
+    </div>
+  </div>
+  <figure class="figure">
     <img src="img/overview.webp" alt="Overview of CogBattery: model measurements on 13 paradigms, task-score structure, and human reference evidence" loading="lazy">
-    <figcaption>Overview. Task examples, model icons, heatmaps, and clusters in the figure are schematic.</figcaption>
+    <figcaption class="fignote">Overview. Task examples, model icons, heatmaps, and clusters in the figure are schematic.</figcaption>
   </figure>
-  <p class="note">CogBattery was first released as <i>CogArena</i> (arXiv 2607.24999). It was renamed to avoid confusion with an unrelated benchmark of the same name.</p>
+  <div class="callout"><p>CogBattery was first released as <i>CogArena</i> (arXiv 2607.24999). It was renamed to avoid confusion with an unrelated benchmark of the same name.</p></div>
 </section>
 
-<section id="tasks">
+<section id="tasks" class="section">
+  <p class="kicker">Benchmark</p>
   <h2>Tasks</h2>
   <p>All model responses are text. Memory materials stay visible, and human timing and motor demands are omitted.
   Human references come from separate published sources, not one common cohort.</p>
-  <div class="scroll"><table id="task-table" class="grid"></table></div>
+  <div class="table-wrap"><table id="task-table" class="grid"></table></div>
   <h3>Example items</h3>
   <div class="examples">
     <div class="ex"><h4>2-back</h4>
       <pre>1:G  2:V  3:g</pre>
-      <p>The answer is <code>MATCH</code>: the current letter matches the one two positions earlier, ignoring case. Earlier letters and answers stay visible.</p></div>
+      <p>The answer is <code>MATCH</code> because the current letter matches the one two positions earlier, ignoring case. Earlier letters and answers stay visible.</p></div>
     <div class="ex"><h4>Stroop, incongruent trial</h4>
       <pre>Word: RED
 Ink-color label: green</pre>
@@ -68,37 +87,41 @@ Ink-color label: green</pre>
   </div>
 </section>
 
-<section id="results">
-  <h2>Results</h2>
-  <p>One key measure per paradigm, as in Table 3 of the paper. Invalid task answers count as wrong.
-  There is no overall score: the paradigms measure different things, and a combined human-likeness score would hide that.
-  Sort by any column, or filter by family.</p>
-  <div class="panel-summary scroll"><table id="summary-table" class="grid"></table></div>
+<section id="results" class="section">
+  <p class="kicker">Results</p>
+  <h2>One key measure per paradigm</h2>
+  <p>The measures follow the key-endpoint table of the paper. Invalid task answers count as wrong.
+  There is no overall score. The paradigms measure different things, and a combined human-likeness score would hide that.</p>
+  <div class="table-wrap"><table id="summary-table" class="grid"></table></div>
   <div class="controls">
     <label>Family <select id="family"><option value="">All families</option></select></label>
     <label><input type="checkbox" id="gapmode"> Show model minus human</label>
-    <span class="legend"><i class="sw lo"></i> below human <i class="sw hi"></i> above human</span>
+    <span><i class="sw lo"></i> below human <i class="sw hi"></i> above human</span>
   </div>
-  <div class="scroll"><table id="model-table" class="grid models"></table></div>
-  <p class="small">Cell shading shows how far a model is from the human mean, scaled by the spread across models for that measure.
-  It shows distance, not quality: for several measures a higher value is not better. WAG shows whether a model always placed the same wager;
-  no human proportion exists for it. Data: <a href="data/leaderboard.json">leaderboard.json</a>.</p>
+  <div class="table-wrap"><table id="model-table" class="grid models"></table></div>
+  <p class="table-note">Click a column to sort. Cell shading shows how far a model is from the human mean, scaled by the spread across models for that measure.
+  It shows distance, not quality, and for several measures a higher value is not better. WAG shows whether a model always placed the same wager,
+  and no human proportion exists for it. Data in <a href="data/leaderboard.json">leaderboard.json</a>.</p>
 </section>
 
-<section id="submit">
+<section id="submit" class="section">
+  <p class="kicker">Contribute</p>
   <h2>Submit a model</h2>
-  <ol>
+  <ol class="steps">
     <li>Run the battery on your model with the released command-line tool, using the default protocol
       (temperature 0, one response per item).</li>
     <li>Open a pull request that adds your raw response records and the run manifest under <code>submissions/&lt;model&gt;/</code>.</li>
     <li>We rerun the scoring script on your records and add the scored row to this table. Scores computed elsewhere are not accepted as is.</li>
   </ol>
-  <p class="small">The paper-version code and setup steps are in <a href="https://github.com/dengzhe-hou/CogBattery/blob/main/PAPER_VERSION.md">PAPER_VERSION.md</a>. Human source data and the CVLT-II word lists are not redistributed.</p>
+  <pre><code>pip install -e ".[openai]"
+cogarena eval --provider local --base-url http://localhost:11434/v1 --model qwen2.5:7b</code></pre>
+  <p class="table-note">The paper-version code and setup steps are in <a href="https://github.com/dengzhe-hou/CogBattery/blob/main/PAPER_VERSION.md">PAPER_VERSION.md</a>. Human source data and the CVLT-II word lists are not redistributed.</p>
 </section>
 
-<section id="cite">
+<section id="cite" class="section">
+  <p class="kicker">Reference</p>
   <h2>Citation</h2>
-  <pre class="cite">@article{cogarena2026,
+  <pre>@article{cogarena2026,
   title   = {CogArena: A Multimethod Evaluation of Cognitive Ability Structure in Large Language Models},
   journal = {arXiv preprint arXiv:2607.24999},
   year    = {2026}
@@ -106,7 +129,7 @@ Ink-color label: green</pre>
 </section>
 </main>
 
-<footer class="wrap small">MIT license for code. Task materials and human data follow their original source terms.</footer>
+<footer>MIT license for code. Task materials and human data follow their original source terms.</footer>
 <script src="app.js"></script>
 </body>
 </html>
