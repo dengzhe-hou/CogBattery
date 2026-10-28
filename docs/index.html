@@ -108,14 +108,14 @@ Ink-color label: green</pre>
   <p class="kicker">Contribute</p>
   <h2>Submit a model</h2>
   <ol class="steps">
-    <li>Run the battery on your model with the released command-line tool, using the default protocol
-      (temperature 0, one response per item).</li>
+    <li>Set up the paper-version runner as described in <a href="https://github.com/dengzhe-hou/CogBattery/blob/main/PAPER_VERSION.md">PAPER_VERSION.md</a>, with the source materials placed under <code>data/raw/</code>.</li>
+    <li>Run all 13 paradigms on your model with the default protocol (temperature 0, one response per step).</li>
     <li>Open a pull request that adds your raw response records and the run manifest under <code>submissions/&lt;model&gt;/</code>.</li>
     <li>We rerun the scoring script on your records and add the scored row to this table. Scores computed elsewhere are not accepted as is.</li>
   </ol>
-  <pre><code>pip install -e ".[openai]"
-cogarena eval --provider local --base-url http://localhost:11434/v1 --model qwen2.5:7b</code></pre>
-  <p class="table-note">The paper-version code and setup steps are in <a href="https://github.com/dengzhe-hou/CogBattery/blob/main/PAPER_VERSION.md">PAPER_VERSION.md</a>. Human source data and the CVLT-II word lists are not redistributed.</p>
+  <pre><code>python -m scripts.experiments.human13_20261017.run \
+  --manifest &lt;manifest&gt; --model &lt;your-model&gt; --output &lt;output-dir&gt;</code></pre>
+  <p class="table-note">The <code>cogarena eval</code> command runs the earlier arXiv v1 battery, and its scores are not comparable with this table. Human source data and the CVLT-II word lists are not redistributed.</p>
 </section>
 
 <section id="cite" class="section">

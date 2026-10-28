@@ -43,11 +43,13 @@ Matching the direction of a human effect does not mean matching the errors behin
   - **Social reasoning**: false belief, EPITOME recursive mindreading.
   - **Metacognition**: confidence calibration, post-decision wagering.
 - **Source-specific human references**, mostly participant-level records, compared by condition and response type.
-- **One command** runs the whole battery on any OpenAI-compatible endpoint, a hosted API, or a Hugging Face model.
-- **Text, VLM, and agent modes**, with the paradigms also registered as Gymnasium environments.
-- **Paper-version code** for the 54-model comparison in [PAPER_VERSION.md](PAPER_VERSION.md).
+- **Paper-version runner** for the 54-model comparison, and the arXiv v1 command-line battery for OpenAI-compatible endpoints, hosted APIs, and Hugging Face models.
+- **Gymnasium environments** for every paradigm, for custom interactive integrations.
 
 # Quick Start
+
+> [!IMPORTANT]
+> The paper's 54-model results come from the paper-version runner (`scripts/experiments/human13_20261017/run.py`), which uses the published source materials and human references. Its setup is in [PAPER_VERSION.md](PAPER_VERSION.md). The `cogarena eval` command below runs the arXiv v1 battery with procedurally generated items, so its scores are not comparable with the paper's tables.
 
 ### Installation
 
@@ -56,7 +58,7 @@ git clone <repository-url> CogBattery
 cd CogBattery
 pip install -e .            # core (gymnasium)
 pip install -e ".[openai]"  # + OpenAI / any OpenAI-compatible endpoint
-# extras: ".[anthropic]", ".[google]", ".[huggingface]", ".[image]", ".[all]"
+# extras: ".[anthropic]", ".[google]", ".[huggingface]", ".[all]"
 ```
 
 Requires Python ≥ 3.10.
@@ -98,34 +100,6 @@ cogarena eval --provider huggingface \
 
 Use `--device cpu`, `--device cuda`, or `--device cuda:1` when needed. Models
 that require custom repository code also need `--trust-remote-code`.
-
-### VLM evaluation
-
-VLM mode generates and evaluates the Stroop, Flanker, and false-belief image
-adaptations.
-
-```bash
-pip install -e ".[openai,image]"
-cogarena eval --mode vlm --provider local \
-  --base-url http://localhost:8000/v1 --model my-vlm --n 50
-```
-
-The endpoint must accept OpenAI-compatible image messages. The native OpenAI,
-Anthropic, and Google providers also accept images.
-
-### Agent evaluation
-
-Agent mode adds a ReAct-style loop with memory, note-taking, and arithmetic
-tools. It works with any of the 13 registered paradigms.
-
-```bash
-cogarena eval --mode agent --provider local \
-  --base-url http://localhost:11434/v1 --model qwen2.5:7b \
-  --paradigms n_back false_belief --n 5
-```
-
-Agent-mode scores describe the tool-using interaction protocol. They should not
-be mixed with the direct text-battery scores.
 
 ### Bring your own model
 
