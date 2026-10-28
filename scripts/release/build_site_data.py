@@ -20,6 +20,8 @@ from scripts.reanalysis.human54_posthoc_20261020.gen_core_table import ROWS
 ROOT = Path(__file__).resolve().parents[2]
 LAYER1 = ROOT / 'results/reanalysis/human54_layers_20261019/layer1'
 GATES = ROOT / 'results/reanalysis/human54_posthoc_20261020_gates'
+# Across-person human SD per key endpoint, as in paper Figure 3 (SM, EP, WAG approximations documented there).
+CLOSENESS = ROOT / 'results/reanalysis/human54_model_closeness_20261029/thirteen/summary.json'
 RULE = 'invalid_wrong'
 
 TASKS = {
@@ -54,6 +56,7 @@ def main():
     e = e[(e.rule == RULE) & (e.included == True)]
     models = pd.read_csv(ROOT / 'results/reanalysis/human54_layers_20261019/coverage/models.csv', index_col='model')
     params = pd.read_csv(GATES / 'model_parameters.csv', index_col='model').params_b
+    human_sd = {k: v['sd'] for k, v in json.loads(CLOSENESS.read_text())['human'].items()}
     tasks, values = [], {m: {} for m in models.index}
     for code, task, endpoint, _ in ROWS:
         name, group, measure, source = TASKS[code]
@@ -72,7 +75,7 @@ def main():
             got = tuple(round(stats[k], 3) for k in ('mean', 'lower', 'upper'))
             if got != PAPER[code]:
                 raise ValueError(f'{code}: {got} does not reproduce paper Table 3 {PAPER[code]}')
-            row.update(kind='value', human=human, human_n=int(s.human_n.iloc[0]), model_mean=float(x.mean()),
+            row.update(kind='value', human=human, human_n=int(s.human_n.iloc[0]), human_sd=human_sd[code], model_mean=float(x.mean()),
                        gap=stats['mean'], lower=stats['lower'], upper=stats['upper'], models=len(x))
             for m, val in x.items():
                 values[m][code] = float(val)

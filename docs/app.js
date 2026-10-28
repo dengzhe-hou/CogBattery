@@ -70,14 +70,6 @@ function modelTable(data) {
   const gapBox = document.getElementById('gapmode');
   const tasks = data.tasks;
   [...new Set(data.models.map(m => m.family))].sort().forEach(f => famSel.append(el('option', { value: f }, f)));
-  // Spread of each measure across models, for shading.
-  const sd = {};
-  for (const k of tasks) {
-    if (k.kind !== 'value') continue;
-    const v = data.models.map(m => m.values[k.code]).filter(x => typeof x === 'number');
-    const mu = v.reduce((a, b) => a + b, 0) / v.length;
-    sd[k.code] = Math.sqrt(v.reduce((a, b) => a + (b - mu) ** 2, 0) / v.length) || 1;
-  }
   const cols = [{ key: 'model', label: 'Model' }, { key: 'family', label: 'Family' },
     { key: 'params_b', label: 'Params (B)', num: true }, { key: 'serving', label: 'Serving' }, ...tasks.map(k => ({ key: k.code, label: k.code, num: true, task: k }))];
   let sortKey = 'params_b', asc = true;
@@ -115,7 +107,8 @@ function modelTable(data) {
         if (k.kind === 'constant') { r.append(el('td', { class: 'num' }, v ? 'constant' : 'varied')); continue; }
         const shown = gapBox.checked ? v - k.human : v;
         const td = el('td', { class: 'num' }, fmt(shown));
-        const z = Math.max(-1, Math.min(1, (v - k.human) / (2 * sd[k.code])));
+        // Distance in across-person human SDs, clipped at 3, as in paper Figure 3.
+        const z = Math.max(-1, Math.min(1, (v - k.human) / (3 * k.human_sd)));
         td.style.background = `rgba(var(${z < 0 ? '--lo' : '--hi'}), ${(Math.abs(z) * 0.5).toFixed(2)})`;
         r.append(td);
       }
