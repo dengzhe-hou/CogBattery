@@ -67,7 +67,7 @@ python -m scripts.release.pack_submission pack --run results/submissions/qwen2.5
 
 # Reproducing the paper
 
-[PAPER_VERSION.md](PAPER_VERSION.md) describes the analysis code, the derived per-model tables, and the supplementary results.
+[PAPER_VERSION.md](PAPER_VERSION.md) describes the analysis code, the derived per-model tables, and the supplementary results. The supplementary tables and rules that are not in the paper are in [cogbattery_supplement.pdf](docs/cogbattery_supplement.pdf).
 
 The arXiv v1 battery (procedurally generated items, 55 models, the `cogarena eval` command) is archived at tag [`v1.0.0-arxiv`](https://github.com/dengzhe-hou/CogBattery/tree/v1.0.0-arxiv). Its scores are not comparable with the current paper.
 

@@ -50,7 +50,7 @@ python -m pytest scripts/experiments/human13_20261017/tests
 
 ## Serving and administration details
 
-These details were moved out of Appendix A of the paper. Appendix A keeps the model and task tables, the prompt examples, the validity rules, and the analysis order.
+The paper has no appendix. Its former appendix (model and task tables, prompt examples, validity rules, analysis order, and supplementary result tables S1 to S7) is in [cogbattery_supplement.pdf](docs/cogbattery_supplement.pdf). The details below add serving, source, and analysis settings.
 
 ### Serving
 
@@ -129,7 +129,7 @@ Each of the 80 human blocks comes from a different participant, 40 per load. Loa
 
 ## Robustness of behavioral results
 
-Moved out of the paper.
+These checks were removed from the paper and are not in the supplement PDF.
 
 These checks support Section 5 of the paper. Family counts use the 23 merged families and raw counts the 28 raw labels.
 
