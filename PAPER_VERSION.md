@@ -127,6 +127,24 @@ Each of the 80 human blocks comes from a different participant, 40 per load. Loa
 - Protocol `formal_r7_unified_20261018`, material seed 20261017.
 - Analysis seeds 20261018 and 20261019 (factors).
 
+## Robustness of behavioral results
+
+Moved out of the paper.
+
+These checks support Section 5 of the paper. Family counts use the 23 merged families and raw counts the 28 raw labels.
+
+**Working memory.** The n-back control false-alarm excess appears in 19 of 23 family means and under every single-family deletion (.226–.269). Lure sensitivity and excess control false alarms coexist in 32 models. Without the 16 models that give one answer on at least 95% of 2-back letters, the excess is .238 (33 of 38 models). The target-minus-lure difference against humans is −.319 [−.382, −.232], and direct-answer models average −.004. At 3-back, 13 of 23 families show the control excess. The operation-span gate trials are part of the endpoint.
+
+**Cognitive control.** The Stroop word-response excess holds in all 23 merged-family means, under every single-family deletion (.303–.360), in 27 of 28 raw families, and in the 51- and 19-model panels (22 of 22 and 8 of 9 families). The Flanker congruent gate shares trials with the contrast.
+
+**Episodic memory.** The model-minus-human difference in the DRM warning effect is −.006 [−.055, .027]. Human warning groups are different people, so this comparison is unpaired. The new-word trials of DRM gate passers are part of the contrast.
+
+**Social reasoning.** Main-item belief accuracy ranges over .778–.877 across session and isolated presentation, with and without a system message. Depending on condition, 16–34 models answer all 14 main items correctly.
+
+**Metacognition.** Lower AUROC holds in all 23 merged-family means, 27 of 28 raw families, under every single-family deletion (−.164 to −.132), in both option positions, and in the 19- and 51-model panels. In the rerun, mean verbal AUROC on all items is below humans (−.139 [−.186, −.104]) in the 41 models with usable token probabilities. Eight of the nine models of 27B or more are among them and average token AUROC .867. Constant wagers span 36 of 51 direct-answer models.
+
+**Gates.** Disjoint-trial gates swap gate and endpoint roles across versions, blocks, lists, stories, grammars, or item halves. DRM uses the warned condition, and CVLT cannot be split. Gaps remain close to same-trial values, with Flanker interference at .341–.352 (16–17 passers), operation span at .057–.070, and CAL at −.140 to −.061. Held-out n-back gaps among gate passers are .234–.298.
+
 ## Supplementary structure results
 
 These tables and settings complement Section 6 of the paper.
