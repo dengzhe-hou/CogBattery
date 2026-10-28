@@ -50,7 +50,7 @@ python -m pytest scripts/experiments/human13_20261017/tests
 
 ## Serving and administration details
 
-These details complement Appendix A of the paper.
+These details were moved out of Appendix A of the paper. Appendix A keeps the model and task tables, the prompt examples, the validity rules, and the analysis order.
 
 ### Serving
 
@@ -68,9 +68,68 @@ These details complement Appendix A of the paper.
 
 Each of the 80 human blocks comes from a different participant, 40 per load. Load 3 blocks were drawn first, from the 397 of 504 QC-passed participants who reached load 3. Load 2 blocks were then drawn from the remaining 464 participants.
 
+### Budgets, contexts, and quantization
+
+- Direct-answer contexts are 4,096 tokens, with output limits of 16 to 1,024 tokens by step type.
+- Qwen3 4B (served as Qwen3-4B-Thinking-2507) and DeepSeek-R1 7B and 14B (Qwen distills) use native thinking with 12,288-token contexts and 8,192-token limits (96 thinking plus 32 final tokens in OS).
+- Budget exhaustion never triggers regeneration. Responses are schema-constrained except FB, and only materials and final answers enter later history.
+- Hardware does not determine inclusion, weights, or adjustment.
+
+### Sources and task administration
+
+- DS, ST, FL, and GN replay three public SRO trajectories (Eisenberg et al., 2019). QC retains 522, 521, 519, and 521 humans. DS uses both directions and lengths 3 to 9 without adaptive model spans. Forward minus backward pools each person's or model's trials, so it also reflects trajectory length.
+- NB uses one random lure-containing block from each of 80 participants (40 per load), with lag n±1 lures and control non-targets. ST substitutes color labels. FL has three flanker types. GN requires `WITHHOLD`.
+- OS reconstructs Ball's rules, not participant item orders (Ball et al., 2022). It has three versions of 15 sets (lengths 3 to 7). Human SPANo is correct positions / 75 for 438 people.
+- CVLT uses the CVLT-II Standard lists (Delis et al., 2000) and 130 CNP controls (Poldrack et al., 2016). Delay labels denote stages, not elapsed time.
+- DRM uses Ball's sentences, with 40 studied, eight lure, and eight unrelated probes per warning condition (240 and 197 humans). Warning is between-person in humans and paired in models.
+- SM uses the Eerland et al. (2018) stories with all 48 questions. Exp. 1 has 299 complete human records, and published exclusions are not reconstructed. Exp. 2 human scoring first used Exp. 1 codes. The corrected scores apply each experiment's author formulas, and model scores are unchanged.
+- FB uses the Strachan et al. (2024) stories and 49 humans' author-coded answers. Each condition has seven false-belief, seven true-belief, and four check entries. Two stories have an altered structure that the source paper did not report, each in both lists. Session administration with a system message is primary.
+- EP uses EPITOME's processed 2AFC data (Jones et al., 2024), 63 humans and 224 items, with generated A/B answers instead of official PMI scoring.
+- CAL uses French semantic-memory 2AFC materials (Mazancieux et al., 2020) with 181 human sets of 40 answer and confidence pairs on the 11-level 0–100% scale of the model prompt. Models answer each item in both answer positions (80 pairs), each pair in its own context.
+- WAG uses the grammar strings of Dienes and Scott (2005). The 40-human reference (Dienes and Seth, 2010) reports only accuracy (65%, SE 1.9) and high-minus-low accuracy (10.5 points, SE 2.18). Models make 240 instructed bets without stakes. Each test sequence starts with 10 sweets, a correct answer wins the amount wagered, an incorrect answer loses it, and a negative final balance is not collected. So a high wager has the larger expected gain whenever an answer is more likely right than wrong.
+
+### Behavioral comparisons and uncertainty
+
+- Family labels are analysis clusters, not independent-ancestry claims. Intervals are descriptive and unadjusted. There are no human–model significance or equivalence tests.
+- The human-error sensitivity draws the human mean from a normal distribution with its standard error in each family draw. The error is published for WAG and is SD / √N over people elsewhere.
+- Within-person NB and EP contrasts use per-person differences. SM quotation and DRM warning contrasts combine group errors. EP order slopes use 5,000 person draws.
+
+### Structure within jointly measured cohorts
+
+- SRO uses accuracies. It weights DS length-3 to 7 cells by the model recalls, averages NB block accuracy within load and then across loads, and weights ST and FL conditions equally.
+- Ball's pooled, unwarned, and warned cohorts retain all three DRM scores.
+- All ten SRO and three Ball partitions are enumerated. Independent participant and family draws estimate δ_H − δ_M.
+
+### Full-battery model analyses
+
+- WAG reconstructs correct and incorrect answers by high and low counts, awarding ties half credit.
+- PCA standardizes columns with population standard deviations.
+- Prediction fits standardization, PC1, OLS residualization of the same-group mean, and ridge regression (α = 1e-6) within each training fold, without tuning.
+- Parallel analysis (Horn, 1965) uses 5,000 column permutations. Bootstrap factor solutions are aligned by Tucker congruence with sign flips. Failed fits are counted, not replaced.
+
+### Scale, prediction controls, and reliability
+
+- Scale uses served parameter counts. The mixed models of Section 5.6 use REML fits with a random intercept per merged family, a 0/1 native-thinking term, and Wald intervals. Their likelihood-ratio tests compare maximum-likelihood fits with and without log size.
+- Within-family correlations demean both variables. Residualized analyses regress standardized tasks on log size.
+- F2 tests three primary and four secondary bias indicators (Table 12 of the paper).
+- Family maps retain 28 raw labels or merge lineages (18 or 17 families).
+- The positive control simulates 100 matrices per group strength with the same family map, a general factor, and one factor per paradigm group. With population δ near the human .16, the mean gain is 3.96%, its interval excludes zero in 26 matrices, and the partition tail is at most .05 in 97. Without group factors these counts are 0 and 7, and at δ = .23 they are 82 and 100.
+- Reliability uses the same score on alternate forms (trajectories, versions, blocks, lists, grammars, item or story parity, warning conditions, recall trials), with 5,000 family draws. Disattenuation r_jk / √(q_j q_k) is undefined for nonpositive reliabilities.
+
+### Confidence and wager rerun
+
+- The 51 direct-answer models were rerun on rented A100 GPUs with the same server binary, weights, context, and request builder. All 103,530 calls were valid. Responses matched the formal run on .957 (CAL) and .954 (WAG) of steps.
+- Token confidence is the chosen option's renormalized probability at the first generated position (top 20). That position holds the opening quote of the constrained answer, and Ollama returns unconstrained probabilities there, so the most probable option can differ from the written answer.
+- The primary analysis keeps models with both options on at least 40 of 80 items. This minimum and the wager-label thresholds were set after the specification.
+
+### Protocol and seeds
+
+- Protocol `formal_r7_unified_20261018`, material seed 20261017.
+- Analysis seeds 20261018 and 20261019 (factors).
+
 ## Supplementary structure results
 
-These tables and settings complement Section 6 and Appendix A.6 of the paper.
+These tables and settings complement Section 6 of the paper.
 
 ### Factor-analysis settings
 
