@@ -47,3 +47,23 @@ The tests in these directories need the raw datasets, so continuous integration 
 ```bash
 python -m pytest scripts/experiments/human13_20261017/tests
 ```
+
+## Serving and administration details
+
+These details complement Appendix A of the paper.
+
+### Serving
+
+- Ollama 0.18.0, native `/api/chat`, temperature 0, top-p 1, one server thread.
+- Repeated-token abort is disabled. The run uses the repaired Phi-3 cache build and a native build with a thinking cap and JSON constraints.
+- Response records keep the backend and model identities and the full request bodies.
+- Default tags use GGUF Q4_K_M for 28 models and Q4_0 for 23, including Aya 8B, which Ollama metadata labels F16. Llama3.2 1B and SmolLM2 1.7B use Q8_0, and SmolLM2 360M uses F16.
+
+### Hardware and records
+
+- New calls used A100 MIG 3g.40gb, A100 MIG 4g.40gb, and RTX PRO 6000. All new calls in one model and task cell used one hardware type.
+- Of 366,606 records, 360,358 are new. The other 6,248 reuse pilot or false-belief records with matching episode, step, backend, model, and request bytes.
+
+### N-back block sampling
+
+Each of the 80 human blocks comes from a different participant, 40 per load. Load 3 blocks were drawn first, from the 397 of 504 QC-passed participants who reached load 3. Load 2 blocks were then drawn from the remaining 464 participants.
