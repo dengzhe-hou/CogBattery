@@ -19,7 +19,7 @@ GROUPS = [('Working memory', [('DS', 'Digit span'), ('NB', 'N-back'), ('OS', 'Op
           ('Cognitive control', [('ST', 'Stroop'), ('FL', 'Flanker'), ('GN', 'Go/no-go')]),
           ('Episodic memory', [('CVLT', 'List learning'), ('DRM', 'False memory'), ('SM', 'Source memory')]),
           ('Social reasoning', [('FB', 'False belief'), ('EP', 'Mindreading')]),
-          ('Metacognition', [('CAL', 'Confidence'), ('WAG', 'Wagering')])]
+          ('Metacognition', [('CAL', 'Calibration'), ('WAG', 'Wagering')])]
 APPROX = {'SM', 'EP', 'WAG'}
 CODES = [c for _, ts in GROUPS for c, _ in ts]
 NAMES = {c: n for _, ts in GROUPS for c, n in ts}
