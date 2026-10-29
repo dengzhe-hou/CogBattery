@@ -29,9 +29,10 @@ order = d.groupby('model').params_b.first().sort_values().index.tolist()
 z = d.pivot(index='task', columns='model', values='z').loc[CODES, order]
 a = z.abs()
 bins = [0, .5, 1, 2, np.inf]
-colors = ['#f1f1f1', '#a6cbe3', '#3f88c5', '#0b3c6b']
+colors = ['#f2f2f2', '#b8d4ea', '#4a90c8', '#0b3c6b']
+CONST = '#f2c99b'  # constant wagers: no distance, so outside the blue scale
 cmap = ListedColormap(colors)
-cmap.set_bad('#d9d2c3')
+cmap.set_bad(CONST)
 norm = BoundaryNorm(bins[:-1] + [1e9], cmap.N)
 
 fig = plt.figure(figsize=(180 * style.MM, 70 * style.MM))
@@ -55,11 +56,11 @@ for s in ax.spines.values():
 # Right: share of models more than 1 SD away (WAG among the 17 models with a defined value).
 axr = fig.add_subplot(gs[0, 1], sharey=ax)
 share = (a > 1).sum(axis=1) / a.notna().sum(axis=1)
-axr.barh(range(len(CODES)), share.to_numpy(), color='#0b3c6b', height=.62)
+axr.barh(range(len(CODES)), share.to_numpy(), color=style.MODEL, height=.62)
 axr.axvline(.7, color='#888888', lw=.6, ls=(0, (2, 2)))
 axr.set_xlim(0, 1)
 axr.set_xticks([0, .7, 1], ['0', '.7', '1'], fontsize=5)
-axr.set_title('>1 SD', fontsize=6, pad=2)
+axr.set_title('Share >1 SD', fontsize=5.5, pad=2)
 axr.tick_params(axis='y', left=False, labelleft=False)
 axr.tick_params(axis='x', labelsize=5)
 for s in ('top', 'right', 'left'):
@@ -68,8 +69,10 @@ for s in ('top', 'right', 'left'):
 # Bottom: each model's median distance across its defined tasks.
 axb = fig.add_subplot(gs[1, 0], sharex=ax)
 med = a.median(axis=0)
-axb.plot(range(len(order)), med.to_numpy(), color='#0b3c6b', lw=.9, marker='o', ms=1.8)
-axb.set_ylabel('Median\ndistance (SD)', fontsize=6)
+axb.plot(range(len(order)), med.to_numpy(), color=style.MODEL, lw=.9, marker='o', ms=1.8)
+axb.annotate('Median distance (SD)', xy=(0, .5), xycoords='axes fraction', xytext=(-14, 0),
+             textcoords='offset points', ha='right', va='center', fontsize=6)
+axb.tick_params(axis='y', labelsize=5)
 axb.set_ylim(0, max(3.0, float(med.max()) * 1.05))
 axb.set_xticks(range(len(order)), order, rotation=90, fontsize=5)
 axb.set_xlim(-.5, len(order) - .5)
@@ -84,12 +87,13 @@ for cut, lab in ((1, '1B'), (10, '10B'), (100, '100B')):
 for s in ('top', 'right'):
     axb.spines[s].set_visible(False)
 
-handles = [Patch(color=c, label=l) for c, l in zip(colors, ['< .5 SD', '.5–1', '1–2', '> 2'])]
-handles.append(Patch(color='#d9d2c3', label='constant wager'))
-fig.legend(handles=handles, loc='upper left', bbox_to_anchor=(.285, 1.0), ncol=5, fontsize=5.5, frameon=False,
+handles = [Patch(color=c, label=l) for c, l in zip(colors, ['< .5 SD', '.5–1 SD', '1–2 SD', '> 2 SD'])]
+handles.append(Patch(color=CONST, label='constant wager'))
+fig.legend(handles=handles, loc='upper left', bbox_to_anchor=(.28, 1.0), ncol=5, fontsize=5.5, frameon=False,
            title=None, handlelength=1.2, columnspacing=1.2)
-fig.text(.985, .972, 'Distance from human mean, in human SD.  $^\\dagger$ approximate SD', fontsize=5.5, va='center', ha='right')
+fig.text(.278, .972, 'Distance from human mean', fontsize=6, fontweight='bold', va='center', ha='right')
+fig.text(.905, .972, '$^\\dagger$ approximate SD', fontsize=5.5, va='center', ha='right')
 for ext, kw in (('pdf', {}), ('svg', {}), ('png', {'dpi': 600})):
     fig.savefig(OUT / f'fig_h54_closeness_v2.{ext}', **kw)
 if '--paper' in sys.argv:
-    fig.savefig(OUT / 'fig_h54_closeness.pdf')
+    fig.savefig(ROOT / 'paper-rev-20261021/figures_h54/fig_h54_closeness.pdf')
