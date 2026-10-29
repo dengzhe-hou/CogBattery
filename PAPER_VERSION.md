@@ -50,7 +50,7 @@ python -m pytest scripts/experiments/human13_20261017/tests
 
 ## Serving and administration details
 
-The paper has no appendix. Its former appendix (model and task tables, prompt examples, validity rules, analysis order, and supplementary result tables S1 to S8) is in [cogbattery_supplement.pdf](docs/cogbattery_supplement.pdf). The details below add serving, source, and analysis settings.
+The paper has no appendix. Its former appendix (model and task tables, prompt examples, validity rules, analysis order, and supplementary result tables S1 to S8, plus S9 for the two further cohorts and S10 for the wager-label rerun) is in [cogbattery_supplement.pdf](docs/cogbattery_supplement.pdf). The details below add serving, source, and analysis settings.
 
 ### Serving
 
@@ -121,6 +121,7 @@ Each of the 80 human blocks comes from a different participant, 40 per load. Loa
 - The 51 direct-answer models were rerun on rented A100 GPUs with the same server binary, weights, context, and request builder. All 103,530 calls were valid. Responses matched the formal run on .957 (CAL) and .954 (WAG) of steps.
 - Token confidence is the chosen option's renormalized probability at the first generated position (top 20). That position holds the opening quote of the constrained answer, and Ollama returns unconstrained probabilities there, so the most probable option can differ from the written answer.
 - The primary analysis keeps models with both options on at least 40 of 80 items. This minimum and the wager-label thresholds were set after the specification.
+- Of the 36 rerun models that always chose the same wager in the formal run, 21 choose the same letter on at least 90% of wagers under both A/B mappings, 5 keep the same amount on at least 80%, and 10 do neither. Among the four of them with WAG accuracy of at least .80, mistral-nemo 12B chooses the same letter, gemma2 9B and gemma3 27B keep the low wager, and gemma2 27B does neither (Table S10).
 
 ### Protocol and seeds
 
@@ -153,7 +154,7 @@ These checks support Section 5 of the paper. Family counts use the 23 merged fam
 
 **Social reasoning.** Main-item belief accuracy ranges over .778–.877 across session and isolated presentation, with and without a system message. Depending on condition, 16–34 models answer all 14 main items correctly.
 
-**Metacognition.** Lower AUROC holds in all 23 merged-family means, 27 of 28 raw families, under every single-family deletion (−.164 to −.132), in both option positions, and in the 19- and 51-model panels. In the rerun, mean verbal AUROC on all items is below humans (−.139 [−.186, −.104]) in the 41 models with usable token probabilities. Eight of the nine models of 27B or more are among them and average token AUROC .867. Constant wagers span 36 of 51 direct-answer models.
+**Metacognition.** Lower AUROC holds in all 23 merged-family means, 27 of 28 raw families, under every single-family deletion (−.164 to −.132), in both answer orders, and in the 19- and 51-model panels. In the rerun, mean verbal AUROC on all items is below humans (−.139 [−.186, −.104]) in the 41 models with usable token probabilities. Eight of the nine models of 27B or more are among them and average token AUROC .867. Constant wagers span 36 of 51 direct-answer models.
 
 **Gates.** Disjoint-trial gates swap gate and endpoint roles across versions, blocks, lists, stories, grammars, or item halves. DRM uses the warned condition, and CVLT cannot be split. Gaps remain close to same-trial values, with Flanker interference at .341–.352 (16–17 passers), operation span at .057–.070, and CAL at −.140 to −.061. Held-out n-back gaps among gate passers are .234–.298.
 
