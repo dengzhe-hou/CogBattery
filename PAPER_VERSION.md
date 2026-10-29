@@ -161,6 +161,26 @@ These checks support Section 5 of the paper. Family counts use the 23 merged fam
 
 These tables and settings complement Section 6 of the paper.
 
+### Pairwise correlations in two further cohorts
+
+The paper reports this result in one sentence in Section 6. CNP and Bradford each have one task per paradigm group, so the grouping contrast is undefined. We compare each task pair's Pearson correlation in humans and in the 54 models.
+
+- CNP, 130 healthy controls ([OpenNeuro ds000030](https://openneuro.org/datasets/ds000030), Poldrack et al. 2016). CVLT-II trials 1 to 5 total recall, Wechsler Memory Scale digit span total, and mean Stroop accuracy.
+- Bradford et al. (2020, Cortex 126, 265 to 280; [OSF pw7h6](https://osf.io/pw7h6/)), adults aged 18 or older. False-belief appropriateness ratings (belief-inconsistent minus belief-consistent, where higher ratings mean less appropriate), partial operation span (letters recalled in position), and log congruent minus log incongruent Stroop reaction time. Each measure is residualized on age and age squared.
+- Model scores are battery CVLT total recall, DS, OS, and ST accuracy, false-belief trial accuracy, and for the Bradford pairs Stroop incongruent minus congruent accuracy. Higher values mean better performance or less interference on both sides.
+- Intervals use 5,000 bootstraps over people and over the 23 merged model families. The task matches are at task-family level only.
+
+| Cohort | Pair | n | Human r | Model r | Human minus model [95% CI] |
+|---|---|---:|---:|---:|---|
+| CNP | CVLT and DS | 130 | .21 | .40 | −.20 [−.47, .17] |
+| CNP | CVLT and ST | 130 | .22 | .40 | −.17 [−.42, .14] |
+| CNP | DS and ST | 130 | .06 | .44 | **−.38 [−.61, −.13]** |
+| Bradford | FB and OS | 252 | .20 | .29 | −.10 [−.39, .22] |
+| Bradford | FB and ST | 253 | −.09 | −.12 | .03 [−.36, .44] |
+| Bradford | OS and ST | 249 | −.12 | .15 | −.27 [−.49, .04] |
+
+Model correlations exceed human ones in five of six pairs, and the interval excludes zero only for CNP DS and ST. Without age adjustment, the Bradford OS and ST difference is −.36 [−.59, −.05]. With Stroop interference instead of accuracy, all CNP difference intervals include zero. Using battery false-belief main accuracy for models changes the Bradford differences by at most .03. The four joint cohorts cover ten tasks, so CAL, EP, and WAG have no human structural comparison. Added after the formal results. Code is `scripts/reanalysis/human54_extra_cohorts_20261029/run.py`, which reads the raw sources from `$COGBATTERY_RAW`.
+
 ### Factor-analysis settings
 
 - The common-factor parallel analysis uses one-factor MINRES communalities.

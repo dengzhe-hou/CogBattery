@@ -103,6 +103,19 @@ Ink-color label: green</pre>
   <p class="table-note">Click a column to sort. Cell shading shows how far a model is from the human mean in human standard deviations (across people), full at 3 SD, as in Figure 3 of the paper.
   It shows distance, not quality, and for several measures a higher value is not better. WAG shows whether a model always placed the same wager,
   and no human proportion exists for it. Serving shows whether a row comes from the paper's runs or a submission, and which runner backend a submission used. Data in <a href="data/leaderboard.json">leaderboard.json</a>.</p>
+  <h3>Task correlations in two further human cohorts</h3>
+  <p>Besides SRO and Ball, two public cohorts did several of the tasks. CNP controls did list learning, digit span, and Stroop, and adults in Bradford et al. (2020) did false belief, operation span, and Stroop.
+  Each has one task per paradigm group, so we compare each pair's correlation in humans and in the 54 models. Bradford measures are adjusted for age.</p>
+  <div class="table-wrap"><table class="grid">
+    <tr><th>Cohort</th><th>Pair</th><th>n</th><th>Human r</th><th>Model r</th><th>Human minus model [95% CI]</th></tr>
+    <tr><td>CNP</td><td>CVLT and DS</td><td>130</td><td>.21</td><td>.40</td><td>−.20 [−.47, .17]</td></tr>
+    <tr><td>CNP</td><td>CVLT and ST</td><td>130</td><td>.22</td><td>.40</td><td>−.17 [−.42, .14]</td></tr>
+    <tr><td>CNP</td><td>DS and ST</td><td>130</td><td>.06</td><td>.44</td><td><b>−.38 [−.61, −.13]</b></td></tr>
+    <tr><td>Bradford</td><td>FB and OS</td><td>252</td><td>.20</td><td>.29</td><td>−.10 [−.39, .22]</td></tr>
+    <tr><td>Bradford</td><td>FB and ST</td><td>253</td><td>−.09</td><td>−.12</td><td>.03 [−.36, .44]</td></tr>
+    <tr><td>Bradford</td><td>OS and ST</td><td>249</td><td>−.12</td><td>.15</td><td>−.27 [−.49, .04]</td></tr>
+  </table></div>
+  <p class="table-note">Model correlations exceed human ones in five of six pairs, reliably only for CNP digit span and Stroop. Task matches are at task-family level only. Definitions and sensitivity checks are in <a href="https://github.com/dengzhe-hou/CogBattery/blob/main/PAPER_VERSION.md">PAPER_VERSION.md</a>.</p>
 </section>
 
 <section id="submit" class="section">
