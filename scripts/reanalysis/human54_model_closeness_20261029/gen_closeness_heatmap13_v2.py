@@ -35,9 +35,10 @@ cmap = ListedColormap(colors)
 cmap.set_bad(CONST)
 norm = BoundaryNorm(bins[:-1] + [1e9], cmap.N)
 
-fig = plt.figure(figsize=(180 * style.MM, 70 * style.MM))
+# Designed at the text width (160.5 mm) so that every font prints at its nominal size.
+fig = plt.figure(figsize=(160.5 * style.MM, 66 * style.MM))
 gs = fig.add_gridspec(2, 2, width_ratios=[1, .085], height_ratios=[1, .24], wspace=.02, hspace=.06,
-                      left=.285, right=.985, top=.91, bottom=.225)
+                      left=.285, right=.985, top=.915, bottom=.27)
 ax = fig.add_subplot(gs[0, 0])
 ax.imshow(np.ma.masked_invalid(a.to_numpy()), aspect='auto', cmap=cmap, norm=norm, interpolation='nearest')
 row = 0
@@ -47,7 +48,7 @@ for gi, (gname, ts) in enumerate(GROUPS):
     ax.annotate(gname, xy=(0, row + (len(ts) - 1) / 2), xycoords=('axes fraction', 'data'), xytext=(-76, 0),
                 textcoords='offset points', ha='right', va='center', fontsize=6, fontweight='bold')
     row += len(ts)
-ax.set_yticks(range(len(CODES)), [f'{NAMES[c]} ({c}){"$^\\dagger$" if c in APPROX else ""}' for c in CODES], fontsize=6)
+ax.set_yticks(range(len(CODES)), [f'{NAMES[c]} ({c}){" †" if c in APPROX else ""}' for c in CODES], fontsize=6)
 ax.tick_params(axis='x', bottom=False, labelbottom=False)
 ax.tick_params(axis='y', length=0)
 for s in ax.spines.values():
@@ -92,7 +93,7 @@ handles.append(Patch(color=CONST, label='constant wager'))
 fig.legend(handles=handles, loc='upper left', bbox_to_anchor=(.28, 1.0), ncol=5, fontsize=5.5, frameon=False,
            title=None, handlelength=1.2, columnspacing=1.2)
 fig.text(.278, .972, 'Distance from human mean', fontsize=6, fontweight='bold', va='center', ha='right')
-fig.text(.905, .972, '$^\\dagger$ approximate SD', fontsize=5.5, va='center', ha='right')
+fig.text(.905, .972, '† approximate SD', fontsize=5.5, va='center', ha='right')
 for ext, kw in (('pdf', {}), ('svg', {}), ('png', {'dpi': 600})):
     fig.savefig(OUT / f'fig_h54_closeness_v2.{ext}', **kw)
 if '--paper' in sys.argv:
