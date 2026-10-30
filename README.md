@@ -15,6 +15,8 @@
 
 ![CogBattery overview](docs/img/overview.webp)
 
+[Figure 1 PDF](docs/figures/fig1_overview.pdf) · [SVG](docs/figures/fig1_overview.svg) · [Editable PowerPoint](docs/figures/CogBattery_Fig1_editable.pptx)
+
 <div id="toc">
   <ul align="center" type="none">
     <summary>

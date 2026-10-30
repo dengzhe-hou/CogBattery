@@ -4,6 +4,8 @@ This page describes the code for the current paper version of CogBattery. That v
 
 The project site at https://dengzhe-hou.github.io/CogBattery/ shows the task guide and the per-model results.
 
+The current overview figure is available as [PDF](docs/figures/fig1_overview.pdf), [SVG](docs/figures/fig1_overview.svg), and [editable PowerPoint](docs/figures/CogBattery_Fig1_editable.pptx). The task cards are schematic examples.
+
 ## What is included
 
 | Directory | Role |
