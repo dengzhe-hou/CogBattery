@@ -1,9 +1,9 @@
 """Leaderboard data for the CogBattery release site (2026-10-27). CPU only, reads saved results.
 
-One key endpoint per paradigm (paper Table 3, gen_core_table ROWS) for each of the 54 models, with the
+One key endpoint per paradigm (paper Table 4, gen_core_table ROWS) for each of the 54 models, with the
 source human mean and the panel mean gap and its family interval (frozen cluster_mean, seed 20261018,
 5,000 draws, human mean fixed). Primary scoring rule: invalid task answers count as wrong.
-The panel intervals must reproduce paper Table 3, or the run stops.
+The panel intervals must reproduce paper Table 4, or the run stops.
 """
 from __future__ import annotations
 
@@ -39,7 +39,7 @@ TASKS = {
     'CAL': ('Confidence calibration', 'Metacognition', 'Type-2 AUROC', 'Mazancieux et al.'),
     'WAG': ('Post-decision wagering', 'Metacognition', 'Always places the same wager', 'Dienes and Seth'),
 }
-# Paper Table 3 (all-model gap and interval), used only as a reproduction check.
+# Paper Table 4 (all-model gap and interval), used only as a reproduction check.
 PAPER = {'DS': (.372, .280, .501), 'NB': (.257, .159, .341), 'OS': (-.182, -.296, -.080),
          'ST': (.320, .247, .448), 'FL': (.065, -.006, .137), 'GN': (.040, -.065, .191),
          'CVLT': (-1.836, -2.138, -1.476), 'DRM': (.293, .217, .367), 'SM': (.052, .038, .062),
@@ -74,7 +74,7 @@ def main():
             stats, _ = cluster_mean(x.to_numpy() - human, [models.family_merged[m] for m in x.index])
             got = tuple(round(stats[k], 3) for k in ('mean', 'lower', 'upper'))
             if got != PAPER[code]:
-                raise ValueError(f'{code}: {got} does not reproduce paper Table 3 {PAPER[code]}')
+                raise ValueError(f'{code}: {got} does not reproduce paper Table 4 {PAPER[code]}')
             row.update(kind='value', human=human, human_n=int(s.human_n.iloc[0]), human_sd=human_sd[code], model_mean=float(x.mean()),
                        gap=stats['mean'], lower=stats['lower'], upper=stats['upper'], models=len(x))
             for m, val in x.items():

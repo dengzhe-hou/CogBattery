@@ -18,7 +18,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[4]
 DATA = ROOT / "results/reanalysis/human54_layers_20261019"
 OUT = ROOT / "paper-overleaf/figures_h54"
-OUT.mkdir(exist_ok=True)
+OUT.mkdir(parents=True, exist_ok=True)
 MM = 1 / 25.4
 HUMAN = "#222222"
 MODEL = "#0072B2"

@@ -16,10 +16,10 @@ The current overview figure is available as [PDF](docs/figures/fig1_overview.pdf
 | `scripts/reanalysis/human54_fullbattery_20261019/`, `human54_factors_20261019/` | Score structure: PCA, parallel analysis, factor analysis, and cross-family prediction |
 | `scripts/reanalysis/human54_posthoc_20261020/` | Post hoc analyses: minimal-performance gates, scale strata, reliability, human standard-error sensitivity, and the no-WAG structure check |
 | `scripts/experiments/human54_confwager_20261021/` | Confidence and wager rerun: token probabilities and A/B wager labels |
-| `scripts/release/build_site_data.py` | Builds `docs/data/leaderboard.json` and checks that it reproduces paper Table 3 |
-| `results/reanalysis/human54_layers_20261019/layer1/`, `coverage/`, `human54_posthoc_20261020_gates/model_parameters.csv` | Derived per-model endpoints and aggregated human references |
+| `scripts/release/build_site_data.py` | Builds `docs/data/leaderboard.json` and checks that it reproduces paper Table 4 |
+| `results/reanalysis/human54_layers_20261019/layer1/`, `coverage/`, `human54_posthoc_20261020_gates/model_parameters.csv` | Derived per-model endpoints and aggregated human references that the analysis scripts read. These tables are not in this repository, which keeps the per-model key endpoints in `docs/data/leaderboard.json` |
 
-Rebuild the site data and check it against Table 3 with:
+With those derived tables in place, rebuild the site data and check it against Table 4 with:
 
 ```bash
 python -m scripts.release.build_site_data --output docs/data/leaderboard.json
@@ -95,6 +95,7 @@ Each of the 80 human blocks comes from a different participant, 40 per load. Loa
 - Family labels are analysis clusters, not independent-ancestry claims. Intervals are descriptive and unadjusted. There are no human–model significance or equivalence tests.
 - The human-error sensitivity draws the human mean from a normal distribution with its standard error in each family draw. The error is published for WAG and is SD / √N over people elsewhere.
 - Within-person NB and EP contrasts use per-person differences. SM quotation and DRM warning contrasts combine group errors. EP order slopes use 5,000 person draws.
+- Signal-detection d′ adds .5 to event counts and 1 to trial counts and clips rates to [.001, .999].
 
 ### Structure within jointly measured cohorts
 
@@ -112,10 +113,12 @@ Each of the 80 human blocks comes from a different participant, 40 per load. Loa
 ### Scale, prediction controls, and reliability
 
 - Scale uses served parameter counts. The mixed models of Section 5.6 use REML fits with a random intercept per merged family, a 0/1 native-thinking term, and Wald intervals. Their likelihood-ratio tests compare maximum-likelihood fits with and without log size.
+- The n-back false-alarm slope is .167 per tenfold increase in size. Its Wald interval is [.0005, .333], its likelihood-ratio p is .060, and its whole-family bootstrap interval is [−.053, .304] from 875 valid draws of 1,000.
 - Within-family correlations demean both variables. Residualized analyses regress standardized tasks on log size.
-- F2 tests three primary and four secondary bias indicators (Table 12 of the paper).
+- F2 tests three primary and four secondary bias indicators (Table S5 of the supplement).
 - Family maps retain 28 raw labels or merge lineages (18 or 17 families).
 - The positive control simulates 100 matrices per group strength with the same family map, a general factor, and one factor per paradigm group. With population δ near the human .16, the mean gain is 3.96%, its interval excludes zero in 26 matrices, and the partition tail is at most .05 in 97. Without group factors these counts are 0 and 7, and at δ = .23 they are 82 and 100.
+- The small five-group gain depends on WAG, CAL, and the DeepSeek-R1 family. That family accounts for 108% of the net improvement. Removing its cells at aggregation gives −.50% [−7.23, 5.29]%, and refitting without it gives −4.00% [−6.59, −.75]%.
 - Reliability uses the same score on alternate forms (trajectories, versions, blocks, lists, grammars, item or story parity, warning conditions, recall trials), with 5,000 family draws. Disattenuation r_jk / √(q_j q_k) is undefined for nonpositive reliabilities.
 
 ### Confidence and wager rerun
@@ -140,13 +143,13 @@ Each of the 80 human blocks comes from a different participant, 40 per load. Loa
 
 ### Distance from humans per model (Figure 3)
 
-`scripts/reanalysis/human54_model_closeness_20261029/run13.py` standardizes each model's key-endpoint difference from the human mean by the across-person human SD (SM pooled within-condition SD, EP SD of per-person slopes, WAG published SE times √40 for high-minus-low accuracy), and `gen_closeness_heatmap13_v2.py --paper` draws Figure 3. `run.py` is the 10-task version without SM, EP, and WAG. This view was added after the formal results. The homepage table uses the same human SDs for its shading.
+`scripts/reanalysis/human54_model_closeness_20261029/run13.py` standardizes each model's key-endpoint difference from the human mean by the across-person human SD (SM pooled within-condition SD, EP SD of per-person slopes, WAG published SE times √40 for high-minus-low accuracy), and `gen_closeness_heatmap13_v2.py` draws Figure 3. `run.py` is the 10-task version without SM, EP, and WAG. This view was added after the formal results. The homepage table uses the same human SDs for its shading.
+
+`scripts/reanalysis/human54_model_closeness_20261029/size_relation.py` (post hoc) relates each model's median distance to log size. The Spearman correlation is −.54, with a 95% interval of [−.71, −.24] from 5,000 whole-family resamples. Median distance is .95 in the nine models of 27B or more and 1.74 in the others. Per-task values are in `results/reanalysis/human54_model_closeness_20261029/thirteen/size_relation_by_task.csv`, and `model_task_z.csv` in the same folder holds the values behind Figure 3.
 
 ## Robustness of behavioral results
 
-These checks were removed from the paper and are not in the supplement PDF.
-
-These checks support Section 5 of the paper. Family counts use the 23 merged families and raw counts the 28 raw labels.
+These checks support Section 5 of the paper, which reports some of them, and they are not in the supplement PDF. Family counts use the 23 merged families and raw counts the 28 raw labels.
 
 **Working memory.** The n-back control false-alarm excess appears in 19 of 23 family means and under every single-family deletion (.226–.269). Lure sensitivity and excess control false alarms coexist in 32 models. Without the 16 models that give one answer on at least 95% of 2-back letters, the excess is .238 (33 of 38 models). The target-minus-lure difference against humans is −.319 [−.382, −.232], and direct-answer models average −.004. At 3-back, 13 of 23 families show the control excess. The operation-span gate trials are part of the endpoint.
 
@@ -166,7 +169,7 @@ These tables and settings complement Section 6 of the paper.
 
 ### Pairwise correlations in two further cohorts
 
-The paper reports this result in one sentence in Section 6. CNP and Bradford each have one task per paradigm group, so the grouping contrast is undefined. We compare each task pair's Pearson correlation in humans and in the 54 models.
+The paper summarizes this result in Section 6. CNP and Bradford each have one task per paradigm group, so the grouping contrast is undefined. We compare each task pair's Pearson correlation in humans and in the 54 models.
 
 - CNP, 130 healthy controls ([OpenNeuro ds000030](https://openneuro.org/datasets/ds000030), Poldrack et al. 2016). CVLT-II trials 1 to 5 total recall, Wechsler Memory Scale digit span total, and mean Stroop accuracy.
 - Bradford et al. (2020, Cortex 126, 265 to 280; [OSF pw7h6](https://osf.io/pw7h6/)), adults aged 18 or older. False-belief appropriateness ratings (belief-inconsistent minus belief-consistent, where higher ratings mean less appropriate), partial operation span (letters recalled in position), and log congruent minus log incongruent Stroop reaction time. Each measure is residualized on age and age squared.
