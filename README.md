@@ -77,7 +77,7 @@ The arXiv v1 battery (procedurally generated items, 55 models, the `cogarena eva
 
 ```bibtex
 @article{cogarena2026,
-  title   = {CogArena: A Multimethod Evaluation of Cognitive Ability Structure in Large Language Models},
+  title   = {CogBattery: Human-Referenced Evaluation of Cognitive Task Behavior and Structure in Language Models},
   journal = {arXiv preprint arXiv:2607.24999},
   year    = {2026}
 }

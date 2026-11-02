@@ -1,12 +1,12 @@
 cff-version: 1.2.0
 message: "If you use CogBattery (formerly CogArena), please cite the paper below."
-title: "CogArena: A Multimethod Evaluation of Cognitive Ability Structure in Large Language Models"
+title: "CogBattery: Human-Referenced Evaluation of Cognitive Task Behavior and Structure in Language Models"
 authors:
   - name: "Anonymous"
 year: 2026
 preferred-citation:
   type: article
-  title: "CogArena: A Multimethod Evaluation of Cognitive Ability Structure in Large Language Models"
+  title: "CogBattery: Human-Referenced Evaluation of Cognitive Task Behavior and Structure in Language Models"
   authors:
     - name: "Anonymous"
   year: 2026
