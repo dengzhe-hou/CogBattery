@@ -32,7 +32,7 @@ TASKS = {
     'FL': ('Flanker', 'Cognitive control', 'Error increase with conflict', 'SRO'),
     'GN': ('Go/no-go', 'Cognitive control', 'No-go false alarms', 'SRO'),
     'CVLT': ('CVLT-II list learning', 'Episodic memory', 'Recall slope (words per trial)', 'CNP'),
-    'DRM': ('DRM false memory', 'Episodic memory', 'New minus lure false alarms', 'Ball et al.'),
+    'DRM': ('DRM false memory', 'Episodic memory', 'Unwarned new minus lure false alarms', 'Ball et al.'),
     'SM': ('Source memory', 'Episodic memory', 'Direct minus indirect source accuracy', 'Eerland et al.'),
     'FB': ('False belief', 'Social reasoning', 'False-belief accuracy', 'Strachan et al.'),
     'EP': ('Recursive mindreading', 'Social reasoning', 'Mental-state accuracy slope', 'EPITOME'),

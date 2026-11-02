@@ -5,7 +5,7 @@
  "group": "Episodic memory",
  "what_the_model_does": "Recognize studied words, related lures, and unrelated words, with or without warning.",
  "changes_for_models": "Both warning conditions per model; study words visible; no delay.",
- "key_measure": "New minus lure false alarms",
+ "key_measure": "Unwarned new minus lure false alarms",
  "human_reference": "Ball et al.",
  "human_n": 240,
  "source_files": [

@@ -119,7 +119,7 @@
    "code": "DRM",
    "name": "DRM false memory",
    "group": "Episodic memory",
-   "measure": "New minus lure false alarms",
+   "measure": "Unwarned new minus lure false alarms",
    "source": "Ball et al.",
    "kind": "value",
    "human": -0.4572916666666666,

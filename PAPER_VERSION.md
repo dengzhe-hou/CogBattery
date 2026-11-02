@@ -1,6 +1,6 @@
 # Paper version: 54 models and source-specific human references
 
-This page describes the code for the current paper version of CogBattery. That version evaluates 54 open-weight models on text adaptations of 13 paradigms and compares each one with the human data published for it. The protocol is `formal_r7_unified_20261018`. The rest of this repository is the earlier arXiv v1 battery, which uses procedurally generated items and covers 55 models.
+This page describes the code for the current paper version of CogBattery. That version evaluates 54 open-weight models on text adaptations of 13 paradigms and compares each one with the human data published for it. The protocol is `formal_r7_unified_20261018`. Code and results from the earlier arXiv v1 battery, which uses procedurally generated items and covers 55 models, remain in `cogarena/`, `paper/`, and most of `results/`. The frozen v1 release is at tag `v1.0.0-arxiv`.
 
 The project site at https://dengzhe-hou.github.io/CogBattery/ shows the task guide and the per-model results.
 
@@ -94,7 +94,7 @@ Each of the 80 human blocks comes from a different participant, 40 per load. Loa
 
 - Family labels are analysis clusters, not independent-ancestry claims. Intervals are descriptive and unadjusted. There are no human–model significance or equivalence tests.
 - The human-error sensitivity draws the human mean from a normal distribution with its standard error in each family draw. The error is published for WAG and is SD / √N over people elsewhere.
-- Within-person NB and EP contrasts use per-person differences. SM quotation and DRM warning contrasts combine group errors. EP order slopes use 5,000 person draws.
+- Within-person NB and EP contrasts use per-person differences. SM quotation and DRM warning contrasts combine group errors. EP level slopes use 5,000 person draws.
 - Signal-detection d′ adds .5 to event counts and 1 to trial counts and clips rates to [.001, .999].
 
 ### Structure within jointly measured cohorts
