@@ -87,6 +87,9 @@ def main():
         models=[dict(model=m, family=models.family_merged[m], params_b=round(float(params[m]), 2),
                      native_thinking=bool(models.native_thinking[m]), serving='paper',
                      values=values[m]) for m in models.index])
+    # Submitted rows come from report_model --add-to and survive a rebuild of the paper rows.
+    if a.output.is_file():
+        out['models'] += [m for m in json.loads(a.output.read_text())['models'] if m['serving'] != 'paper']
     a.output.parent.mkdir(parents=True, exist_ok=True)
     a.output.write_text(json.dumps(out, indent=1) + '\n')
     print(f'{len(out["models"])} models, {len(tasks)} tasks -> {a.output}')

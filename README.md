@@ -15,8 +15,6 @@
 
 ![CogBattery overview](docs/img/overview.webp)
 
-[Figure 1 PDF](docs/figures/fig1_overview.pdf) · [SVG](docs/figures/fig1_overview.svg) · [Editable PowerPoint](docs/figures/CogBattery_Fig1_editable.pptx)
-
 <div id="toc">
   <ul align="center" type="none">
     <summary>
@@ -58,8 +56,10 @@ python -m scripts.release.fetch_sources          # original sources into data/ra
 python -m scripts.release.build_paper_materials  # build and check the paper materials
 python -m scripts.release.run_model --materials results/paper_materials/manifest.json \
     --model qwen2.5:7b --backend ollama --base-url http://localhost:11434
+python -m scripts.release.report_model --run results/submissions/qwen2.5__7b \
+    --materials results/paper_materials/manifest.json   # your key measures next to the human references
 python -m scripts.release.pack_submission pack --run results/submissions/qwen2.5__7b \
-    --out qwen2.5__7b.cogbattery.jsonl.gz       # a few MB, ready to submit
+    --out qwen2.5__7b.cogbattery.jsonl.gz       # a small file, ready to submit
 ```
 
 [REPRODUCING.md](REPRODUCING.md) walks through each step, the OpenAI-compatible backend, a no-cost smoke test, and how submissions are scored. Each task's sources, terms, and adaptations are in [`scripts/release/paper_materials/tasks/`](scripts/release/paper_materials/tasks/).
