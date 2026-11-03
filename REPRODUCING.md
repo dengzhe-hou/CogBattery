@@ -32,7 +32,7 @@ python -m scripts.release.build_paper_materials
 
 This writes `results/paper_materials/`. It compares every task with the digest of the material the paper used ([`material_digests.json`](scripts/release/paper_materials/material_digests.json)) and stops if one differs. A run on different materials would not be comparable with the paper.
 
-The same materials for 12 tasks, without CVLT, are on [Hugging Face](https://huggingface.co/datasets/cogbattery/cogbattery) for reading or for use in other tools. The run below needs the local build, which also gives CVLT.
+The same materials for 12 tasks, without CVLT, are on [Hugging Face](https://huggingface.co/datasets/dengzhe-hou/CogBattery) for reading or for use in other tools. The run below needs the local build, which also gives CVLT.
 
 ## 4. Smoke test (no model, no cost)
 

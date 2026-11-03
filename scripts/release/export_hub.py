@@ -2,7 +2,7 @@
 
     python -m scripts.release.build_paper_materials --output results/paper_materials
     python -m scripts.release.export_hub --materials results/paper_materials/manifest.json --output hub
-    hf upload cogbattery/cogbattery hub . --repo-type dataset
+    hf upload dengzhe-hou/CogBattery hub . --repo-type dataset
 
 The folder holds the paper materials of 12 tasks, the leaderboard data, the per-model values behind
 Figure 3, and a dataset card. CVLT is never exported, because its word lists are Pearson copyright.
