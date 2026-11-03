@@ -1,0 +1,28 @@
+# CogBattery: Human-Referenced Evaluation of Cognitive Task Behavior and Structure in Language Models
+
+> CogBattery evaluates 54 open-weight language models on text adaptations of 13 cognitive paradigms and compares each model with the human data of the paradigm's source study, at the level of conditions, errors and confidence reports rather than only effect directions.
+
+## Main findings
+
+- Like humans, models respond more to n-back lures than to controls, yet they make far more false alarms on ordinary non-targets.
+- Most models' reported confidence separates correct from incorrect answers less well than humans' does, and most always choose the same wager.
+- Across tasks, model scores share two dimensions. The first is closely tied to scale, yet larger models are not consistently closer to humans.
+- Predefined cognitive groupings show no reliable predictive advantage over random groupings of the same size.
+
+## Relevant to work on
+
+- comparing language models with human behavior on cognitive tasks
+- evaluating confidence reports, wagering or metacognition in language models
+- asking whether matching human effect directions establishes human-like behavior
+- factor or dimensionality analyses of language model abilities
+
+## Links
+
+- [Paper](https://arxiv.org/abs/2607.24999)
+- [Project page](https://dengzhe-hou.github.io/CogBattery/)
+- [Code](https://github.com/dengzhe-hou/CogBattery)
+- [Data](https://huggingface.co/datasets/dengzhe-hou/CogBattery)
+
+## Citation
+
+Cite the arXiv record arXiv:2607.24999, which carries the full author list.
