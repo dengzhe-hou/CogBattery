@@ -18,7 +18,7 @@
 <div id="toc">
   <ul align="center" type="none">
     <summary>
-      <h2><a href="https://arxiv.org/abs/2607.24999">Paper</a> &emsp; <a href="https://dengzhe-hou.github.io/CogBattery/">Project page</a></h2>
+      <h2><a href="https://arxiv.org/abs/2607.24999">Paper</a> &emsp; <a href="https://dengzhe-hou.github.io/CogBattery/">Project page</a> &emsp; <a href="https://huggingface.co/datasets/cogbattery/cogbattery">Dataset</a></h2>
     </summary>
   </ul>
 </div>
@@ -64,8 +64,10 @@ python -m scripts.release.pack_submission pack --run results/submissions/qwen2.5
 
 [REPRODUCING.md](REPRODUCING.md) walks through each step, the OpenAI-compatible backend, a no-cost smoke test, and how submissions are scored. Each task's sources, terms, and adaptations are in [`scripts/release/paper_materials/tasks/`](scripts/release/paper_materials/tasks/).
 
+The materials of 12 tasks, the leaderboard data, and the per-model values behind Figure 3 are also on [Hugging Face](https://huggingface.co/datasets/cogbattery/cogbattery), for reading the items or using them in other tools. Access asks you to agree not to train on them. To score a model as the paper did, use the steps above.
+
 > [!NOTE]
-> The CVLT-II word lists are Pearson copyright and are not stored in this repository. The build reads them from a public UCLA codebook on your machine.
+> The CVLT-II word lists are Pearson copyright and are not stored in this repository or on Hugging Face. The build reads them from a public UCLA codebook on your machine.
 
 # Reproducing the paper
 
