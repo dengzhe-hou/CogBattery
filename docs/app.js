@@ -85,6 +85,7 @@ function modelTable(t, tasks, models, showServing) {
   function render() {
     t.replaceChildren();
     const shown = tasks.filter(k => !view.group || k.group === view.group);
+    t.classList.toggle('few', shown.length < tasks.length);
     const head = el('tr');
     for (const [key, label, task] of [['model', 'Model'], ['params_b', 'Params (B)'], ...shown.map(k => [k.code, k.code, k])]) {
       const th = el('th', key === 'model' ? { class: 'm' } : {}, label);
@@ -143,6 +144,7 @@ function viewButtons(tasks) {
 function communityTable(tasks, community) {
   if (!community.models.length) {
     document.getElementById('community-empty').hidden = false;
+    document.getElementById('community-table').parentElement.hidden = true;
     return;
   }
   modelTable(document.getElementById('community-table'), tasks, community.models, true);
