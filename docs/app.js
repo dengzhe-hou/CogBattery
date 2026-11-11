@@ -64,12 +64,10 @@ function summaryTable(tasks) {
   }
 }
 
-function modelTable(data) {
-  const t = document.getElementById('model-table');
-  const famSel = document.getElementById('family');
+// One table of models. The paper table has the family filter; both tables follow the model-minus-human switch.
+function modelTable(t, tasks, models, famSel) {
   const gapBox = document.getElementById('gapmode');
-  const tasks = data.tasks;
-  [...new Set(data.models.map(m => m.family))].sort().forEach(f => famSel.append(el('option', { value: f }, f)));
+  if (famSel) [...new Set(models.map(m => m.family))].sort().forEach(f => famSel.append(el('option', { value: f }, f)));
   const cols = [{ key: 'model', label: 'Model' }, { key: 'family', label: 'Family' },
     { key: 'params_b', label: 'Params (B)', num: true }, { key: 'serving', label: 'Serving' }, ...tasks.map(k => ({ key: k.code, label: k.code, num: true, task: k }))];
   let sortKey = 'params_b', asc = true;
@@ -92,7 +90,7 @@ function modelTable(data) {
     }
     t.append(head);
     const col = cols.find(c => c.key === sortKey);
-    const rows = data.models.filter(m => !famSel.value || m.family === famSel.value)
+    const rows = models.filter(m => !famSel || !famSel.value || m.family === famSel.value)
       .sort((a, b) => {
         const x = value(a, col), y = value(b, col);
         const r = typeof x === 'string' ? x.localeCompare(y) : (x ?? -Infinity) - (y ?? -Infinity);
@@ -115,15 +113,24 @@ function modelTable(data) {
       t.append(r);
     }
   }
-  famSel.addEventListener('change', render);
+  if (famSel) famSel.addEventListener('change', render);
   gapBox.addEventListener('change', render);
   render();
 }
 
-fetch('data/leaderboard.json').then(r => r.json()).then(data => {
+function communityTable(tasks, community) {
+  if (!community.models.length) {
+    document.getElementById('community-empty').hidden = false;
+    return;
+  }
+  modelTable(document.getElementById('community-table'), tasks, community.models, null);
+}
+
+Promise.all(['data/leaderboard.json', 'data/community.json'].map(u => fetch(u).then(r => r.json()))).then(([data, community]) => {
   taskTable(data.tasks);
   summaryTable(data.tasks);
-  modelTable(data);
+  modelTable(document.getElementById('model-table'), data.tasks, data.models, document.getElementById('family'));
+  communityTable(data.tasks, community);
 }).catch(err => {
   document.getElementById('results').append(el('p', { class: 'small' }, `Could not load data: ${err}`));
 });

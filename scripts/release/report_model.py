@@ -1,16 +1,12 @@
-"""Show one model's key endpoints next to the human references, and add a replayed submission to the leaderboard.
+"""Show one model's key endpoints next to the human references.
 
     python -m scripts.release.report_model --run results/submissions/qwen2.5__7b \
         --materials results/paper_materials/manifest.json
 
-    python -m scripts.release.report_model --run results/scored/qwen2.5__7b \
-        --materials results/paper_materials/manifest.json \
-        --add-to docs/data/leaderboard.json --family qwen --params-b 7
-
 The endpoints are the paper's: one per paradigm (Table 4), scored by the paper's scorer with invalid
 task answers counted as wrong. Human values, human SDs, and the 54-model means come from the leaderboard
-file. A difference from humans shows distance, not quality. `--add-to` accepts only a complete run
-that went through `pack_submission score`, whose replay checked every request.
+file. A difference from humans shows distance, not quality. Submissions join the community table
+through scripts.release.community.
 """
 import argparse
 import json
@@ -74,49 +70,18 @@ def report_text(model, values, coverage, not_run, board):
     return '\n'.join(lines)
 
 
-def add_to_board(path, run, model, values, not_run, family, params_b, replace=False):
-    header_path = Path(run) / 'submission_header.json'
-    if not header_path.is_file():
-        raise SystemExit(f'{run} has no submission_header.json. Only replayed submissions join the leaderboard, see pack_submission score.')
-    missing = sum(not_run.values())
-    if missing:
-        raise SystemExit(f'{missing} planned steps did not run, so this submission is incomplete.')
-    undefined = [code for code, value in values.items() if value is None]
-    if undefined:
-        raise SystemExit(f'A leaderboard row needs all 13 measures, and these are undefined: {", ".join(undefined)}.')
-    backend = json.loads(header_path.read_text())['header']['backend']
-    board = json.loads(Path(path).read_text())
-    old = [m for m in board['models'] if m['model'] == model]
-    if any(m['serving'] == 'paper' for m in old):
-        raise SystemExit(f'{model} is a paper row and is not replaced by a submission.')
-    if old and not replace:
-        raise SystemExit(f'{model} is already on the leaderboard. Pass --replace to update its row.')
-    board['models'] = [m for m in board['models'] if m['model'] != model]
-    board['models'].append(dict(model=model, family=family, params_b=params_b, native_thinking=False, serving=backend, values=values))
-    Path(path).write_text(json.dumps(board, indent=1) + '\n')
-
-
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--run', type=Path, required=True, help='results/submissions/<model> or results/scored/<model>')
     parser.add_argument('--materials', type=Path, required=True, help='manifest.json written by build_paper_materials')
     parser.add_argument('--leaderboard', type=Path, default=ROOT / 'docs/data/leaderboard.json', help='Source of the human references')
     parser.add_argument('--json', type=Path, help='Also write the values to this file')
-    parser.add_argument('--add-to', type=Path, help='Leaderboard file that receives this submission')
-    parser.add_argument('--family', help='Model family, required with --add-to')
-    parser.add_argument('--params-b', type=float, help='Served parameters in billions, required with --add-to')
-    parser.add_argument('--replace', action='store_true', help='Update an existing submitted row')
     args = parser.parse_args()
-    if args.add_to and (args.family is None or args.params_b is None):
-        parser.error('--add-to needs --family and --params-b')
     model, values, coverage, not_run = model_values(args.run, args.materials)
     print(report_text(model, values, coverage, not_run, json.loads(args.leaderboard.read_text())))
     if args.json:
         args.json.parent.mkdir(parents=True, exist_ok=True)
         args.json.write_text(json.dumps(dict(model=model, values=values, coverage=coverage, not_run=not_run), indent=1) + '\n')
-    if args.add_to:
-        add_to_board(args.add_to, args.run, model, values, not_run, args.family, args.params_b, args.replace)
-        print(f'\nAdded {model} to {args.add_to}.')
 
 
 if __name__ == '__main__':

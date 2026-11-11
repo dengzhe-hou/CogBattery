@@ -59,8 +59,10 @@ python -m scripts.release.run_model --materials results/paper_materials/manifest
 python -m scripts.release.report_model --run results/submissions/qwen2.5__7b \
     --materials results/paper_materials/manifest.json   # your key measures next to the human references
 python -m scripts.release.pack_submission pack --run results/submissions/qwen2.5__7b \
-    --out qwen2.5__7b.cogbattery.jsonl.gz       # a small file, ready to submit
+    --out submissions/qwen2.5-7b-ollama.cogbattery.jsonl.gz   # a small file, ready to submit
 ```
+
+Submitted models go into a separate [community table](https://dengzhe-hou.github.io/CogBattery/#community). A pull request that adds the packed run to [`submissions/`](submissions/) is replayed and scored automatically, and the row appears after the merge.
 
 [REPRODUCING.md](REPRODUCING.md) walks through each step, the OpenAI-compatible backend, a no-cost smoke test, and how submissions are scored. Each task's sources, terms, and adaptations are in [`scripts/release/paper_materials/tasks/`](scripts/release/paper_materials/tasks/).
 

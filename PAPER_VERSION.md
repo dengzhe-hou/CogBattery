@@ -17,7 +17,8 @@ The current overview figure is available as [PDF](docs/figures/fig1_overview.pdf
 | `scripts/reanalysis/human54_posthoc_20261020/` | Post hoc analyses: minimal-performance gates, scale strata, reliability, human standard-error sensitivity, and the no-WAG structure check |
 | `scripts/experiments/human54_confwager_20261021/` | Confidence and wager rerun: token probabilities and A/B wager labels |
 | `scripts/release/build_site_data.py` | Builds `docs/data/leaderboard.json` and checks that it reproduces paper Table 4 |
-| `scripts/release/report_model.py` | Reports one run's Table 4 measures next to the human references, and adds a replayed submission to `docs/data/leaderboard.json` |
+| `scripts/release/report_model.py` | Reports one run's Table 4 measures next to the human references |
+| `scripts/release/community.py` | Replays and scores the packed runs in `submissions/` and writes the community table `docs/data/community.json`; run by `.github/workflows/community.yml` on pull requests and after merges |
 | `scripts/release/export_hub.py` | Writes the [Hugging Face dataset](https://huggingface.co/datasets/dengzhe-hou/CogBattery): the materials of 12 tasks (CVLT excluded), checked against the paper's digests, with the leaderboard data and a dataset card |
 | `results/reanalysis/human54_layers_20261019/layer1/`, `coverage/`, `human54_posthoc_20261020_gates/model_parameters.csv` | Derived per-model endpoints and aggregated human references that the analysis scripts read. These tables are not in this repository, which keeps the per-model key endpoints in `docs/data/leaderboard.json` |
 

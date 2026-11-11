@@ -84,22 +84,19 @@ This needs no GPU and no submission. It prints the key measure of each paradigm 
 
 ```bash
 python -m scripts.release.pack_submission pack --run results/submissions/qwen2.5__7b \
-    --out qwen2.5__7b.cogbattery.jsonl.gz
+    --out submissions/qwen2.5-7b-ollama.cogbattery.jsonl.gz
+echo '{"family": "qwen", "params_b": 7.6}' > submissions/qwen2.5-7b-ollama.json
 ```
 
-The packed file holds each step's reply, its validity fields, and the SHA-256 of the request that was sent. It is usually under a few MB. Open a pull request that adds it under `submissions/`, or attach it to an issue, and give the model's family and its served parameters in billions.
+The packed file holds each step's reply, its validity fields, and the SHA-256 of the request that was sent. It is usually under a few MB. The JSON file gives the model's family and its served parameters in billions. Open a pull request that adds both files under `submissions/` ([details](submissions/README.md)).
 
-We score it with
+A check on the pull request downloads the sources, builds the materials, and runs
 
 ```bash
-python -m scripts.release.pack_submission score --pack qwen2.5__7b.cogbattery.jsonl.gz \
-    --materials results/paper_materials/manifest.json --output results/scored
-python -m scripts.release.report_model --run results/scored/qwen2.5__7b \
-    --materials results/paper_materials/manifest.json \
-    --add-to docs/data/leaderboard.json --family qwen --params-b 7
+python -m scripts.release.community --materials results/paper_materials/manifest.json
 ```
 
-The first command replays the paper's run loop over your replies. Each request is rebuilt from the materials and your earlier replies, and must match the packed SHA-256. The second scores the replayed records with the paper's scorers and adds the row to the leaderboard, marked with your backend. It accepts only complete replayed runs with all 13 measures defined, and it does not replace the paper's rows. Scores computed elsewhere are not accepted as is.
+This replays the paper's run loop over your replies. Each request is rebuilt from the materials and your earlier replies, and must match the packed SHA-256. The replayed records are scored with the paper's scorers, and the check summary shows your key measures next to the human references. Only complete runs with all 13 measures defined are accepted. After the merge, the same command writes your row to [`docs/data/community.json`](docs/data/community.json), and it appears in the community table on the project page, marked with your backend. The paper's table does not change. Scores computed elsewhere are not accepted.
 
 ## What was checked
 
