@@ -64,9 +64,11 @@ function summaryTable(tasks) {
   }
 }
 
-// One table of models. The paper table has the family filter; both tables follow the model-minus-human switch.
+// One table of models. The paper table has the family filter; both tables follow the model-minus-human switch and the
+// paradigm-group filter, and both start with a row of human references.
 function modelTable(t, tasks, models, famSel) {
   const gapBox = document.getElementById('gapmode');
+  const groupSel = document.getElementById('paradigms');
   if (famSel) [...new Set(models.map(m => m.family))].sort().forEach(f => famSel.append(el('option', { value: f }, f)));
   const cols = [{ key: 'model', label: 'Model' }, { key: 'family', label: 'Family' },
     { key: 'params_b', label: 'Params (B)', num: true }, { key: 'serving', label: 'Serving' }, ...tasks.map(k => ({ key: k.code, label: k.code, num: true, task: k }))];
@@ -81,7 +83,8 @@ function modelTable(t, tasks, models, famSel) {
   function render() {
     t.replaceChildren();
     const head = el('tr');
-    for (const c of cols) {
+    const shown = cols.filter(c => !c.task || !groupSel.value || c.task.group === groupSel.value);
+    for (const c of shown) {
       const th = el('th', c.num ? { class: 'num' } : {}, c.label);
       if (c.task) th.title = `${c.task.name}: ${c.task.measure}`;
       if (c.key === sortKey) th.classList.add('sorted', ...(asc ? ['asc'] : []));
@@ -89,6 +92,14 @@ function modelTable(t, tasks, models, famSel) {
       head.append(th);
     }
     t.append(head);
+    const human = el('tr', { class: 'human-row' });
+    human.append(el('td', { class: 'm' }, 'Human reference'), el('td', {}, 'Published sources'), el('td', { class: 'num' }, '–'), el('td', {}, '–'));
+    for (const c of shown.filter(c => c.task)) {
+      const k = c.task;
+      if (k.kind === 'constant') { human.append(el('td', { class: 'num', title: 'No human proportion exists' }, '–')); continue; }
+      human.append(el('td', { class: 'num', title: `${k.source}, n = ${k.human_n}, SD = ${fmt(k.human_sd)}` }, fmt(gapBox.checked ? 0 : k.human)));
+    }
+    t.append(human);
     const col = cols.find(c => c.key === sortKey);
     const rows = models.filter(m => !famSel || !famSel.value || m.family === famSel.value)
       .sort((a, b) => {
@@ -100,7 +111,7 @@ function modelTable(t, tasks, models, famSel) {
       const r = el('tr');
       r.append(el('td', { class: 'm' }, m.model + (m.native_thinking ? ' (thinking)' : '')), el('td', {}, m.family),
         el('td', { class: 'num' }, fmt(m.params_b, 1)), el('td', {}, SERVING[m.serving] || m.serving));
-      for (const k of tasks) {
+      for (const k of shown.filter(c => c.task).map(c => c.task)) {
         const v = m.values[k.code];
         if (k.kind === 'constant') { r.append(el('td', { class: 'num' }, v ? 'constant' : 'varied')); continue; }
         const shown = gapBox.checked ? v - k.human : v;
@@ -115,6 +126,7 @@ function modelTable(t, tasks, models, famSel) {
   }
   if (famSel) famSel.addEventListener('change', render);
   gapBox.addEventListener('change', render);
+  groupSel.addEventListener('change', render);
   render();
 }
 
@@ -126,8 +138,14 @@ function communityTable(tasks, community) {
   modelTable(document.getElementById('community-table'), tasks, community.models, null);
 }
 
+document.getElementById('copy-bibtex').addEventListener('click', e => {
+  navigator.clipboard.writeText(document.getElementById('bibtex').textContent).then(() => { e.target.textContent = 'Copied'; });
+});
+
 Promise.all(['data/leaderboard.json', 'data/community.json'].map(u => fetch(u).then(r => r.json()))).then(([data, community]) => {
   taskTable(data.tasks);
+  const groupSel = document.getElementById('paradigms');
+  [...new Set(data.tasks.map(k => k.group))].forEach(g => groupSel.append(el('option', { value: g }, g)));
   summaryTable(data.tasks);
   modelTable(document.getElementById('model-table'), data.tasks, data.models, document.getElementById('family'));
   communityTable(data.tasks, community);

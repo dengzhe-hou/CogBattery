@@ -1,0 +1,1 @@
+hf-logo.svg is the official Hugging Face logo from the [brand assets](https://huggingface.co/brand), downloaded unchanged from [hf-logo.svg](https://huggingface.co/datasets/huggingface/brand-assets/resolve/main/hf-logo.svg).

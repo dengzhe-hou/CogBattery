@@ -47,6 +47,15 @@ a:hover { text-decoration: underline; }
 .btn:hover { background: var(--navy); border-color: var(--navy); text-decoration: none; }
 .btn.ghost { background: var(--bg); color: var(--blue); }
 .btn.ghost:hover { background: var(--pale); }
+.btn svg, .btn img { margin-right: 6px; flex: none; }
+.paper-title { font-size: clamp(1.15rem, 2.4vw, 1.45rem); font-weight: 600; color: var(--navy); line-height: 1.4; max-width: 760px; margin: 0 auto 12px; text-wrap: balance; }
+.more-links { margin: 12px 0 0; font-size: .82rem; }
+.more-links a { margin: 0 8px; }
+.figure.lead { margin: 4px 0 32px; }
+.models tr.human-row td { background: var(--pale); font-weight: 700; border-bottom: 2px solid var(--navy); }
+.models tr.human-row td.m { color: var(--navy); }
+.cite-box { position: relative; }
+.cite-box .copy { position: absolute; top: 8px; right: 8px; border: 1px solid rgba(255, 255, 255, .25); background: transparent; color: var(--code-ink); border-radius: 6px; padding: 3px 10px; font: .78rem var(--font); cursor: pointer; }
 
 .section { max-width: 1020px; margin: 0 auto; padding: 44px 20px; border-top: 1px solid var(--line); }
 .section.first { border-top: 0; padding-top: 8px; }
