@@ -20,6 +20,7 @@
   <div class="topbar-inner">
     <a class="wordmark" href="#">Cog<span>Battery</span></a>
     <div class="topbar-links">
+      <a href="#leaderboard">Leaderboard</a>
       <a href="#overview">Overview</a>
       <a href="#tasks">Tasks</a>
       <a href="#results">Results</a>
@@ -40,20 +41,40 @@
     <a class="btn" href="https://github.com/dengzhe-hou/CogBattery"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg>Code</a>
     <a class="btn" href="https://huggingface.co/datasets/dengzhe-hou/CogBattery"><img src="img/hf-logo.svg" width="18" height="18" alt="">Hugging Face</a>
     <a class="btn ghost" href="cogbattery_supplement.pdf"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>Supplement</a>
-    <a class="btn ghost" href="#results"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 21h18M6 21V11M12 21V4M18 21v-7"/></svg>Leaderboard</a>
+    <a class="btn ghost" href="#leaderboard"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 21h18M6 21V11M12 21V4M18 21v-7"/></svg>Leaderboard</a>
     <a class="btn ghost" href="#cite"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M7 7h4v4c0 3-1.5 5-4 6l-.6-1.2C8 15 8.6 13.8 8.7 12H7zm8 0h4v4c0 3-1.5 5-4 6l-.6-1.2c1.6-.8 2.2-2 2.3-3.8H15z"/></svg>BibTeX</a>
   </div>
   <p class="more-links"><a href="https://github.com/dengzhe-hou/CogBattery/blob/main/PAPER_VERSION.md">Paper-version code</a> <a href="data/leaderboard.json">Results data</a></p>
 </header>
 
 <main>
-<section id="overview" class="section first">
-  <p class="kicker">Overview</p>
-  <figure class="figure lead">
+<div class="lead-fig">
+  <figure class="figure">
     <img src="img/overview.webp" alt="Overview of CogBattery: model measurements on 13 paradigms, task-score structure, and human reference evidence" loading="lazy">
     <figcaption class="fignote">Overview. Task examples, model icons, heatmaps, and clusters in the figure are schematic.
       <a href="figures/fig1_overview.pdf">PDF</a> · <a href="figures/fig1_overview.svg">SVG</a> · <a href="figures/CogBattery_Fig1_editable.pptx">Editable PowerPoint</a>.</figcaption>
   </figure>
+</div>
+
+<section id="leaderboard" class="board">
+  <h2>Leaderboard</h2>
+  <p class="intro">One key measure per paradigm for 54 open-weight models, next to the published human reference.
+  There is no overall score, and for several measures a higher value is not better.</p>
+  <div class="chips" id="group-buttons" role="group" aria-label="Paradigm group"></div>
+  <div class="chips mode" id="value-buttons" role="group" aria-label="Values shown">
+    <button type="button" class="on" aria-pressed="true" data-gap="false">Value</button>
+    <button type="button" aria-pressed="false" data-gap="true">Model minus human</button>
+  </div>
+  <div class="board-wrap"><table id="model-table" class="board-table"></table></div>
+  <p class="board-note">The highlighted row is the human reference from each paradigm's published source, ranked with the models. Hover over its cells for the source, n and SD.
+  Click a column to sort. Shading shows how far a model is from the human mean in human standard deviations (across people), full at 3 SD, as in Figure 3 of the paper:
+  <i class="sw lo"></i> below human <i class="sw hi"></i> above human. It shows distance, not quality.
+  All rows are the paper's runs, served by Ollama 0.18.0. WAG shows whether a model always placed the same wager, and no human proportion exists for it.
+  Submitted models are in the <a href="#community">community table</a>. Data in <a href="data/leaderboard.json">leaderboard.json</a>.</p>
+</section>
+
+<section id="overview" class="section">
+  <p class="kicker">Overview</p>
   <h2>Shared effects, different errors</h2>
   <p>Matching the direction of a human effect does not mean matching the errors behind it.
   CogBattery evaluates language models on text adaptations of classic paradigms in working memory,
@@ -107,16 +128,6 @@ Ink-color label: green</pre>
   <p>The measures follow the key-endpoint table of the paper. Invalid task answers count as wrong.
   There is no overall score. The paradigms measure different things, and a combined human-likeness score would hide that.</p>
   <div class="table-wrap"><table id="summary-table" class="grid"></table></div>
-  <div class="controls">
-    <label>Family <select id="family"><option value="">All families</option></select></label>
-    <label>Paradigms <select id="paradigms"><option value="">All groups</option></select></label>
-    <label><input type="checkbox" id="gapmode"> Show model minus human</label>
-    <span><i class="sw lo"></i> below human <i class="sw hi"></i> above human</span>
-  </div>
-  <div class="table-wrap"><table id="model-table" class="grid models"></table></div>
-  <p class="table-note">Click a column to sort. The first row gives the human reference for each task. Hover over its cells for the source, n and SD. Cell shading shows how far a model is from the human mean in human standard deviations (across people), full at 3 SD, as in Figure 3 of the paper.
-  It shows distance, not quality, and for several measures a higher value is not better. WAG shows whether a model always placed the same wager,
-  and no human proportion exists for it. This table holds the paper's runs only. Submitted models are in the community table below. Data in <a href="data/leaderboard.json">leaderboard.json</a>.</p>
   <h3>Task correlations in two further human cohorts</h3>
   <p>Besides SRO and Ball, two public cohorts did several of the tasks. CNP controls did list learning, digit span, and Stroop, and adults in Bradford et al. (2020) did false belief, operation span, and Stroop.
   Each has one task per paradigm group, so we compare each pair's correlation in humans and in the 54 models. Bradford measures are adjusted for age.</p>
@@ -138,8 +149,8 @@ Ink-color label: green</pre>
   <p>Models submitted by other researchers, scored by us. Each submission is replayed through the paper's run loop, every request is checked against the one the submitter sent,
   and the replies are scored with the paper's scorers. Scores computed elsewhere are not accepted. The paper table above does not change.</p>
   <p id="community-empty" class="table-note" hidden>No submissions yet. See <a href="#submit">Submit a model</a>.</p>
-  <div class="table-wrap"><table id="community-table" class="grid models"></table></div>
-  <p class="table-note">Shading and the model-minus-human switch work as in the paper table. Serving shows the runner backend. Results from an OpenAI-compatible server are marked, because its serving differs from the paper's.
+  <div class="board-wrap"><table id="community-table" class="board-table"></table></div>
+  <p class="table-note">Shading, the paradigm buttons and the value switch work as in the leaderboard. The runner backend follows each model name. Results from an OpenAI-compatible server are marked, because its serving differs from the paper's.
   Data in <a href="data/community.json">community.json</a>, submissions in <a href="https://github.com/dengzhe-hou/CogBattery/tree/main/submissions">submissions/</a>.</p>
 </section>
 

@@ -15,8 +15,8 @@ const TASK_GUIDE = {
   WAG: ['Classify grammar strings, then choose a low or high wager.', 'Visible strings; both grammars and orders; no real stakes.'],
 };
 
-// How a row was served: the paper's own runs, or a submission through either runner backend.
-const SERVING = { paper: 'Paper (Ollama 0.18.0)', ollama: 'Submitted, Ollama', openai: 'Submitted, OpenAI-compatible' };
+// The runner backend of a submitted row. All paper rows were served by Ollama 0.18.0.
+const SERVING = { ollama: 'Ollama', openai: 'OpenAI-compatible' };
 
 const el = (tag, attrs = {}, text) => {
   const e = document.createElement(tag);
@@ -64,70 +64,80 @@ function summaryTable(tasks) {
   }
 }
 
-// One table of models. The paper table has the family filter; both tables follow the model-minus-human switch and the
-// paradigm-group filter, and both start with a row of human references.
-function modelTable(t, tasks, models, famSel) {
-  const gapBox = document.getElementById('gapmode');
-  const groupSel = document.getElementById('paradigms');
-  if (famSel) [...new Set(models.map(m => m.family))].sort().forEach(f => famSel.append(el('option', { value: f }, f)));
-  const cols = [{ key: 'model', label: 'Model' }, { key: 'family', label: 'Family' },
-    { key: 'params_b', label: 'Params (B)', num: true }, { key: 'serving', label: 'Serving' }, ...tasks.map(k => ({ key: k.code, label: k.code, num: true, task: k }))];
+// Model tables. The paradigm buttons and the value switch apply to the leaderboard and the community table alike.
+// Each table includes the human reference as a row that is ranked with the models.
+const view = { group: '', gap: false };
+const renders = [];
+
+function modelTable(t, tasks, models, showServing) {
+  const human = { model: 'Human reference', human: true, params_b: null,
+    values: Object.fromEntries(tasks.map(k => [k.code, k.kind === 'constant' ? null : k.human])) };
+  const rows = [human, ...models];
   let sortKey = 'params_b', asc = true;
 
-  function value(m, c) {
-    if (!c.task) return m[c.key];
-    const v = m.values[c.key];
-    if (c.task.kind === 'constant') return v ? 1 : 0;
-    return gapBox.checked && typeof v === 'number' ? v - c.task.human : v;
+  function value(m, key) {
+    if (key === 'model' || key === 'params_b') return m[key];
+    const k = tasks.find(x => x.code === key), v = m.values[key];
+    if (v === null || v === undefined) return null;
+    if (k.kind === 'constant') return v ? 1 : 0;
+    return view.gap ? v - k.human : v;
   }
   function render() {
     t.replaceChildren();
+    const shown = tasks.filter(k => !view.group || k.group === view.group);
     const head = el('tr');
-    const shown = cols.filter(c => !c.task || !groupSel.value || c.task.group === groupSel.value);
-    for (const c of shown) {
-      const th = el('th', c.num ? { class: 'num' } : {}, c.label);
-      if (c.task) th.title = `${c.task.name}: ${c.task.measure}`;
-      if (c.key === sortKey) th.classList.add('sorted', ...(asc ? ['asc'] : []));
-      th.addEventListener('click', () => { asc = sortKey === c.key ? !asc : true; sortKey = c.key; render(); });
+    for (const [key, label, task] of [['model', 'Model'], ['params_b', 'Params (B)'], ...shown.map(k => [k.code, k.code, k])]) {
+      const th = el('th', key === 'model' ? { class: 'm' } : {}, label);
+      if (task) th.title = `${task.name}: ${task.measure}`;
+      if (key === sortKey) th.classList.add('sorted', ...(asc ? ['asc'] : []));
+      th.addEventListener('click', () => { asc = sortKey === key ? !asc : !task; sortKey = key; render(); });
       head.append(th);
     }
     t.append(head);
-    const human = el('tr', { class: 'human-row' });
-    human.append(el('td', { class: 'm' }, 'Human reference'), el('td', {}, 'Published sources'), el('td', { class: 'num' }, '–'), el('td', {}, '–'));
-    for (const c of shown.filter(c => c.task)) {
-      const k = c.task;
-      if (k.kind === 'constant') { human.append(el('td', { class: 'num', title: 'No human proportion exists' }, '–')); continue; }
-      human.append(el('td', { class: 'num', title: `${k.source}, n = ${k.human_n}, SD = ${fmt(k.human_sd)}` }, fmt(gapBox.checked ? 0 : k.human)));
-    }
-    t.append(human);
-    const col = cols.find(c => c.key === sortKey);
-    const rows = models.filter(m => !famSel || !famSel.value || m.family === famSel.value)
-      .sort((a, b) => {
-        const x = value(a, col), y = value(b, col);
-        const r = typeof x === 'string' ? x.localeCompare(y) : (x ?? -Infinity) - (y ?? -Infinity);
-        return asc ? r : -r;
-      });
-    for (const m of rows) {
-      const r = el('tr');
-      r.append(el('td', { class: 'm' }, m.model + (m.native_thinking ? ' (thinking)' : '')), el('td', {}, m.family),
-        el('td', { class: 'num' }, fmt(m.params_b, 1)), el('td', {}, SERVING[m.serving] || m.serving));
-      for (const k of shown.filter(c => c.task).map(c => c.task)) {
+    const sorted = [...rows].sort((a, b) => {
+      const x = value(a, sortKey), y = value(b, sortKey);
+      const r = typeof x === 'string' ? x.localeCompare(y) : (x ?? -Infinity) - (y ?? -Infinity);
+      return asc ? r : -r;
+    });
+    for (const m of sorted) {
+      const r = el('tr', m.human ? { class: 'human' } : {});
+      const name = el('td', { class: 'm' }, m.model + (m.native_thinking ? ' (thinking)' : ''));
+      if (m.family) name.append(el('small', {}, m.family));
+      if (showServing && m.serving) name.append(el('small', {}, SERVING[m.serving] || m.serving));
+      r.append(name, el('td', {}, m.human ? '–' : fmt(m.params_b, 1)));
+      for (const k of shown) {
         const v = m.values[k.code];
-        if (k.kind === 'constant') { r.append(el('td', { class: 'num' }, v ? 'constant' : 'varied')); continue; }
-        const shown = gapBox.checked ? v - k.human : v;
-        const td = el('td', { class: 'num' }, fmt(shown));
-        // Distance in across-person human SDs, clipped at 3, as in paper Figure 3.
-        const z = Math.max(-1, Math.min(1, (v - k.human) / (3 * k.human_sd)));
-        td.style.background = `rgba(var(${z < 0 ? '--lo' : '--hi'}), ${(Math.abs(z) * 0.5).toFixed(2)})`;
+        if (k.kind === 'constant') {
+          r.append(m.human ? el('td', { title: 'No human proportion exists' }, '–') : el('td', {}, v ? 'constant' : 'varied'));
+          continue;
+        }
+        const td = el('td', {}, fmt(view.gap ? v - k.human : v));
+        if (m.human) td.title = `${k.source}, n = ${k.human_n}, SD = ${fmt(k.human_sd)}`;
+        else {
+          // Distance in across-person human SDs, clipped at 3, as in paper Figure 3.
+          const z = Math.max(-1, Math.min(1, (v - k.human) / (3 * k.human_sd)));
+          td.style.background = `rgba(var(${z < 0 ? '--lo' : '--hi'}), ${(Math.abs(z) * 0.4).toFixed(2)})`;
+        }
         r.append(td);
       }
       t.append(r);
     }
   }
-  if (famSel) famSel.addEventListener('change', render);
-  gapBox.addEventListener('change', render);
-  groupSel.addEventListener('change', render);
+  renders.push(render);
   render();
+}
+
+function viewButtons(tasks) {
+  const box = document.getElementById('group-buttons');
+  const groups = [['', 'All paradigms'], ...[...new Set(tasks.map(k => k.group))].map(g => [g, g])];
+  const set = (buttons, pick) => buttons.forEach(b => { const on = b === pick; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+  for (const [g, label] of groups) {
+    const b = el('button', { type: 'button', class: g ? '' : 'on', 'aria-pressed': !g }, label);
+    b.addEventListener('click', () => { view.group = g; set([...box.children], b); renders.forEach(f => f()); });
+    box.append(b);
+  }
+  const modes = [...document.querySelectorAll('#value-buttons button')];
+  modes.forEach(b => b.addEventListener('click', () => { view.gap = b.dataset.gap === 'true'; set(modes, b); renders.forEach(f => f()); }));
 }
 
 function communityTable(tasks, community) {
@@ -135,7 +145,7 @@ function communityTable(tasks, community) {
     document.getElementById('community-empty').hidden = false;
     return;
   }
-  modelTable(document.getElementById('community-table'), tasks, community.models, null);
+  modelTable(document.getElementById('community-table'), tasks, community.models, true);
 }
 
 document.getElementById('copy-bibtex').addEventListener('click', e => {
@@ -144,10 +154,9 @@ document.getElementById('copy-bibtex').addEventListener('click', e => {
 
 Promise.all(['data/leaderboard.json', 'data/community.json'].map(u => fetch(u).then(r => r.json()))).then(([data, community]) => {
   taskTable(data.tasks);
-  const groupSel = document.getElementById('paradigms');
-  [...new Set(data.tasks.map(k => k.group))].forEach(g => groupSel.append(el('option', { value: g }, g)));
   summaryTable(data.tasks);
-  modelTable(document.getElementById('model-table'), data.tasks, data.models, document.getElementById('family'));
+  viewButtons(data.tasks);
+  modelTable(document.getElementById('model-table'), data.tasks, data.models, false);
   communityTable(data.tasks, community);
 }).catch(err => {
   document.getElementById('results').append(el('p', { class: 'small' }, `Could not load data: ${err}`));
