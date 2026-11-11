@@ -72,6 +72,10 @@ a:hover { text-decoration: underline; }
 .board-table td.m small { color: var(--gray); margin-left: 6px; }
 .board-table tr:hover td { background-color: var(--hover); }
 .board-table tr.human td { background: var(--human-bg); color: var(--human-ink); font-weight: 700; }
+.board-table .m { position: sticky; left: 0; z-index: 1; background: var(--card); box-shadow: inset -1px 0 0 var(--line); }
+.board-table th.m { background: var(--pale); z-index: 2; }
+.board-table tr.human td.m { background: var(--human-bg); }
+.board-table tr:hover td.m { background: var(--hover); }
 .board-note { font-size: .82rem; color: var(--gray); max-width: 900px; margin: 14px auto 0; text-align: center; }
 .cite-box { position: relative; }
 .cite-box .copy { position: absolute; top: 8px; right: 8px; border: 1px solid rgba(255, 255, 255, .25); background: transparent; color: var(--code-ink); border-radius: 6px; padding: 3px 10px; font: .78rem var(--font); cursor: pointer; }
@@ -136,5 +140,15 @@ footer { border-top: 1px solid var(--line); text-align: center; padding: 36px 16
 }
 @media (max-width: 640px) {
   .hero { padding: 40px 16px 28px; }
-  .section { padding: 36px 16px; }
+  .section, .board { padding: 36px 16px; }
+  .lead-fig { padding: 0 16px 12px; }
+  .topbar-links { scrollbar-width: none; }
+  .topbar-links::-webkit-scrollbar { display: none; }
+  .btns { gap: 8px; }
+  .btn { padding: 6px 12px; font-size: .8rem; }
+  .chips button { padding: 5px 10px; font-size: .8rem; }
+  .board-table { font-size: .8rem; }
+  .board-table th, .board-table td { padding: 6px 6px; }
+  .board-table .m { padding-left: 10px; white-space: normal; min-width: 7.5rem; max-width: 8.5rem; }
+  .board-table td.m small { display: none; }
 }
