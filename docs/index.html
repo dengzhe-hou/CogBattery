@@ -161,9 +161,9 @@ Ink-color label: green</pre>
   <ol class="steps">
     <li>Install the repository and download the sources.</li>
     <li>Build the paper materials. Each task is checked against the paper's material digest.</li>
-    <li>Run your model with Ollama, as in the paper, or any OpenAI-compatible server. Runs resume after an interruption.</li>
+    <li>Run your model with Ollama, as in the paper, or any OpenAI-compatible server or hosted API. Runs resume after an interruption.</li>
     <li>See your key measures next to the human references and the paper's 54-model means, with no submission needed.</li>
-    <li>To join the community table, pack the run into one small file and open a pull request that adds it to <code>submissions/</code> with the model's family and size.</li>
+    <li>To join the community table, pack the run into one small file and open a pull request that adds it to <code>submissions/</code> with the model's family and size. Hosted models whose size is not disclosed are welcome and show "n/d".</li>
     <li>A check on the pull request replays your replies through the paper's run loop, checks every request, scores them with the paper's scorers, and shows your key measures. After the merge, your row appears in the community table.</li>
   </ol>
   <pre><code>pip install -e ".[paper]"
@@ -176,6 +176,7 @@ python -m scripts.release.report_model --run results/submissions/&lt;your-model&
 python -m scripts.release.pack_submission pack --run results/submissions/&lt;your-model&gt; \
   --out submissions/&lt;id&gt;.cogbattery.jsonl.gz</code></pre>
   <p class="table-note">Step-by-step guide, the OpenAI-compatible option, and a no-cost smoke test are in <a href="https://github.com/dengzhe-hou/CogBattery/blob/main/REPRODUCING.md">REPRODUCING.md</a>. The CVLT-II word lists are read on your machine from a public UCLA codebook and are not stored in the repository. The files a submission needs are listed in <a href="https://github.com/dengzhe-hou/CogBattery/tree/main/submissions">submissions/</a>.</p>
+  <p>To add a new paradigm with published human data, open an issue first and see <a href="https://github.com/dengzhe-hou/CogBattery/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
 </section>
 
 <section id="cite" class="section">
@@ -191,6 +192,6 @@ python -m scripts.release.pack_submission pack --run results/submissions/&lt;you
 </main>
 
 <footer>MIT license for code. Task materials and human data follow their original source terms.</footer>
-<script src="app.js?v=20261111c"></script>
+<script src="app.js?v=20261113a"></script>
 </body>
 </html>

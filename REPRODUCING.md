@@ -66,6 +66,7 @@ python -m scripts.release.run_model --materials results/paper_materials/manifest
 > The paper served every model with Ollama 0.18.0 and a 4,096-token context. `--backend ollama` sends the paper's request body unchanged. `--backend openai` translates it to an OpenAI chat request with a JSON-schema response format, so the server's chat template and constrained decoding decide the result. Those scores are close to the paper's protocol but not identical, and the leaderboard marks them.
 
 - Requests use temperature 0, one reply per step, the paper's output limits and answer schemas, and the same history rules. Your model is treated as a direct-answer model.
+- A hosted API works through the same backend when its endpoint accepts `temperature`, `top_p`, `max_tokens`, and a `json_schema` response format. Pass the provider's base URL and model name, and leave out `--tokenizer` if the model has no public tokenizer.
 - `--tokenizer` gives exact token counts for the context check. Without it, about four characters per token is assumed.
 - A full run is 6,789 requests for 13 tasks. If it stops, run the same command again. Finished steps are kept and the run resumes.
 - Results go to `results/submissions/<model>/`.
@@ -88,7 +89,7 @@ python -m scripts.release.pack_submission pack --run results/submissions/qwen2.5
 echo '{"family": "qwen", "params_b": 7.6}' > submissions/qwen2.5-7b-ollama.json
 ```
 
-The packed file holds each step's reply, its validity fields, and the SHA-256 of the request that was sent. It is usually under a few MB. The JSON file gives the model's family and its served parameters in billions. Open a pull request that adds both files under `submissions/` ([details](submissions/README.md)).
+The packed file holds each step's reply, its validity fields, and the SHA-256 of the request that was sent. It is usually under a few MB. The JSON file gives the model's family and its served parameters in billions, or `null` for a hosted model whose size is not disclosed. Open a pull request that adds both files under `submissions/` ([details](submissions/README.md)).
 
 A check on the pull request downloads the sources, builds the materials, and runs
 

@@ -38,11 +38,15 @@ def test_same_model_and_backend_twice_is_refused():
 
 
 def test_metadata_needs_family_params_and_pack(tmp_path):
+    """params_b is required, positive, or null for a model whose size is not disclosed."""
     write_submission(tmp_path, 'ok')
     assert read_metadata(tmp_path / 'ok.json')[1].name == 'ok.cogbattery.jsonl.gz'
     write_submission(tmp_path, 'nofamily', meta={'params_b': 1})
     with pytest.raises(SystemExit, match='needs family'):
         read_metadata(tmp_path / 'nofamily.json')
+    write_submission(tmp_path, 'closed', meta={'family': 'x', 'params_b': None})
+    assert make_row('closed', read_metadata(tmp_path / 'closed.json')[0], 'abc', 'x', 'openai',
+                    VALUES, NOT_RUN)['params_b'] is None
     write_submission(tmp_path, 'zero', meta={'family': 'x', 'params_b': 0})
     with pytest.raises(SystemExit, match='positive'):
         read_metadata(tmp_path / 'zero.json')

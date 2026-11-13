@@ -64,7 +64,7 @@ python -m scripts.release.pack_submission pack --run results/submissions/qwen2.5
 
 Submitted models go into a separate [community table](https://dengzhe-hou.github.io/CogBattery/#community). A pull request that adds the packed run to [`submissions/`](submissions/) is replayed and scored automatically, and the row appears after the merge.
 
-[REPRODUCING.md](REPRODUCING.md) walks through each step, the OpenAI-compatible backend, a no-cost smoke test, and how submissions are scored. Each task's sources, terms, and adaptations are in [`scripts/release/paper_materials/tasks/`](scripts/release/paper_materials/tasks/).
+[REPRODUCING.md](REPRODUCING.md) walks through each step, the OpenAI-compatible backend, a no-cost smoke test, and how submissions are scored. To propose a new paradigm, see [CONTRIBUTING.md](CONTRIBUTING.md). Each task's sources, terms, and adaptations are in [`scripts/release/paper_materials/tasks/`](scripts/release/paper_materials/tasks/).
 
 The materials of 12 tasks, the leaderboard data, and the per-model values behind Figure 3 are also on [Hugging Face](https://huggingface.co/datasets/dengzhe-hou/CogBattery), for reading the items or using them in other tools. Access asks you to agree not to train on them. To score a model as the paper did, use the steps above.
 

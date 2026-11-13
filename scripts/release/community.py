@@ -4,10 +4,10 @@
         --summary summary.md
 
 Each submission is a packed run (`<id>.cogbattery.jsonl.gz`, from `pack_submission pack`) and a
-metadata file (`<id>.json`) with the model's family and served parameters in billions. Every pack is
-replayed through the paper's run loop with `pack_submission score`, so each request must match the one
-the submitter sent, and the replayed records are scored with the paper's scorers. Only complete runs
-with all 13 key measures defined are accepted.
+metadata file (`<id>.json`) with the model's family and served parameters in billions, or null when the
+size is not disclosed. Every pack is replayed through the paper's run loop with `pack_submission score`,
+so each request must match the one the submitter sent, and the replayed records are scored with the
+paper's scorers. Only complete runs with all 13 key measures defined are accepted.
 
 The result goes to docs/data/community.json, kept apart from the paper's leaderboard.json. A pack whose
 SHA-256 equals the one recorded there is not replayed again, since replay takes a few minutes per model.
@@ -37,12 +37,18 @@ def read_metadata(path):
         raise SystemExit(f'{path.name} needs {", ".join(sorted(missing))}.')
     if not isinstance(meta['family'], str) or not meta['family']:
         raise SystemExit(f'{path.name}: family must be a non-empty string.')
-    if not isinstance(meta['params_b'], (int, float)) or meta['params_b'] <= 0:
-        raise SystemExit(f'{path.name}: params_b must be a positive number of billions.')
+    size = meta['params_b']
+    if size is not None and (not isinstance(size, (int, float)) or size <= 0):
+        raise SystemExit(f'{path.name}: params_b must be a positive number of billions, or null if not disclosed.')
     pack = path.with_name(f'{path.stem}.cogbattery.jsonl.gz')
     if not pack.is_file():
         raise SystemExit(f'{path.name} has no {pack.name} next to it.')
     return meta, pack
+
+
+def params(meta):
+    """Served parameters in billions, or None for a model whose size is not disclosed."""
+    return None if meta['params_b'] is None else float(meta['params_b'])
 
 
 def make_row(sub_id, meta, digest, model, backend, values, not_run):
@@ -52,7 +58,7 @@ def make_row(sub_id, meta, digest, model, backend, values, not_run):
     undefined = [code for code, value in values.items() if value is None]
     if undefined:
         raise SystemExit(f'{sub_id}: a row needs all 13 measures, and these are undefined: {", ".join(undefined)}.')
-    return dict(id=sub_id, model=model, family=meta['family'], params_b=float(meta['params_b']),
+    return dict(id=sub_id, model=model, family=meta['family'], params_b=params(meta),
                 native_thinking=False, serving=backend, pack_sha256=digest, values=values)
 
 
@@ -88,7 +94,7 @@ def build(materials, submissions=SUBMISSIONS, board=BOARD, community=COMMUNITY, 
         digest = hashlib.sha256(pack.read_bytes()).hexdigest()
         cached = old.get(path.stem)
         if cached and cached['pack_sha256'] == digest:
-            rows.append({**cached, 'family': meta['family'], 'params_b': float(meta['params_b'])})
+            rows.append({**cached, 'family': meta['family'], 'params_b': params(meta)})
             continue
         if materials is None:
             raise SystemExit(f'{path.stem} is new or changed and needs --materials to be replayed.')

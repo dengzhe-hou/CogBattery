@@ -9,6 +9,8 @@ Each submission is two files with the same name.
 {"family": "qwen", "params_b": 7.6, "notes": "Q4_K_M from the Ollama library"}
 ```
 
+For a hosted model whose size is not disclosed, write `"params_b": null`. Its row shows "n/d" in the size column and sorts after the models with a known size.
+
 Use a short id such as `qwen2.5-7b-ollama`. The model name and the runner backend are read from the pack.
 
 Open a pull request that adds both files. A check rebuilds the materials, replays every request in the pack, scores the replies with the paper's scorers, and shows your key measures in the check summary. After the pull request is merged, the row appears in the community table on the [project page](https://dengzhe-hou.github.io/CogBattery/#community). To update a submission, replace both files under the same id.

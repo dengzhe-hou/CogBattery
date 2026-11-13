@@ -76,7 +76,9 @@ function modelTable(t, tasks, models, showServing) {
   let sortKey = 'params_b', asc = true;
 
   function value(m, key) {
-    if (key === 'model' || key === 'params_b') return m[key];
+    if (key === 'model') return m.model;
+    // Undisclosed sizes sort after every disclosed one; the human row has no size and sorts first.
+    if (key === 'params_b') return m.human || m.params_b !== null ? m.params_b : Infinity;
     const k = tasks.find(x => x.code === key), v = m.values[key];
     if (v === null || v === undefined) return null;
     if (k.kind === 'constant') return v ? 1 : 0;
@@ -105,7 +107,9 @@ function modelTable(t, tasks, models, showServing) {
       const name = el('td', { class: 'm' }, m.model + (m.native_thinking ? ' (thinking)' : ''));
       if (m.family) name.append(el('small', {}, m.family));
       if (showServing && m.serving) name.append(el('small', {}, SERVING[m.serving] || m.serving));
-      r.append(name, el('td', {}, m.human ? '–' : fmt(m.params_b, 1)));
+      const size = m.human ? el('td', {}, '–')
+        : m.params_b === null ? el('td', { title: 'Size not disclosed' }, 'n/d') : el('td', {}, fmt(m.params_b, 1));
+      r.append(name, size);
       for (const k of shown) {
         const v = m.values[k.code];
         if (k.kind === 'constant') {
