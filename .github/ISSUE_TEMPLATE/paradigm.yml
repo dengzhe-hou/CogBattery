@@ -1,0 +1,51 @@
+name: Propose a paradigm
+description: Suggest a new task before writing code. CONTRIBUTING.md describes what a paradigm needs.
+labels: [paradigm]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A paradigm fits CogBattery when a model can do a text version of it and a published study gives human data to compare with. See [CONTRIBUTING.md](https://github.com/dengzhe-hou/CogBattery/blob/main/CONTRIBUTING.md) for the details.
+  - type: input
+    id: paradigm
+    attributes:
+      label: Paradigm and source study
+      description: The task and a link to the paper.
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Human data and license
+      description: Where the participant data can be downloaded and under which license. Materials that cannot be redistributed need a public source the build can rebuild them from.
+    validations:
+      required: true
+  - type: textarea
+    id: measure
+    attributes:
+      label: Key measure
+      description: One measure that can be computed the same way for humans and models, and whether a higher value is better or only different.
+    validations:
+      required: true
+  - type: textarea
+    id: reference
+    attributes:
+      label: Human reference
+      description: Mean, across-person SD, and number of participants, and whether they come from participant-level records.
+    validations:
+      required: true
+  - type: textarea
+    id: adaptation
+    attributes:
+      label: Text version
+      description: What changes when the task is given as text, for example stimuli written as characters, no response deadline, or a visible history.
+    validations:
+      required: true
+  - type: dropdown
+    id: implement
+    attributes:
+      label: Will you write the code?
+      options:
+        - Yes, I will open a pull request
+        - I can help
+        - No, this is a suggestion

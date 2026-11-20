@@ -89,7 +89,7 @@ python -m scripts.release.pack_submission pack --run results/submissions/qwen2.5
 echo '{"family": "qwen", "params_b": 7.6}' > submissions/qwen2.5-7b-ollama.json
 ```
 
-The packed file holds each step's reply, its validity fields, and the SHA-256 of the request that was sent. It is usually under a few MB. The JSON file gives the model's family and its served parameters in billions, or `null` for a hosted model whose size is not disclosed. Open a pull request that adds both files under `submissions/` ([details](submissions/README.md)).
+The packed file holds each step's reply, its validity fields, and the SHA-256 of the request that was sent. It is usually under a few MB. CVLT-II list words are copyrighted and must not go into the repository, so each one in a CVLT reply is written as its position in the study list, and the check restores it from the materials it builds. The server URL and your local paths are left out. The JSON file gives the model's family and its served parameters in billions, or `null` for a hosted model whose size is not disclosed. Open a pull request that adds both files under `submissions/` ([details](submissions/README.md)).
 
 A check on the pull request downloads the sources, builds the materials, and runs
 
