@@ -1,0 +1,44 @@
+name: Report a problem
+description: A material that does not build, a scoring rule or human reference that looks wrong, or a broken page or link.
+labels: [correction]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for checking our work. Issues are public, so please do not paste CVLT-II list words. Refer to them by list and position instead.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Building the materials
+        - Running a model
+        - Scoring or a key measure
+        - Human reference values
+        - Project page or documentation
+        - Something else
+    validations:
+      required: true
+  - type: input
+    id: task
+    attributes:
+      label: Task
+      description: The paradigm involved, if any, for example flanker or n_back.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong
+      description: What you expected and what you found. For a number, give both values and where each comes from (file and line, table, or paper section).
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to see it
+      description: The commands you ran and their output, or the link to the page.
+      render: shell
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The commit you used (`git rev-parse --short HEAD`) or the date you viewed the page.

@@ -1,0 +1,24 @@
+name: Help with a submission
+description: A run, pack, or submission check that fails.
+labels: [submission]
+body:
+  - type: input
+    id: model
+    attributes:
+      label: Model and backend
+      description: For example qwen2.5:7b through Ollama, or a hosted model through the OpenAI-compatible backend.
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command and output
+      description: The command you ran and the last lines of its output. Please remove API keys and local paths.
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: check
+    attributes:
+      label: Pull request or check run
+      description: A link, if the problem is in the submission check.

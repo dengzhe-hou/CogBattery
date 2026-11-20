@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: How to submit a model or add a paradigm
+    url: https://github.com/dengzhe-hou/CogBattery/blob/main/CONTRIBUTING.md
+    about: Read this first. A model submission is a pull request and needs no issue.
